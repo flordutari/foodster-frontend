@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withAuth } from '../components/AuthProvider';
+import { withAuth } from '../providers/AuthProvider';
 class Login extends Component {
   state = {
     username: "",
@@ -11,9 +11,7 @@ class Login extends Component {
     const { username, password } = this.state
 
     this.props.login({ username, password })
-      .then(() => {
-        this.props.history.push('/private')
-      })
+      .then(() => {})
       .catch( error => console.log(error) )
   }
 

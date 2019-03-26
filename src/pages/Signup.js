@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withAuth } from '../components/AuthProvider';
+import { withAuth } from '../providers/AuthProvider';
 
 class Signup extends Component {
 
@@ -15,13 +15,13 @@ class Signup extends Component {
     const password = this.state.password;
 
     this.props.signup({ username, password })
-      .then( (user) => {
+      .then(() => {
         this.setState({
             username: "",
             password: "",
         });
       })
-      .catch( error => console.log(error) )
+      .catch(error => console.log(error) )
   }
 
   handleChange = (event) => {  

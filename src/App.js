@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import Private from './pages/Private';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import AuthProvider from './components/AuthProvider';
+import AuthProvider from './providers/AuthProvider';
 
 
 class App extends Component {
@@ -14,8 +14,8 @@ class App extends Component {
     return (
       <AuthProvider>
         <div className="container">
-          <h1>Basic React Authentication</h1>
-          <Navbar data='data' />
+          <h1>Module 3 boilerplate</h1>
+          <Navbar />
           <Switch>
             <AnonRoute path="/signup" component={Signup} />
             <AnonRoute path="/login" component={Login} />

@@ -3,8 +3,8 @@ import axios from 'axios';
 class AuthService {
   constructor() {
     this.auth = axios.create({
-      baseURL: 'http://localhost:5000',
-      withCredentials: true
+      baseURL: process.env.REACT_APP_BACKEND_URL,
+      withCredentials: true // only beacause we want to share cookies with the backend server otherwise set it to false
     })
   }
 
