@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
+import Navbar from '../components/Navbar';
 
 const PrivateRoute = ({ component: Component, isLogged, ...rest }) => {
   // console.log({ component: Component, user, ...rest }) 
@@ -9,7 +10,7 @@ const PrivateRoute = ({ component: Component, isLogged, ...rest }) => {
       {...rest}
       render={props => {
         if (isLogged) {
-          return <Component {...props} />
+          return <><Navbar {...props}/><Component {...props} /></>
         } else {
           return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
         }
@@ -17,7 +18,5 @@ const PrivateRoute = ({ component: Component, isLogged, ...rest }) => {
     />
   )
 }
-
-
 
 export default withAuth(PrivateRoute);

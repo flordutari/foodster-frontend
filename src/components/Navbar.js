@@ -7,10 +7,10 @@ class Navbar extends Component {
     const { isLogged, user, logout } = this.props;
     const { username } = user;
     if (isLogged) {
-      return <div>
+      return <nav>
         <p>username: { username }</p>
         <p onClick={logout}>Logout</p>
-      </div>
+      </nav>
     } else {
       return <div>
         <Link to='/login'>Login</Link>

@@ -9,8 +9,8 @@ class AuthService {
   }
 
   signup(user) {
-    const { username, password } = user;
-    return this.auth.post('/auth/signup', {username, password})
+    const { username, password, email } = user;
+    return this.auth.post('/auth/signup', {username, password, email})
       .then(({ data }) => data);
   }
 
@@ -28,6 +28,15 @@ class AuthService {
   me(user) {
     return this.auth.get('/auth/me')
     .then(response => response.data)
+  }
+
+  // editMyProfile(user) {
+  //   return this.auth.get('/auth/me')
+  //   .then(response => response.data)
+  // }
+
+  getProfile(id) {
+    return this.auth.get(`/auth/${id}`)
   }
 }
 
