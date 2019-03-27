@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import { withAuth } from '../providers/AuthProvider';
+import CategoryCard from '../components/CategoryCard';
 
 class Categories extends Component {
 
   render() {
-    const { user } = this.props
+    const categories = ['All', 'Vegetarian', 'Vegan', 'Gluten-free', 'Lactose-free', 'Meat']
     return (
-      <div>
-        <h1>Welcome {user.username}</h1>
-        <h1>Welcome {user.username}</h1>
-        <h1>Welcome {user.username}</h1>
-        <h1>Welcome {user.username}</h1>
-        <h1>Welcome {user.username}</h1>
-        <h1>Welcome {user.username}</h1>
-        <h1>Welcome {user.username}</h1>
-        <h1>Welcome {user.username}</h1>
-      </div>
+      categories.map((item) => (
+        <div>
+          <CategoryCard name={item}/>
+        </div>
+      ))
     );
   }
 }
