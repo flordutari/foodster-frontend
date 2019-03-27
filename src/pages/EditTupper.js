@@ -1,13 +1,57 @@
 import React, { Component } from 'react';
+import tupperService from '../lib/tupper-service';
+import EditForm from '../components/EditForm'
 
 class EditTupper extends Component {
-  render() {
-    return (
-      <form>
-        <input type="text" placeholder="hola"/>
-      </form>
-    );
+
+  state = {
+    tupper: {},
+    isLoading: true
   }
+
+  componentDidMount() {
+    this.getOneTortilla();
+  }
+  
+  getOneTortilla = () => {
+    const { id } = this.props.match.params;
+    tupperService.getOne(id)
+    .then(tupper => {
+      this.setState({
+        tupper,
+        isLoading: false
+      })
+    })
+    .catch(err => console.log(err));
+  }
+
+handleSubmit = (tupper) => {
+  console.log(tupper)
+  const {id} = this.props.match.params;
+  tupperService.editTupper(tupper, id)
+    .then((result) => {
+      console.log(result);
+      this.props.history.push('/tuppers');
+    })
+    .catch(err => console.log(err));
+}
+
+render() {
+  const {isLoading} = this.state;
+  return (
+    (isLoading) ? <p>Loading...</p> : 
+      <div>
+        <EditForm onSubmit={this.handleSubmit} value={this.state.tupper}/>
+      </div>
+  )
+}
 }
 
 export default EditTupper;
+
+
+
+
+
+  
+
