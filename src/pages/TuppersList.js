@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import tupperService from '../lib/tupper-service';
-import TupperCard from '../components/TupperCard'
+import TupperCard from '../components/TupperCard';
 
 class TuppersList extends Component {
 
@@ -14,9 +14,9 @@ class TuppersList extends Component {
   
   getTupperList = () => {
     tupperService.getAll()
-      .then(data => {
+      .then(tuppers => {
         this.setState({
-          data
+          tuppers
         })
       })
       .catch(err => console.log(err));
@@ -24,19 +24,16 @@ class TuppersList extends Component {
 
   render() {
     const {tuppers} = this.state;
+    console.log(tuppers);
     return (
-      <div>
-        <ul>
-          {tuppers.map(tortilla => (
-            <TupperCard
-              key={tortilla._id}
-              data={tortilla}
-              onDelete={this.handleDelete}
-              onEdit={this.handleEdit}
-            />
-          ))}
-        </ul>
-      </div>
+      <ul>
+        {tuppers.map(tupper => (
+          <TupperCard
+            key={tupper._id}
+            tupper={tupper}
+          />
+        ))}
+      </ul>
     );
   }
 }

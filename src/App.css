@@ -18,6 +18,10 @@ nav {
   background: orange;
 }
 
+img {
+  width: 20%;
+}
+
 /* ---- typography ---- */
 
 body {
