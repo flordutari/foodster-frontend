@@ -5,13 +5,9 @@ class CreateForm extends Component {
   state = {
     name: '',
     image: '',
-    category: [],
     value: ''
   }
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+
   handleChange = (e) => {
     this.setState({
       [e.target.name] : e.target.value,
@@ -23,8 +19,7 @@ class CreateForm extends Component {
     this.props.onSubmit(this.state);
     this.setState({
       name: '',
-      image: '',
-      category: [],
+      imageUrl: '',
       value: ''
     })
   }
@@ -33,8 +28,9 @@ class CreateForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input type="text" name="name" onChange={this.handleChange}/>
-        <input type="text" name="image" onChange={this.handleChange}/>
-        <select name="category" multiple>
+        <input type="text" name="imageUrl" onChange={this.handleChange}/>
+        <input type="text" name="value" onChange={this.handleChange}/>
+        {/* <select name="category" multiple>
           <option selected value="All">All</option>
           <option value="Vegetarian">Vegetarian</option>
           <option value="Vegan">Vegan</option>
@@ -48,8 +44,8 @@ class CreateForm extends Component {
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-        </select>
-        <input type="submit"/>
+        </select> */}
+        <button type="submit">Create</button>
       </form>
     );
   }

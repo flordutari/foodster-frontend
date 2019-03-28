@@ -5,7 +5,6 @@ import tupperService from '../lib/tupper-service';
 class NewTupper extends Component {
 
   handleSubmit = (data) => {
-    console.log(data)
     tupperService.createTupper(data)
       .then((result) => {
         console.log(result);
