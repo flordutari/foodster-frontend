@@ -30,6 +30,7 @@ class UserProfile extends Component {
       (isLoading) ? <p>Loading...</p> :
       <div>
         <h1>{username}</h1>
+        <button>Follow</button>
       </div>
     );
   }

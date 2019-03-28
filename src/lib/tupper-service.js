@@ -33,8 +33,8 @@ class TupperService {
       .then(({data}) => data)
   }
 
-  editTupperStatus(body, id) {
-    return this.api.put(`/${id}/buy`, body)
+  editTupperBought(body, id) {
+    return this.api.put(`/transaction/${id}`, body)
       .then(({data}) => data)
   }
 }
