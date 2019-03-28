@@ -22,6 +22,22 @@ img {
   width: 20%;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  width: 80%;
+  margin: 10px;
+}
+
+.container div {
+  display: flex;
+}
+
+input {
+  margin: 5px;
+}
+
 /* ---- typography ---- */
 
 body {

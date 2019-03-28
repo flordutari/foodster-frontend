@@ -25,14 +25,25 @@ class TupperDetail extends Component {
     .catch(err => console.log(err));
   }
 
+  handleDelete = () => {
+    const { id } = this.props.match.params;
+    tupperService.deleteTupper(id)
+      .then(result => {
+        console.log(result);
+        this.props.history.push('/tuppers');
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
-    const { tupper:{name, _id}, isLoading } = this.state;
+    const { tupper:{name, _id}, isLoading} = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
       <div>
         <h1>{name}</h1>
         <Link to={`./${_id}/edit`}>Edit</Link>
-        <button>Delete</button>
+        <button onClick={this.handleDelete}>Delete</button>
+        <button>Buy</button>
       </div>
     );
   }

@@ -10,10 +10,10 @@ class EditTupper extends Component {
   }
 
   componentDidMount() {
-    this.getOneTortilla();
+    this.getOneTupper();
   }
   
-  getOneTortilla = () => {
+  getOneTupper = () => {
     const { id } = this.props.match.params;
     tupperService.getOne(id)
     .then(tupper => {
@@ -26,7 +26,6 @@ class EditTupper extends Component {
   }
 
 handleSubmit = (tupper) => {
-  console.log(tupper)
   const {id} = this.props.match.params;
   tupperService.editTupper(tupper, id)
     .then((result) => {

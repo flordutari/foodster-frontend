@@ -24,7 +24,6 @@ class TuppersList extends Component {
 
   render() {
     const {tuppers} = this.state;
-    console.log(tuppers);
     return (
       <ul>
         {tuppers.map(tupper => (

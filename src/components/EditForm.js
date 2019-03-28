@@ -26,7 +26,6 @@ class EditForm extends Component {
 
   render() {
     const { name, imageUrl, category } = this.state;
-    console.log(this.props)
     return (
       <form onSubmit={this.handleSubmit}>
         <input value={name} onChange={this.handleChange} name="name" type="text"/>
