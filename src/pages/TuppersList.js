@@ -26,11 +26,13 @@ class TuppersList extends Component {
     const {tuppers} = this.state;
     return (
       <ul>
-        {tuppers.map(tupper => (
+        {tuppers.map((tupper) => (
+          (tupper.available) ?
           <TupperCard
             key={tupper._id}
             tupper={tupper}
-          />
+          /> :
+          null
         ))}
       </ul>
     );

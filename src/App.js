@@ -29,7 +29,7 @@ class App extends Component {
             <PrivateRoute exact path="/tuppers/new" component={NewTupper} />
             <PrivateRoute exact path="/tuppers/:id" component={TupperDetail} />
             <PrivateRoute path="/tuppers/:id/edit" component={EditTupper} />
-            <PrivateRoute path="/profile/me" component={MyProfile} />
+            <PrivateRoute exact path="/profile" component={MyProfile} />
             <PrivateRoute path="/profile/:id" component={UserProfile} />
           </Switch>
         </div>

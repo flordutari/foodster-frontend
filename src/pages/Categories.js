@@ -10,12 +10,11 @@ class Categories extends Component {
     return (
       <>
       {categories.map((item, index) => (
-          <div>
             <CategoryCard 
-            name={item} 
             key={`id${index}`}
+            name={item} 
             />
-          </div>))}
+          ))}
           <Link to='./tuppers/new'>New</Link>
       </>
       

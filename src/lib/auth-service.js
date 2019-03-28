@@ -25,18 +25,19 @@ class AuthService {
       .then(response => response.data)
   }
 
-  me(user) {
+  me() {
     return this.auth.get('/auth/me')
     .then(response => response.data)
   }
 
-  // editMyProfile(user) {
-  //   return this.auth.get('/auth/me')
-  //   .then(response => response.data)
-  // }
+  editMyProfile() {
+    return this.auth.get('/auth/me')
+    .then(response => response.data)
+  }
 
   getProfile(id) {
     return this.auth.get(`/auth/${id}`)
+    .then(response => response.data)
   }
 }
 

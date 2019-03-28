@@ -4,6 +4,7 @@ class TupperService {
   constructor() {
     this.api = axios.create({
       baseURL: 'http://localhost:5000/api/tuppers',
+      withCredentials: true
     });
   }
 
@@ -29,6 +30,11 @@ class TupperService {
 
   editTupper(body, id) {
     return this.api.put(`/${id}`, body)
+      .then(({data}) => data)
+  }
+
+  editTupperStatus(body, id) {
+    return this.api.put(`/${id}/buy`, body)
       .then(({data}) => data)
   }
 }

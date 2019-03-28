@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { withAuth } from '../providers/AuthProvider';
 
 class MyProfile extends Component {
+
   render() {
+    const { username } = this.props.user;
     return (
       <div>
-        mi perfil
+        <h1>{username}</h1>
       </div>
     );
   }
 }
 
-export default MyProfile;
+export default withAuth(MyProfile);
