@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import tupperService from '../lib/tupper-service';
-// import authService from '../lib/auth-service';
+import authService from '../lib/auth-service';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
 
 class TupperDetail extends Component {
 
   state = {
-    
+    user: {},
     tupper: {},
+    creatorUser: {},
     isLoading: true,
     favorite: false
   }
 
   componentDidMount() {
     this.getOneTupper();
+    this.getCurrentUser();
   }
   
   getOneTupper = () => {
@@ -25,53 +27,73 @@ class TupperDetail extends Component {
           tupper,
           isLoading: false
         })
-    })
+      })
+      .then(() => {this.getCreator()})
+
       .catch(err => console.log(err));
   }
 
-  // getCurrentUser = () => {
-  //   const { _id } = this.props.user;
-  //   authService.getProfile(_id)
-  //     .then(user => {
-  //       this.setState({
-  //         user,
-  //         isLoading: false
-  //       })
-  //   })
-  //     .catch(err => console.log(err));
-  // }
-
-  handleDelete = () => {
-    const { id } = this.props.match.params;
-    tupperService.deleteTupper(id)
-      .then(result => {
-        console.log(result);
-        this.props.history.push('/tuppers');
-      })
+  getCurrentUser = () => {
+    authService.me()
+      .then(user => {
+        this.setState({
+          user,
+          isLoading: false
+        })
+    })
+      .catch(err => console.log(err));
+  }
+  
+  getCreator = () => {
+    const { creator } = this.state.tupper;
+    authService.getProfile(creator)
+      .then(creatorUser => {
+        this.setState({
+          creatorUser,
+          isLoading: false
+        })
+    })
       .catch(err => console.log(err));
   }
 
   handleTransaction = () => {
     const { id } = this.props.match.params;
-    const { tickets, _id } = this.props.user;
+    const { tickets, _id } = this.state.user;
+    const creatorTickets = this.state.creatorUser.tickets;
+    const creatorId = this.state.creatorUser._id;
     const { price, available } = this.state.tupper;
-    console.log(this.props)
-    console.log(tickets, price)
+    console.log(tickets)
+    console.log(price)
+    console.log(creatorTickets)
+    console.log(creatorId)
+    console.log(id)
     if (tickets >= price) {
-    tupperService.editTupperBought(
-      {available: available,
-      owner: _id,
-      tickets: (tickets - price)
-      },
-      id)
-      .then((result) => {
-        console.log(result);
-        this.props.history.push('/tuppers');
+      tupperService.editTupperBought(
+        {available: available,
+          owner: _id,
+          tickets: (tickets - price),
+          creatorTickets: (creatorTickets + price),
+          creatorId: creatorId
+        },
+        id)
+        .then((result) => {
+          console.log(result);
+          this.props.history.push('/tuppers');
+        })
+        .catch(err => console.log(err));
+      }
+  }
+    
+  handleDelete = () => {
+    const { id } = this.props.match.params;
+    tupperService.deleteTupper(id)
+    .then(result => {
+      console.log(result);
+      this.props.history.push('/tuppers');
       })
       .catch(err => console.log(err));
-    }
   }
-
+    
   handleFavorite = () => {
     this.setState({
       favorite: !this.state.favorite
