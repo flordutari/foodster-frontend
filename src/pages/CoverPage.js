@@ -5,11 +5,11 @@ class CoverPage extends Component {
   render() {
     return (
       <div className="cover-page">
+        <img className="cover-logo" src="./img/logo3.svg" alt="logo"/>
         <h1>foodster</h1>
-        <img src="./img/logo3.svg" alt="logo"/>
-        <Link to='/login'>Login</Link>
+        <Link className="login-button" to='/login'>Login</Link>
         <hr/>
-        <Link to='/signup'>or Signup</Link>
+        <Link to='/signup'>Don't have an account yet? <br/> Signup</Link>
       </div>
     );
   }
