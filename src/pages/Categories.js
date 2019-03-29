@@ -15,7 +15,7 @@ class Categories extends Component {
             name={item} 
             />
           ))}
-          <Link to='./tuppers/new'>New</Link>
+          <Link to='./new'>New</Link>
       </>
       
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import tupperService from '../lib/tupper-service';
 import authService from '../lib/auth-service';
+import profileService from '../lib/profile-service';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
 
@@ -15,11 +16,11 @@ class TupperDetail extends Component {
   }
 
   componentDidMount() {
-    this.getOneTupper();
+    this.getTupperToBuy();
     this.getCurrentUser();
   }
   
-  getOneTupper = () => {
+  getTupperToBuy = () => {
     const { id } = this.props.match.params;
     tupperService.getOne(id)
       .then(tupper => {
@@ -46,7 +47,7 @@ class TupperDetail extends Component {
   
   getCreator = () => {
     const { creator } = this.state.tupper;
-    authService.getProfile(creator)
+    profileService.getProfile(creator)
       .then(creatorUser => {
         this.setState({
           creatorUser,
@@ -60,14 +61,14 @@ class TupperDetail extends Component {
     const { id } = this.props.match.params;
     const { tickets: buyerTickets, _id: buyerId } = this.state.user;
     const { tickets: creatorTickets, _id: creatorId } = this.state.creatorUser;
-    const { price: tupperPrice, available } = this.state.tupper.price;
+    const { price: tupperPrice, available } = this.state.tupper;
     if (buyerTickets >= tupperPrice) {
       tupperService.tupperPurchase({
-        available: available,
-        buyerId: buyerId,
+        available,
+        buyerId,
         buyerTickets: (buyerTickets - tupperPrice),
         creatorTickets: (creatorTickets + tupperPrice),
-        creatorId: creatorId
+        creatorId
       },
       id)
       .then((result) => {
@@ -77,7 +78,47 @@ class TupperDetail extends Component {
       .catch(err => console.log(err));
     }
   }
-    
+  
+  handleFavorite = () => {
+    const tupperId = this.state.tupper._id;
+    const { favorites } = this.state.user;
+    let isAlreadyFavorite = false;
+    if(favorites.includes(tupperId)) {
+      console.log(favorites)
+      console.log(tupperId)
+      isAlreadyFavorite = true;
+    } else {
+      console.log(isAlreadyFavorite)
+    }
+    if(isAlreadyFavorite === false){
+      profileService.addFavorite({
+        tupperId
+      })
+      .then(result => {
+        const user = result.data.userAddFavorite;
+        this.setState({
+          favorite: !this.state.favorite,
+          user
+        })
+        console.log(user)
+      })
+      .catch(err => console.log(err));
+    } else if (isAlreadyFavorite === true){
+      profileService.undoFavorite({
+        tupperId
+      })
+      .then(result => {
+        const user = result.data.userUndoFavorite;
+        this.setState({
+          favorite: !this.state.favorite,
+          user
+        })
+        console.log(user)
+      })
+      .catch(err => console.log(err));
+    }
+  }
+ 
   handleDelete = () => {
     const { id } = this.props.match.params;
     tupperService.deleteTupper(id)
@@ -86,12 +127,6 @@ class TupperDetail extends Component {
       this.props.history.push('/tuppers');
       })
       .catch(err => console.log(err));
-  }
-    
-  handleFavorite = () => {
-    this.setState({
-      favorite: !this.state.favorite
-    })
   }
 
   render() {

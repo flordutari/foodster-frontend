@@ -29,16 +29,6 @@ class AuthService {
     return this.auth.get('/auth/me')
     .then(response => response.data)
   }
-
-  editMyProfile() {
-    return this.auth.get('/auth/me')
-    .then(response => response.data)
-  }
-
-  getProfile(id) {
-    return this.auth.get(`/auth/${id}`)
-    .then(response => response.data)
-  }
 }
 
 const authService = new AuthService();

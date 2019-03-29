@@ -5,7 +5,7 @@ class CategoryCard extends Component {
   render() {
     return (
       <Link to="/tuppers">
-        <img src="./img/logo3.svg" alt="meat"/>
+        <img src="../img/logo3.svg" alt="meat"/>
         <h2>{this.props.name}</h2>
       </Link>
     );

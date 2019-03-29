@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import authService from '../lib/auth-service';
+import profileService from '../lib/profile-service';
+import { withAuth } from '../providers/AuthProvider';
 
 class UserProfile extends Component {
   
@@ -14,7 +15,8 @@ class UserProfile extends Component {
   
   getUserProfile = () => {
     const { id } = this.props.match.params;
-    authService.getProfile(id)
+    console.log(id)
+    profileService.getProfile(id)
       .then(user => {
         this.setState({
           user,
@@ -36,4 +38,4 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+export default withAuth(UserProfile);
