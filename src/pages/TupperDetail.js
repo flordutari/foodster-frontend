@@ -30,7 +30,6 @@ class TupperDetail extends Component {
         })
       })
       .then(() => {this.getCreator()})
-
       .catch(err => console.log(err));
   }
 
@@ -41,7 +40,8 @@ class TupperDetail extends Component {
           user,
           isLoading: false
         })
-    })
+      })
+      .then(() => {this.favoriteToggle()})
       .catch(err => console.log(err));
   }
   
@@ -78,18 +78,25 @@ class TupperDetail extends Component {
       .catch(err => console.log(err));
     }
   }
+
+  favoriteToggle = () => {
+    const tupperId = this.state.tupper._id;
+    const { favorites } = this.state.user;
+    if(favorites.includes(tupperId)) {
+      this.setState({favorite: true})
+    } else {
+      this.setState({favorite: false})
+    }
+  }
   
   handleFavorite = () => {
     const tupperId = this.state.tupper._id;
     const { favorites } = this.state.user;
     let isAlreadyFavorite = false;
     if(favorites.includes(tupperId)) {
-      console.log(favorites)
-      console.log(tupperId)
-      isAlreadyFavorite = true;
-    } else {
-      console.log(isAlreadyFavorite)
-    }
+      isAlreadyFavorite = true
+      this.setState({favorite: true})
+    } 
     if(isAlreadyFavorite === false){
       profileService.addFavorite({
         tupperId
@@ -97,10 +104,9 @@ class TupperDetail extends Component {
       .then(result => {
         const user = result.data.userAddFavorite;
         this.setState({
-          favorite: !this.state.favorite,
+          favorite: true,
           user
         })
-        console.log(user)
       })
       .catch(err => console.log(err));
     } else if (isAlreadyFavorite === true){
@@ -110,10 +116,9 @@ class TupperDetail extends Component {
       .then(result => {
         const user = result.data.userUndoFavorite;
         this.setState({
-          favorite: !this.state.favorite,
+          favorite: false,
           user
         })
-        console.log(user)
       })
       .catch(err => console.log(err));
     }
