@@ -58,30 +58,24 @@ class TupperDetail extends Component {
 
   handleTransaction = () => {
     const { id } = this.props.match.params;
-    const { tickets, _id } = this.state.user;
-    const creatorTickets = this.state.creatorUser.tickets;
-    const creatorId = this.state.creatorUser._id;
-    const { price, available } = this.state.tupper;
-    console.log(tickets)
-    console.log(price)
-    console.log(creatorTickets)
-    console.log(creatorId)
-    console.log(id)
-    if (tickets >= price) {
-      tupperService.editTupperBought(
-        {available: available,
-          owner: _id,
-          tickets: (tickets - price),
-          creatorTickets: (creatorTickets + price),
-          creatorId: creatorId
-        },
-        id)
-        .then((result) => {
-          console.log(result);
-          this.props.history.push('/tuppers');
-        })
-        .catch(err => console.log(err));
-      }
+    const { tickets: buyerTickets, _id: buyerId } = this.state.user;
+    const { tickets: creatorTickets, _id: creatorId } = this.state.creatorUser;
+    const { price: tupperPrice, available } = this.state.tupper.price;
+    if (buyerTickets >= tupperPrice) {
+      tupperService.tupperPurchase({
+        available: available,
+        buyerId: buyerId,
+        buyerTickets: (buyerTickets - tupperPrice),
+        creatorTickets: (creatorTickets + tupperPrice),
+        creatorId: creatorId
+      },
+      id)
+      .then((result) => {
+        console.log(result);
+        this.props.history.push('/tuppers');
+      })
+      .catch(err => console.log(err));
+    }
   }
     
   handleDelete = () => {
