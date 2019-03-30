@@ -27,11 +27,23 @@ class UserProfile extends Component {
   }
 
   render() {
-    const { user: { username }, isLoading } = this.state;
+    const { user: { username, imageUrl }, isLoading } = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
-      <div>
-        <h1>{username}</h1>
+      <div className="profile-page">
+        <div className="profile-card">
+          <img className="profile" src={imageUrl} alt={`${username}`}/>
+          <div className="profile-text">
+            <h2 className="profile">Hi, I'm {username}</h2>
+            <div className="profile-valoration">
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star"></i>
+            </div>
+            <p>0.3 km</p>
+          </div>
+        </div>
         <button>Follow</button>
       </div>
     );
@@ -39,3 +51,5 @@ class UserProfile extends Component {
 }
 
 export default withAuth(UserProfile);
+
+      

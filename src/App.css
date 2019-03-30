@@ -66,7 +66,7 @@ a {
 
 #footbar {
   font-size: 1.2em;
-  color: #111;
+  color: #333;
   background-color: #fff;
   height: 7vh;
   display: flex;
@@ -83,10 +83,11 @@ a {
 /* ---- typography ---- */
 
 body {
-  color: #111;
+  color: #333;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 140%;
+  justify-self: center;
 }
 
 h1 {
@@ -101,7 +102,7 @@ h1 {
 }
 
 h2 {
-  color: #222;
+  color: #333;
   margin: 5vw;
   font-weight: 500;
 }
@@ -189,6 +190,12 @@ div.tupper-detail-page {
   flex-direction: column;
 }
 
+div.profile-page {
+  flex-direction: column;
+  margin: 9vh 5vw 0 5vw;
+  align-items: center;
+}
+
 /* ---- logo ---- */
 
 div.logo-login, div.logo-cover {
@@ -227,7 +234,6 @@ div.logo-login, div.logo-cover {
   text-align: center;
   padding: 10px;
   font-size: 1.2rem;
-  text-transform: uppercase;
   font-weight: 800;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   border: none;
@@ -238,7 +244,7 @@ div.logo-login, div.logo-cover {
   background: #ffb01e;
 }
 
- .login-button, .signup-button {
+.login-button, .signup-button {
   color: #ffb01e;
   background: #fff;
   margin-top: 8vh;
@@ -313,13 +319,12 @@ select {
 }
 
 .create-edit-input {
-  border-bottom: 1px solid #222;
-  color: #222;
+  border-bottom: 1px solid #333;
+  color: #333;
 }
 
 ::placeholder {
-  color: #ddd;
-  padding-left: 10px; 
+  color: #ddd; 
 }
 
 /* ---- cards ---- */
@@ -398,4 +403,26 @@ div.handle-image {
 
 .new-tupper form, .new-tupper input {
   margin-top: 5vh;
+}
+
+h2.profile {
+  margin: 3vh 0;
+}
+
+img.profile {
+  height: 16vh;
+  width: auto;
+  border-radius: 50%;
+  justify-self: center;
+}
+
+div.profile-text {
+  flex-direction: column;
+  margin-left: 4vw;
+}
+
+div.profile-card {
+  justify-content: space-around;
+  width: 90%;
+  align-items: center;
 }

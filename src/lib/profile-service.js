@@ -8,6 +8,11 @@ class ProfileService {
     })
   }
 
+  getProfile(id) {
+    return this.profile.get(`/profile/${id}`)
+    .then(response => response.data)
+  }
+
   addFavorite(body) {
     return this.profile.put('/profile/favorite', body)
     .then(response => response.data)
@@ -18,8 +23,8 @@ class ProfileService {
     .then(response => response.data)
   }
 
-  getProfile(id) {
-    return this.profile.get(`/profile/${id}`)
+  editProfile(id, body) {
+    return this.profile.get(`/profile/${id}`, body)
     .then(response => response.data)
   }
 }

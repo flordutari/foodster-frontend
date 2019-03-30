@@ -23,38 +23,38 @@ class TupperDetail extends Component {
   getTupperToBuy = () => {
     const { id } = this.props.match.params;
     tupperService.getOne(id)
-      .then(tupper => {
-        this.setState({
-          tupper,
-          isLoading: false
-        })
+    .then(tupper => {
+      this.setState({
+        tupper,
+        isLoading: false
       })
-      .then(() => {this.getCreator()})
-      .catch(err => console.log(err));
+    })
+    .then(() => {this.getCreator()})
+    .catch(err => console.log(err));
   }
 
   getCurrentUser = () => {
     authService.me()
-      .then(user => {
-        this.setState({
-          user,
-          isLoading: false
-        })
+    .then(user => {
+      this.setState({
+        user,
+        isLoading: false
       })
-      .then(() => {this.favoriteToggle()})
-      .catch(err => console.log(err));
+    })
+    .then(() => {this.favoriteToggle()})
+    .catch(err => console.log(err));
   }
   
   getCreator = () => {
     const { creator } = this.state.tupper;
     profileService.getProfile(creator)
-      .then(creatorUser => {
-        this.setState({
-          creatorUser,
-          isLoading: false
-        })
+    .then(creatorUser => {
+      this.setState({
+        creatorUser,
+        isLoading: false
+      })
     })
-      .catch(err => console.log(err));
+    .catch(err => console.log(err));
   }
 
   handleTransaction = () => {
@@ -130,39 +130,39 @@ class TupperDetail extends Component {
     .then(result => {
       console.log(result);
       this.props.history.push('/tuppers');
-      })
-      .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
   }
 
   render() {
     const { tupper:{name, _id, creator, imageUrl, price}, creatorUser, isLoading, favorite } = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
-      <div className="tupper-detail-page">
-        <img src={imageUrl} alt=""/>
-        <h2>{name}</h2>
-        <div className="chef">
-          <p>Chef: {creatorUser.username}</p>
-          <div className="handle-image">
-            <img src={creatorUser.imageUrl} alt=""/>
+        <div className="tupper-detail-page">
+          <img src={imageUrl} alt=""/>
+          <h2>{name}</h2>
+          <div className="chef">
+            <p>Chef: {creatorUser.username}</p>
+            <div className="handle-image">
+              <Link to={`/profile/${creatorUser._id}`}><img src={creatorUser.imageUrl} alt=""/></Link>
+            </div>
           </div>
+          <div>
+            <p className="distance">0.3 km - </p>
+            <p>{price}  <i className="fas fa-ticket-alt"></i></p>
+          </div>
+          {(creator === (this.props.user._id)) ?
+          <>
+            <Link to={`./${_id}/edit`}><i className="fas fa-edit"></i></Link> 
+            <button onClick={this.handleDelete}><i className="far fa-trash-alt"></i></button> 
+          </> :
+          <>
+            {(!favorite) ?
+              <button className="icon-button" onClick={this.handleFavorite}><i className="far fa-heart"></i></button> :
+              <button className="icon-button" onClick={this.handleFavorite}><i className="fas fa-heart"></i></button>}
+            <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
+          </>}
         </div>
-        <div>
-          <p className="distance">0.3 km - </p>
-          <p>{price}  <i className="fas fa-ticket-alt"></i></p>
-        </div>
-        {(creator === (this.props.user._id)) ?
-        <>
-          <Link to={`./${_id}/edit`}><i className="fas fa-edit"></i></Link> 
-          <button onClick={this.handleDelete}><i className="far fa-trash-alt"></i></button> 
-        </> :
-        <>
-          {(!favorite) ?
-            <button className="icon-button" onClick={this.handleFavorite}><i className="far fa-heart"></i></button> :
-            <button className="icon-button" onClick={this.handleFavorite}><i className="fas fa-heart"></i></button>}
-          <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
-        </>}
-      </div>
     );
   }
 }

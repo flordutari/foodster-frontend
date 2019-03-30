@@ -199,14 +199,12 @@ value - Number // enum // required
   - 204
   
 ## Tasks
-
-<!-- - setup
+- setup
 - backend routes
 - high fidelity wireframes
 - user model
-- tupper model -->
+- tupper model 
 - define components
-  - 
 - services
 - login view
 - signup view
@@ -239,7 +237,7 @@ The url to your repository and to your deployed project
 [Client repository Link](http://github.com)
 [Server repository Link](http://github.com)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://foodster-s.herokuapp.com/)
 
 ### Slides
 

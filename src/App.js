@@ -12,6 +12,7 @@ import NewTupper from './pages/NewTupper';
 import TupperDetail from './pages/TupperDetail';
 import EditTupper from './pages/EditTupper';
 import MyProfile from './pages/MyProfile';
+import EditProfile from './pages/EditProfile';
 import UserProfile from './pages/UserProfile';
 import AuthProvider from './providers/AuthProvider';
 
@@ -30,6 +31,7 @@ class App extends Component {
             <PrivateRoute exact path="/tuppers/:id" component={TupperDetail} />
             <PrivateRoute path="/tuppers/:id/edit" component={EditTupper} />
             <PrivateRoute exact path="/profile" component={MyProfile} />
+            <PrivateRoute exact path="/profile/edit" component={EditProfile} />
             <PrivateRoute path="/profile/:id" component={UserProfile} />
           </Switch>
         </div>
