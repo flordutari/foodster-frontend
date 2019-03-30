@@ -14,23 +14,37 @@ body, #root {
 }
 
 nav {
-  height: 6.5vh;
-  color: white;
-  background: orange;
+  position: fixed;
+  width: 100vw;
+  height: 7vh;
+  color: #111;
+  background: #fe7c31;
   font-size: .9rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
 }
 
-nav>img {
-  height: 5vh;
+.current-user{
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 3vw;
+}
+
+.current-user img {
+  height: 5.3vh;
+  width: auto;
   border-radius: 50%;
 }
 
-nav>p {
-  margin: 0;
+.logout-button {
+  margin-left: 3vw;
 }
 
-img {
-  width: 20%;
+.current-user p {
+  margin-right: 2.5vw;
 }
 
 form {
@@ -45,8 +59,25 @@ form {
   display: flex;
 }
 
-input {
-  margin: 5px;
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+#footbar {
+  font-size: 1.2em;
+  color: #111;
+  background-color: #fff;
+  height: 7vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 10;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  border-top: .1px solid #999;
 }
 
 /* ---- typography ---- */
@@ -69,9 +100,21 @@ h1 {
   color: #fff;
 }
 
-h2 {}
+h2 {
+  position: absolute;
+  color: #fff;
+  margin: 5vw;
+  align-self: end;
+  font-weight: 900;
+}
 
-h3 {}
+h3 {
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin: 0.5vh 0;
+}
+
+/* ---- pages ---- */
 
 .cover-page link {
   margin: 5px 0;
@@ -84,6 +127,7 @@ h3 {}
   background-image: url(/img/cover-background.png);
   background-size: cover;
   height: 100vh;
+  max-height: 100vh;
   width: 100vw;
   flex-flow: column;
   align-items: center;
@@ -97,13 +141,14 @@ img.cover-logo {
 
 .login-page, .signup-page {
   height: 100vh;
+  max-height: 100vh;
   flex-direction: column;
   align-items: center;
   color: #fff;
   background: linear-gradient(135deg, rgba(255, 79, 10, 0.9) 0%, rgba(235, 152, 44, 0.9) 100%);
 }
 
-.login-page form, .signup-page form {
+.login-page form, .signup-page form, .new-tupper form {
   width: 90%;
   flex-direction: column;
   align-items: center;
@@ -113,15 +158,40 @@ img.cover-logo {
   margin: 0;
 }
 
+div.categories-page {
+  flex-direction: column;
+  height: 100vh;
+  margin: 8vh 0 22vh 0;
+}
+
+div.tuppers-page {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-self: center;
+  justify-content: center;
+  margin: 8vh 0;
+}
+
+div.new-tupper {
+  display: flex;
+  margin: 8vh 0;
+}
+
+/* ---- logo ---- */
+
 div.logo-login, div.logo-cover {
   flex-direction: column;
   align-items: center;
 }
 
-/* ---- layout ---- */
+/* ---- general ---- */
 
 .container {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .section {
@@ -137,118 +207,7 @@ div.logo-login, div.logo-cover {
 }
 
 /* ---- components ---- */
-
-#menu-toggle {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 2.5px;
-  left: 25px;
-  z-index: 15;
-  -webkit-user-select: none;
-  user-select: none;
-  justify-content: center;
-}
-
-#menu-toggle input {
-  display: flex;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  cursor: pointer;
-  opacity: 0;
-  z-index: 20;
-}
-
-#menu-toggle span {
-  display: flex;
-  width: 29px;
-  height: 2px;
-  margin-bottom: 5px;
-  position: relative;
-  background: #fafafa;
-  border-radius: 3px;
-  z-index: 15;
-  transform-origin: 5px 0px;
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
-}
-
-#menu-toggle span:first-child {
-  transform-origin: 0% 0%;
-}
-
-#menu-toggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
-}
-
-#menu-toggle input:checked ~ span {
-  opacity: 1;
-  transform: rotate(45deg) translate(-3px, -1px);
-  background: #fafafa;
-  justify-content: center;
-}
-
-#menu-toggle input:checked ~ span:nth-last-child(3) {
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-#menu-toggle input:checked ~ span:nth-last-child(2)
-{
-  transform: rotate(-45deg) translate(0, -1px);
-}
-
-#menu {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  margin: 450px 0 0 -50px;
-  padding: 75px 25px;
-  padding-top: 100px;
-  background-color: #262025;
-  -webkit-font-smoothing: antialiased;
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 12;
-}
-
-#menu li {
-  padding: 10px 0;
-  transition-delay: 2s;
-  margin: 20px 0;
-  z-index: 12;
-}
-
-#menu-toggle input:checked ~ ul {
-  transform: none;
-}
-
-#menu a {
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #fafafa;
-  font-weight: 800;
-  font-size: 1.5em;
-  z-index: 12;
-}
-
-#menu a:hover {
-  color: rgb(167, 22, 121);
-  transition: color;
-}
-
-a {
-  color: #fafafa;
-  text-decoration: none;
-  align-self: center;
-}
+/* ---- links and buttons---- */
 
 .login-link, .login-button, .signup-button {
   width: 40vw;
@@ -285,17 +244,41 @@ a {
   color: #fff;
 }
 
-.standard-input {
+.icon-button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.fav-card {
+  position: absolute;
+  margin: .5vh 0 0 31vw;
+  font-size: 1.2rem;
+  color: #fff;
+  background: rgba(51, 51, 51, 0.404);
+}
+
+/* ---- forms ---- */
+
+input {
+  width: 80%;
   padding: 10px;
   margin: 10px 0;
-  width: 80%;
   outline: none;
   border:  none;
-  border-bottom: 1.5px solid #fff;
   font-size: 1.1rem;
   background: none;
-  color: #fff;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
+}
+
+.standard-input {
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+
+.create-edit-input {
+  border-bottom: 1px solid #222;
+  color: #222;
 }
 
 ::placeholder {
@@ -303,12 +286,45 @@ a {
   padding-left: 10px; 
 }
 
-label {
-  font-size: 1.1rem;
+/* ---- cards ---- */
+
+.category-card {
+  width: 90vw;
+  height: 22vh; 
+  /* border: .5px solid #333; */
+  border-radius: 5px;
+  align-self: center;
+  margin-top: 2.5vh;
 }
 
-/* ---- section ---- */
+.category-card img {
+  display: flex;
+  width: 100%;
+  height: 20vh;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 5px;
+}
 
-section.testimonials .button {
-  margin-bottom: 10px;
+.tupper-card {
+  width: 40%;
+  align-self: center;
+  margin: 2vh;
+}
+
+.tupper-card img {
+  width: 100%;
+  height: auto;
+  align-self: center;
+  border-radius: 3px;
+}
+
+.tupper-card-subtitle {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tupper-card-subtitle p, .tupper-card-subtitle i {
+  margin: 0;
+  font-size: .8rem;
 }

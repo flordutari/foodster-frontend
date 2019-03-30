@@ -43,11 +43,10 @@ class CreateForm extends Component {
     const {name, imageUrl, category, price} = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="hidden" name=""/>
         <label>Name</label>
-        <input type="text" name="name" onChange={this.handleChange} value={name}/>
+        <input className="create-edit-input" type="text" name="name" onChange={this.handleChange} value={name} />
         <label>Image</label>
-        <input type="text" name="imageUrl" onChange={this.handleChange} value={imageUrl}/>
+        <input className="create-edit-input" type="text" name="imageUrl" onChange={this.handleChange} value={imageUrl}/>
         <label>Category</label>
         <select name="category" onChange={this.handleChange} multiple={true} value={category}>
           <option value="Vegetarian">Vegetarian</option>

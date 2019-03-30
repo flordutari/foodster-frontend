@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom';
 
 class CategoryCard extends Component {
   render() {
+    const { name, image } = this.props;
     return (
-      <Link to="/tuppers">
-        <img src="../img/logo3.svg" alt="meat"/>
-        <h2>{this.props.name}</h2>
+      <Link className="category-card" to="/tuppers">
+        <h2>{name}</h2>
+        <img src={image} alt="meat"/>
       </Link>
     );
   }

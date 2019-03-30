@@ -1,0 +1,27 @@
+[
+  {
+    "name": "All",
+    "imageUrl": "../img/all.jpeg",
+    "link": "/tuppers/all"
+  },
+  {
+    "name": "Vegetarian",
+    "imageUrl": "../img/vegetarian.jpeg",
+    "link": "/tuppers/vegetarian"
+  },
+  {
+    "name": "Vegan",
+    "imageUrl": "../img/vegan.jpeg",
+    "link": "/tuppers/vegan"
+  },
+  {
+    "name": "Gluten-free",
+    "imageUrl": "../img/gluten-free.jpeg",
+    "link": "/tuppers/gluten-free"
+  },
+  {
+    "name": "Meat",
+    "imageUrl": "../img/meat.jpeg",
+    "link": "/tuppers/meat"
+  }
+]

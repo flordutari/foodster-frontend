@@ -25,7 +25,7 @@ class TuppersList extends Component {
   render() {
     const {tuppers} = this.state;
     return (
-      <ul>
+      <div className="tuppers-page">
         {tuppers.map((tupper) => (
           (tupper.available) ?
           <TupperCard
@@ -34,7 +34,7 @@ class TuppersList extends Component {
           /> :
           null
         ))}
-      </ul>
+      </div>
     );
   }
 }

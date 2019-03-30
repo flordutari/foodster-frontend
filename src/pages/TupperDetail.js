@@ -142,14 +142,14 @@ class TupperDetail extends Component {
         <h1>{name}</h1>
         {(creator === (this.props.user._id)) ?
         <>
-          <Link to={`./${_id}/edit`}>Edit</Link> 
-          <button onClick={this.handleDelete}>Delete</button> 
+          <Link to={`./${_id}/edit`}><i className="fas fa-edit"></i></Link> 
+          <button onClick={this.handleDelete}><i className="far fa-trash-alt"></i></button> 
         </> :
         <>
           {(!favorite) ?
-            <button onClick={this.handleFavorite}>Fav</button> :
-            <button onClick={this.handleFavorite}>NotFav</button>}
-          <button onClick={this.handleTransaction}>I want it!</button>
+            <button className="icon-button" onClick={this.handleFavorite}><i class="far fa-heart"></i></button> :
+            <button className="icon-button" onClick={this.handleFavorite}><i class="fas fa-heart"></i></button>}
+          <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
         </>}
       </div>
     );

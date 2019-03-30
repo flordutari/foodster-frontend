@@ -15,7 +15,7 @@ class NewTupper extends Component {
 
   render() {
     return (
-      <div>
+      <div className="new-tupper">
         <CreateForm onSubmit={this.handleSubmit}/>
       </div>
     );

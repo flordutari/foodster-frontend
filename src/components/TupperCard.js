@@ -3,13 +3,15 @@ import {Link} from 'react-router-dom';
 
 class TupperCard extends Component {
   render() {
-    const { tupper: {name, _id, imageUrl, price}, onDelete } = this.props;
+    const { tupper: {name, _id, imageUrl, price} } = this.props;
     return (
-      <Link to={`/tuppers/${_id}`}>
-        <h3>{name}</h3>
+      <Link className="tupper-card" to={`/tuppers/${_id}`}>
+        <button className="icon-button fav-card"><i className="far fa-heart"></i></button> 
         <img src={imageUrl} alt="tupper" />
-        <input type="hidden" onClick={() => onDelete(_id)} />
-        <p>{price}</p>
+        <div className="tupper-card-subtitle">
+          <h3>{name}</h3>
+          <p>{price}  <i className="fas fa-ticket-alt"></i></p>
+        </div>
       </Link>
     );
   }
