@@ -9,7 +9,8 @@ class Navbar extends Component {
     return (
       <nav>
         <div className="logout-button">
-          <p onClick={logout}><i className="fas fa-chevron-left"></i></p>
+          <Link to="/tuppers"><i className="fas fa-chevron-left"></i></Link>
+          <p onClick={logout}>Logout</p>
         </div>
         <Link to="/profile">
           <div className="current-user">

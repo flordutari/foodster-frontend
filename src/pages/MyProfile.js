@@ -22,6 +22,9 @@ class MyProfile extends Component {
           </div>
           <Link to={`./profile/edit`}><i className="fas fa-edit"></i></Link>
         </div>
+        <div className="user-favorites">
+          favorites
+        </div>
       </div>
     );
   }

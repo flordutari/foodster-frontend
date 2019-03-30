@@ -23,6 +23,16 @@ class ProfileService {
     .then(response => response.data)
   }
 
+  follow(body) {
+    return this.profile.put('/profile/follow', body)
+    .then(response => response.data)
+  }
+
+  unfollow(body) {
+    return this.profile.put('/profile/unfollow', body)
+    .then(response => response.data)
+  }
+
   editProfile(body) {
     return this.profile.put('/profile/edit', body)
     .then(response => response.data)
