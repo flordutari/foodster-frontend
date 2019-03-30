@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
 
 class Navbar extends Component {
@@ -11,10 +11,12 @@ class Navbar extends Component {
         <div className="logout-button">
           <p onClick={logout}><i className="fas fa-chevron-left"></i></p>
         </div>
-        <div className="current-user">
-          <p>{username}</p>
-          <img src={imageUrl} alt={username} />
-        </div>
+        <Link to="/profile">
+          <div className="current-user">
+            <p>{username}</p>
+            <img src={imageUrl} alt={username} />
+          </div>
+        </Link>
       </nav>
     )
   }

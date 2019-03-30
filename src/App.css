@@ -35,8 +35,9 @@ nav {
 
 .current-user img {
   height: 5.3vh;
-  width: auto;
+  width: 5.3vh;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .logout-button {
@@ -397,8 +398,9 @@ div.handle-image {
 
 .chef img {
   width: 7vh;
-  height: auto;
+  height: 7vh;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .new-tupper form, .new-tupper input {
@@ -411,8 +413,9 @@ h2.profile {
 
 img.profile {
   height: 16vh;
-  width: auto;
+  width: 16vh;
   border-radius: 50%;
+  object-fit: cover;
   justify-self: center;
 }
 

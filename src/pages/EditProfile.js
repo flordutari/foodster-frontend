@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import profileService from '../lib/profile-service';
 import authService from '../lib/auth-service';
-import EditProfileForm from '../components/EditProfileForm'
+import EditProfileForm from '../components/EditProfileForm';
+import { withAuth } from '../providers/AuthProvider';
 
 class EditProfile extends Component {
 
@@ -25,10 +26,10 @@ class EditProfile extends Component {
     .catch(err => console.log(err));
   }
 
-  handleSubmit = (user) => {
-    profileService.editProfile(user)
-    .then((result) => {
-      console.log(result);
+  handleSubmit = (userEdit) => {
+    profileService.editProfile(userEdit)
+    .then(user => {
+      this.props.setUser(user);
       this.props.history.push('/profile');
     })
     .catch(err => console.log(err));
@@ -45,4 +46,4 @@ class EditProfile extends Component {
   }
 }
 
-export default EditProfile;
+export default withAuth(EditProfile);

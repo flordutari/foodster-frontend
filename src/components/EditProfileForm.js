@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withAuth } from '../providers/AuthProvider';
 
 class EditProfileForm extends Component {
 
@@ -40,4 +41,4 @@ class EditProfileForm extends Component {
   }
 }
 
-export default EditProfileForm;
+export default withAuth(EditProfileForm);
