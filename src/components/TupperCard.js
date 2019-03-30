@@ -8,9 +8,17 @@ class TupperCard extends Component {
       <Link className="tupper-card" to={`/tuppers/${_id}`}>
         <button className="icon-button fav-card"><i className="far fa-heart"></i></button> 
         <img src={imageUrl} alt="tupper" />
-        <div className="tupper-card-subtitle">
-          <h3>{name}</h3>
+        <h3>{name}</h3>
+        <div>
+          <p className="distance">0.3 km - </p>
           <p>{price}  <i className="fas fa-ticket-alt"></i></p>
+        </div>
+        <div className="valoration">
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
         </div>
       </Link>
     );

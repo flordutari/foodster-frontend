@@ -30,7 +30,7 @@ handleSubmit = (tupper) => {
   tupperService.editTupper(tupper, id)
     .then((result) => {
       console.log(result);
-      this.props.history.push('/tuppers');
+      this.props.history.push(`/tuppers/${id}`);
     })
     .catch(err => console.log(err));
 }

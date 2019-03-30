@@ -57,7 +57,7 @@ class EditForm extends Component {
           <option value="Meat">Meat</option>
         </select>
         <label>Value</label>
-        <select name="value" onChange={this.handleChange} value={price}>
+        <select name="price" onChange={this.handleChange} value={price}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

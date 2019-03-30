@@ -135,11 +135,22 @@ class TupperDetail extends Component {
   }
 
   render() {
-    const { tupper:{name, _id, creator}, isLoading, favorite } = this.state;
+    const { tupper:{name, _id, creator, imageUrl, price}, creatorUser, isLoading, favorite } = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
-      <div>
-        <h1>{name}</h1>
+      <div className="tupper-detail-page">
+        <img src={imageUrl} alt=""/>
+        <h2>{name}</h2>
+        <div className="chef">
+          <p>Chef: {creatorUser.username}</p>
+          <div className="handle-image">
+            <img src={creatorUser.imageUrl} alt=""/>
+          </div>
+        </div>
+        <div>
+          <p className="distance">0.3 km - </p>
+          <p>{price}  <i className="fas fa-ticket-alt"></i></p>
+        </div>
         {(creator === (this.props.user._id)) ?
         <>
           <Link to={`./${_id}/edit`}><i className="fas fa-edit"></i></Link> 
@@ -147,8 +158,8 @@ class TupperDetail extends Component {
         </> :
         <>
           {(!favorite) ?
-            <button className="icon-button" onClick={this.handleFavorite}><i class="far fa-heart"></i></button> :
-            <button className="icon-button" onClick={this.handleFavorite}><i class="fas fa-heart"></i></button>}
+            <button className="icon-button" onClick={this.handleFavorite}><i className="far fa-heart"></i></button> :
+            <button className="icon-button" onClick={this.handleFavorite}><i className="fas fa-heart"></i></button>}
           <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
         </>}
       </div>

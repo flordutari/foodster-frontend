@@ -17,8 +17,8 @@ nav {
   position: fixed;
   width: 100vw;
   height: 7vh;
-  color: #111;
-  background: #fe7c31;
+  color: #fff;
+  background: #ffa515;
   font-size: .9rem;
   display: flex;
   flex-direction: row;
@@ -92,7 +92,7 @@ body {
 h1 {
   font-size: 2.2rem;
   margin: 3vh 0 12vh 0;
-  color: #fea431;
+  color: #ffb01e;
 }
 
 .logo-login h1 {
@@ -101,17 +101,22 @@ h1 {
 }
 
 h2 {
-  position: absolute;
-  color: #fff;
+  color: #222;
   margin: 5vw;
-  align-self: end;
-  font-weight: 900;
+  font-weight: 500;
+}
+
+h2::first-letter {
+  text-transform: capitalize;
 }
 
 h3 {
-  text-transform: capitalize;
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin: 0.5vh 0;
+}
+
+h3::first-letter {
+  text-transform: capitalize;
 }
 
 /* ---- pages ---- */
@@ -161,7 +166,7 @@ img.cover-logo {
 div.categories-page {
   flex-direction: column;
   height: 100vh;
-  margin: 8vh 0 22vh 0;
+  margin: 7vh 0 22vh 0;
 }
 
 div.tuppers-page {
@@ -176,6 +181,12 @@ div.tuppers-page {
 div.new-tupper {
   display: flex;
   margin: 8vh 0;
+}
+
+div.tupper-detail-page {
+  display: flex;
+  margin: 7vh 0;
+  flex-direction: column;
 }
 
 /* ---- logo ---- */
@@ -209,7 +220,7 @@ div.logo-login, div.logo-cover {
 /* ---- components ---- */
 /* ---- links and buttons---- */
 
-.login-link, .login-button, .signup-button {
+.login-link, .login-button, .signup-button, .new-tupper button {
   width: 40vw;
   border-radius: 30px;
   text-decoration: none;
@@ -222,13 +233,13 @@ div.logo-login, div.logo-cover {
   border: none;
 }
 
-.login-link {
+.login-link, .new-tupper button {
   color: #fff;
-  background: #fea431;
+  background: #ffb01e;
 }
 
  .login-button, .signup-button {
-  color: #fea431;
+  color: #ffb01e;
   background: #fff;
   margin-top: 8vh;
   width: 80%;
@@ -237,11 +248,15 @@ div.logo-login, div.logo-cover {
 
 .signup-link {
   margin-top: 1vh;
-  color: #fea431;
+  color: #ffb01e;
 }
 
 .signup-link-in-login {
   color: #fff;
+}
+
+.new-tupper button {
+  margin-top: 8vh;
 }
 
 .icon-button {
@@ -252,10 +267,23 @@ div.logo-login, div.logo-cover {
 
 .fav-card {
   position: absolute;
-  margin: .5vh 0 0 31vw;
-  font-size: 1.2rem;
+  margin: .5vh 0 0 75vw;
+  font-size: 1.4rem;
   color: #fff;
-  background: rgba(51, 51, 51, 0.404);
+}
+
+.fa-ticket-alt {
+  margin-left: 1vw;
+  color: #07b1cf;
+}
+
+.fa-star {
+  margin: .25vw;
+  color: #ff8e0c;
+}
+
+.valoration {
+  font-size: .5rem;
 }
 
 /* ---- forms ---- */
@@ -269,6 +297,14 @@ input {
   font-size: 1.1rem;
   background: none;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
+}
+
+select {
+  width: 80%;
+  font-family: "Quicksand", Helvetica, Arial, sans-serif;
+  background: none;
+  padding: 10px;
+  margin: 10px 0;
 }
 
 .standard-input {
@@ -291,10 +327,12 @@ input {
 .category-card {
   width: 90vw;
   height: 22vh; 
-  /* border: .5px solid #333; */
   border-radius: 5px;
   align-self: center;
   margin-top: 2.5vh;
+  -webkit-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.1);
 }
 
 .category-card img {
@@ -306,25 +344,58 @@ input {
   border-radius: 5px;
 }
 
+.category-card h2 {
+  position: absolute;
+  color: #fff;
+  margin: 5vw;
+  align-self: end;
+  font-weight: 900;
+}
+
 .tupper-card {
-  width: 40%;
+  width: 85%;
   align-self: center;
-  margin: 2vh;
+  margin: 1vh 3.5vw 2.5vh 3.5vw;
 }
 
 .tupper-card img {
   width: 100%;
   height: auto;
+  max-height: 20vh;
+  overflow: hidden;
+  object-fit: cover;
   align-self: center;
   border-radius: 3px;
 }
 
-.tupper-card-subtitle {
-  justify-content: space-between;
-  align-items: center;
+.tupper-card p {
+  margin: .5vh .5vw;
+  font-size: .8rem;
 }
 
-.tupper-card-subtitle p, .tupper-card-subtitle i {
-  margin: 0;
-  font-size: .8rem;
+.tupper-detail-page img {
+  width: 100%;
+  height: auto;
+  max-height: 30vh;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+div.chef {
+  flex-direction: row;
+  justify-content: center;
+}
+
+div.handle-image {
+  display: inline;
+}
+
+.chef img {
+  width: 7vh;
+  height: auto;
+  border-radius: 50%;
+}
+
+.new-tupper form, .new-tupper input {
+  margin-top: 5vh;
 }

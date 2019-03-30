@@ -9,7 +9,7 @@ class Navbar extends Component {
     return (
       <nav>
         <div className="logout-button">
-          <p onClick={logout}>Logout</p>
+          <p onClick={logout}><i className="fas fa-chevron-left"></i></p>
         </div>
         <div className="current-user">
           <p>{username}</p>

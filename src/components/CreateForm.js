@@ -52,7 +52,6 @@ class CreateForm extends Component {
           <option value="Vegetarian">Vegetarian</option>
           <option value="Vegan">Vegan</option>
           <option value="Gluten-free">Gluten-free</option>
-          <option value="Lactose-free">Lactose-free</option>
           <option value="Meat">Meat</option>
         </select>
         <label>Value</label>
@@ -63,7 +62,7 @@ class CreateForm extends Component {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <button type="submit">Create</button>
+        <button type="submit">Create </button>
       </form>
     );
   }
