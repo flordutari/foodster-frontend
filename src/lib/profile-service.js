@@ -23,8 +23,8 @@ class ProfileService {
     .then(response => response.data)
   }
 
-  editProfile(id, body) {
-    return this.profile.get(`/profile/${id}`, body)
+  editProfile(body) {
+    return this.profile.put('/profile/edit', body)
     .then(response => response.data)
   }
 }

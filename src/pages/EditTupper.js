@@ -25,32 +25,26 @@ class EditTupper extends Component {
     .catch(err => console.log(err));
   }
 
-handleSubmit = (tupper) => {
-  const {id} = this.props.match.params;
-  tupperService.editTupper(tupper, id)
+  handleSubmit = (tupper) => {
+    const {id} = this.props.match.params;
+    tupperService.editTupper(tupper, id)
     .then((result) => {
       console.log(result);
       this.props.history.push(`/tuppers/${id}`);
     })
     .catch(err => console.log(err));
-}
+  }
 
-render() {
-  const {isLoading} = this.state;
-  return (
-    (isLoading) ? <p>Loading...</p> : 
-      <div>
-        <EditForm onSubmit={this.handleSubmit} value={this.state.tupper}/>
-      </div>
-  )
-}
+  render() {
+    const {isLoading} = this.state;
+    return (
+      (isLoading) ? <p>Loading...</p> : 
+        <div>
+          <EditForm onSubmit={this.handleSubmit} value={this.state.tupper}/>
+        </div>
+    )
+  }
 }
 
 export default EditTupper;
-
-
-
-
-
-  
 
