@@ -8,11 +8,11 @@ class FootBar extends Component {
     // const { username } = user;
     return (
       <div id="footbar">
-        <Link to="/"><i className="fas fa-search"></i></Link>
-        <Link to="/"><i className="far fa-heart"></i></Link>
-        <Link to="/tuppers/new"><i className="fas fa-plus-circle"></i></Link>
-        <Link to="/"><i className="far fa-comment-alt"></i></Link>
-        <Link to="/profile"><i className="fas fa-user-circle"></i></Link>
+        <Link to="/"><img src="../img/search.svg" alt=""/></Link>
+        <Link to="/"><img src="../img/like.svg" alt=""/></Link>
+        <Link to="/tuppers/new"><img src="../img/plus.svg" alt=""/></Link>
+        <Link to="/"><img src="../img/chat.svg" alt=""/></Link>
+        <Link to="/profile"><img src="../img/user.svg" alt=""/></Link>
       </div>
     )
   }

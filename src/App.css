@@ -27,6 +27,10 @@ nav {
   z-index: 10;
 }
 
+nav>a {
+  color: #fff;
+}
+
 .current-user{
   justify-content: space-between;
   align-items: center;
@@ -34,8 +38,8 @@ nav {
 }
 
 .current-user img {
-  height: 5.3vh;
-  width: 5.3vh;
+  height: 5vh;
+  width: 5vh;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -79,6 +83,12 @@ a {
   bottom: 0px;
   width: 100%;
   border-top: .1px solid #999;
+}
+
+#footbar img {
+  margin-top: 0.5vh;
+  width: 3.2vh;
+  height: 3.2vh;
 }
 
 /* ---- typography ---- */

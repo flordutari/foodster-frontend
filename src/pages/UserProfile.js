@@ -65,11 +65,14 @@ class UserProfile extends Component {
       })
       .then(result => {
         const user = result.data.userFollow;
+        const otherUser = result.data.userFollowed;
         this.setState({
+          otherUser,
           user,
           followed: true,
         })
         console.log(user)
+        console.log(otherUser)
       })
       .catch(err => console.log(err));
     } else if (alreadyFollowing === true){
@@ -78,14 +81,25 @@ class UserProfile extends Component {
       })
       .then(result => {
         const user = result.data.userUnfollow;
+        const otherUser = result.data.userUnfollowed;
         this.setState({
+          otherUser,
           user,
           followed: false
         })
         console.log(user)
+        console.log(otherUser)
       })
       .catch(err => console.log(err));
     }
+  }
+
+  listFavorites = () => {
+    const { favorites } = this.state.user;
+    favorites.map(favorite => {return console.log(favorite)})
+    this.setState({
+      isLoading: false
+    })
   }
 
   render() {
@@ -109,6 +123,10 @@ class UserProfile extends Component {
         <button onClick={this.handleFollowers}>Follow</button> :
         <button onClick={this.handleFollowers}>Unfollow</button>
         }
+        {(isLoading) ? <p>Loading...</p> :
+        <div className="profile-favorites">
+        {this.listFavorites()}
+        </div>}
       </div>
     );
   }
