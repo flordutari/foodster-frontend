@@ -6,8 +6,8 @@ import { withAuth } from '../providers/AuthProvider';
 class UserProfile extends Component {
   
   state = {
+    otherUser: {},
     user: {},
-    currentUser: {},
     isLoading: true,
     followed: false
   }
@@ -20,9 +20,9 @@ class UserProfile extends Component {
   getUserProfile = () => {
     const { id } = this.props.match.params;
     profileService.getProfile(id)
-    .then(user => {
+    .then(otherUser => {
       this.setState({
-        user,
+        otherUser,
         isLoading: false
       })
     })
@@ -31,9 +31,9 @@ class UserProfile extends Component {
   
   getCurrentUser = () => {
     authService.me()
-    .then(currentUser => {
+    .then(user => {
       this.setState({
-        currentUser,
+        user,
         isLoading: false
       })
     })
@@ -42,8 +42,8 @@ class UserProfile extends Component {
   }
 
   followerToggle = () => {
-    const otherUserId = this.state.user._id;
-    const { following } = this.state.currentUser;
+    const otherUserId = this.state.otherUser._id;
+    const { following } = this.state.user;
     if(following.includes(otherUserId)) {
       this.setState({followed: true})
     } else {
@@ -52,8 +52,8 @@ class UserProfile extends Component {
   }
 
   handleFollowers = () => {
-    const otherUserId = this.state.user._id;
-    const { following } = this.state.currentUser;
+    const otherUserId = this.state.otherUser._id;
+    const { following } = this.state.user;
     let alreadyFollowing = false;
     if(following.includes(otherUserId)) {
       alreadyFollowing = true;
@@ -64,11 +64,12 @@ class UserProfile extends Component {
         otherUserId
       })
       .then(result => {
-        const currentUser = result.data.userFollow;
-        this.props.setUser(currentUser);
+        const user = result.data.userFollow;
         this.setState({
-          followed: true
+          user,
+          followed: true,
         })
+        console.log(user)
       })
       .catch(err => console.log(err));
     } else if (alreadyFollowing === true){
@@ -76,18 +77,19 @@ class UserProfile extends Component {
         otherUserId
       })
       .then(result => {
-        const currentUser = result.data.userUnfolow;
-        this.props.setUser(currentUser);
+        const user = result.data.userUnfollow;
         this.setState({
+          user,
           followed: false
         })
+        console.log(user)
       })
       .catch(err => console.log(err));
     }
   }
 
   render() {
-    const { user: { username, imageUrl }, isLoading, followed } = this.state;
+    const { otherUser: { username, imageUrl }, isLoading, followed } = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
       <div className="profile-page">

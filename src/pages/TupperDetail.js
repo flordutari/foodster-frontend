@@ -103,8 +103,8 @@ class TupperDetail extends Component {
       })
       .then(result => {
         const user = result.data.userAddFavorite;
-        this.props.setUser(user);
         this.setState({
+          user,
           favorite: true
         })
       })
@@ -114,10 +114,10 @@ class TupperDetail extends Component {
         tupperId
       })
       .then(result => {
-        const userUndo = result.data.userUndoFavorite;
-        this.props.setUser(userUndo);
+        const user = result.data.userUndoFavorite;
         this.setState({
-          favorite: false
+          user,
+          favorite: false,
         })
       })
       .catch(err => console.log(err));

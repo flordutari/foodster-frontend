@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
 
 class Navbar extends Component {
+
   render() {
     const { user, logout } = this.props;
     const { username, imageUrl } = user;
@@ -15,7 +16,7 @@ class Navbar extends Component {
         <Link to="/profile">
           <div className="current-user">
             <p>{username}</p>
-            <img src={imageUrl} alt={username} />
+            <img src={imageUrl} alt="" />
           </div>
         </Link>
       </nav>
