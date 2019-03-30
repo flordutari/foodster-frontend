@@ -5,19 +5,29 @@ import { withAuth } from '../providers/AuthProvider';
 class Navbar extends Component {
   render() {
     const { isLogged, user, logout } = this.props;
-    const { username } = user;
+    const { username, imageUrl } = user;
     if (isLogged) {
-      return <nav>
-        <p>{ username }</p>
-        <p onClick={logout}>Logout</p>
-      </nav>
-    } else {
-      return <div>
-        <Link to='/login'>Login</Link>
-        <Link to='/signup'>Signup</Link>
-      </div>
+      return (
+        <nav>
+          <div id="menu-toggle">
+            <input type="checkbox"/>
+              <span></span>
+              <span></span>
+              <span></span>
+            <ul id="menu">
+              <li><Link to="">Escape Rooms</Link></li>
+              <li><Link to="">Events</Link></li>
+              <li><Link to="">My Profile</Link></li>
+              <li onClick={logout}>Logout</li>
+            </ul>
+          </div>
+          <div className="current-user">
+            <p>{ username }</p>
+            <img src={ imageUrl } alt=""/>
+          </div>
+        </nav>
+      )
     }
-  
   }
 }
 
