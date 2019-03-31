@@ -15,9 +15,9 @@ class Login extends Component {
 
     this.props.login({ username, password })
       .then(() => {})
-      .catch( error => console.log(error))
+      .catch(error => console.log(error))
   }
-
+  
   handleChange = (event) => {  
     const {name, value} = event.target;
     this.setState({[name]: value});

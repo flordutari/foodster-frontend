@@ -11,6 +11,7 @@ class TupperDetail extends Component {
     user: {},
     tupper: {},
     creatorUser: {},
+    allUsers: [],
     isLoading: true,
     favorite: false
   }
@@ -42,6 +43,7 @@ class TupperDetail extends Component {
       })
     })
     .then(() => {this.favoriteToggle()})
+    .then(() => {this.getUsersList()})
     .catch(err => console.log(err));
   }
   
@@ -57,11 +59,23 @@ class TupperDetail extends Component {
     .catch(err => console.log(err));
   }
 
+  getUsersList = () => {
+    const { allUsers } = this.state;
+    profileService.getAllProfiles()
+    .then(allUsers => {
+      this.setState({
+        allUsers
+      })
+    })
+    console.log(allUsers)
+    .catch(err => console.log(err))
+  }
+
   handleTransaction = () => {
     const { id } = this.props.match.params;
     const { tickets: buyerTickets, _id: buyerId } = this.state.user;
     const { tickets: creatorTickets, _id: creatorId } = this.state.creatorUser;
-    const { price: tupperPrice, available } = this.state.tupper;
+    const { price: tupperPrice, available, _id } = this.state.tupper;
     if (buyerTickets >= tupperPrice) {
       tupperService.tupperPurchase({
         available,
@@ -73,11 +87,29 @@ class TupperDetail extends Component {
       id)
       .then((result) => {
         console.log(result);
-        this.props.history.push('/tuppers');
+        this.favoriteDelete(_id)
+        this.props.history.push('/tuppers/all');
+        this.props.setUser(result.data.buyerUser)
       })
       .catch(err => console.log(err));
     }
   }
+
+  favoriteDelete = (tupper) => {
+    const { allUsers } = this.state;
+    allUsers.map(user => (
+      (user.favorites.includes(tupper)) ?
+        profileService.deleteFavorites({
+          tupper,
+          user
+        })
+        .then(result => {
+          console.log(result)
+        }) 
+        .catch(err => console.log(err)) :
+      console.log(user))
+    )
+  }     
 
   favoriteToggle = () => {
     const tupperId = this.state.tupper._id;
@@ -107,6 +139,8 @@ class TupperDetail extends Component {
           user,
           favorite: true
         })
+        console.log(user.favorites)
+        this.props.setUser(user)
       })
       .catch(err => console.log(err));
     } else if (isAlreadyFavorite === true){
@@ -119,6 +153,8 @@ class TupperDetail extends Component {
           user,
           favorite: false,
         })
+        console.log(user.favorites)
+        this.props.setUser(user)
       })
       .catch(err => console.log(err));
     }

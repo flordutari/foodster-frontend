@@ -6,7 +6,7 @@ class TupperCard extends Component {
     const { tupper: {name, _id, imageUrl, price} } = this.props;
     return (
       <Link className="tupper-card" to={`/tuppers/${_id}`}>
-        <button className="icon-button fav-card"><i className="far fa-heart"></i></button> 
+        {/* <button className="icon-button fav-card"><i className="far fa-heart"></i></button>  */}
         <img src={imageUrl} alt="tupper" />
         <h3>{name}</h3>
         <div>

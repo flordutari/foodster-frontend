@@ -8,6 +8,11 @@ class ProfileService {
     })
   }
 
+  getAllProfiles() {
+    return this.profile.get(`/profile/users`)
+    .then(response => response.data)
+  }
+
   getProfile(id) {
     return this.profile.get(`/profile/${id}`)
     .then(response => response.data)
@@ -20,6 +25,11 @@ class ProfileService {
 
   undoFavorite(body) {
     return this.profile.put('/profile/undofavorite', body)
+    .then(response => response.data)
+  }
+
+  deleteFavorites(body) {
+    return this.profile.put('/profile/deletefavorites', body)
     .then(response => response.data)
   }
 

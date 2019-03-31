@@ -78,8 +78,7 @@ class UserProfile extends Component {
           user,
           followed: true,
         })
-        console.log(user)
-        console.log(otherUser)
+        this.props.setUser(user)
       })
       .catch(err => console.log(err));
     } else if (alreadyFollowing === true){
@@ -94,8 +93,7 @@ class UserProfile extends Component {
           user,
           followed: false
         })
-        console.log(user)
-        console.log(otherUser)
+        this.props.setUser(user)
       })
       .catch(err => console.log(err));
     }
@@ -103,7 +101,6 @@ class UserProfile extends Component {
 
   getFavoritesList = () => {
     const { favorites } = this.state.otherUser;
-    console.log(favorites)
     favorites.map(favoriteId => (
       tupperService.getOne(favoriteId)
       .then(favorite => {
@@ -117,7 +114,6 @@ class UserProfile extends Component {
 
   getFollowersList = () => {
     const { followers } = this.state.otherUser;
-    console.log(followers)
     followers.map(followerId => (
       profileService.getProfile(followerId)
       .then(follower => {
@@ -170,13 +166,13 @@ class UserProfile extends Component {
         <button onClick={this.handleFollowers}>Follow</button> :
         <button onClick={this.handleFollowers}>Unfollow</button>
         }
-        <div className="profile-favorites">
-        <h2>My favorites</h2>
-          {favoritesList.map(favorite => (
-            <>
-              <p>{favorite.name}</p>
-            </>
-          ))}
+        {/* <div className="profile-favorites">
+          <h2>My favorites</h2>
+            {favoritesList.map(favorite => (
+              <>
+                <p>{favorite.name}</p>
+              </>
+            ))}
         </div>
         <div className="profile-followers">
           <h2>My followers</h2>
@@ -193,7 +189,7 @@ class UserProfile extends Component {
             <p>{following.username}</p>
           </>
         ))}
-        </div>
+        </div> */}
       </div>
     );
   }

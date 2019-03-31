@@ -8,7 +8,7 @@ class NewTupper extends Component {
     tupperService.createTupper(data)
       .then((result) => {
         console.log(result);
-        this.props.history.push('/tuppers');
+        this.props.history.push('/tuppers/all');
       })
       .catch(err => console.log(err));
   }

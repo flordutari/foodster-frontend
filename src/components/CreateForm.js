@@ -5,7 +5,7 @@ class CreateForm extends Component {
   state = {
     name: '',
     imageUrl: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80',
-    category: ['All', ],
+    category: ['all', ],
     price: '1',
   }
 
@@ -34,7 +34,7 @@ class CreateForm extends Component {
     this.setState({
       name: '',
       imageUrl: '',
-      category: ['All', ],
+      category: ['all', ],
       price: '',
     })
   }
@@ -49,10 +49,11 @@ class CreateForm extends Component {
         <input className="create-edit-input" type="text" name="imageUrl" onChange={this.handleChange} value={imageUrl}/>
         <label>Category</label>
         <select name="category" onChange={this.handleChange} multiple={true} value={category}>
-          <option value="Vegetarian">Vegetarian</option>
-          <option value="Vegan">Vegan</option>
-          <option value="Gluten-free">Gluten-free</option>
-          <option value="Meat">Meat</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="meat">Meat</option>
+          <option value="pasta">Pasta</option>
+          <option value="gluten-free">Gluten-free</option>
         </select>
         <label>Value</label>
         <select name="price" onChange={this.handleChange} value={price}>

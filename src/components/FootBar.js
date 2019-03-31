@@ -11,7 +11,7 @@ class FootBar extends Component {
         <Link to="/"><img src="../img/search.svg" alt=""/></Link>
         <Link to="/"><img src="../img/like.svg" alt=""/></Link>
         <Link to="/tuppers/new"><img src="../img/plus.svg" alt=""/></Link>
-        <Link to="/"><img src="../img/chat.svg" alt=""/></Link>
+        <Link to="/tuppers/all"><img src="../img/lunch-box.svg" alt=""/></Link>
         <Link to="/profile"><img src="../img/user.svg" alt=""/></Link>
       </div>
     )

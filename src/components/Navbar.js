@@ -6,7 +6,7 @@ class Navbar extends Component {
 
   render() {
     const { user, logout } = this.props;
-    const { username, imageUrl } = user;
+    const { tickets, imageUrl } = user;
     return (
       <nav>
         <div className="logout-button">
@@ -15,7 +15,7 @@ class Navbar extends Component {
         </div>
         <Link to="/profile">
           <div className="current-user">
-            <p>{username}</p>
+            <p>{tickets}  <i className="fas fa-ticket-alt"></i></p>
             <img src={imageUrl} alt="" />
           </div>
         </Link>

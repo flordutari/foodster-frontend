@@ -14,12 +14,12 @@ class TuppersList extends Component {
   
   getTupperList = () => {
     tupperService.getAll()
-      .then(tuppers => {
-        this.setState({
-          tuppers
-        })
+    .then(tuppers => {
+      this.setState({
+        tuppers
       })
-      .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
   }
 
   renderAll = () => {
@@ -41,7 +41,7 @@ class TuppersList extends Component {
   renderVegetarian = () => {
     const { tuppers } = this.state;
     const vegetarianTuppers = tuppers.filter(tupper => (
-      tupper.category.includes("Vegetarian")
+      tupper.category.includes("vegetarian")
     ))
     return (vegetarianTuppers.map((tupper) => {
       if (tupper.available){
@@ -60,7 +60,7 @@ class TuppersList extends Component {
   renderVegan= () => {
     const { tuppers } = this.state;
     const veganTuppers = tuppers.filter(tupper => (
-      tupper.category.includes("Vegan")
+      tupper.category.includes("vegan")
     ))
     return (veganTuppers.map((tupper) => {
       if (tupper.available){
@@ -79,7 +79,7 @@ class TuppersList extends Component {
   renderMeat= () => {
     const { tuppers } = this.state;
     const meatTuppers = tuppers.filter(tupper => (
-      tupper.category.includes("Meat")
+      tupper.category.includes("meat")
     ))
     return (meatTuppers.map((tupper) => {
       if (tupper.available){
@@ -98,7 +98,7 @@ class TuppersList extends Component {
   renderPasta= () => {
     const { tuppers } = this.state;
     const pastaTuppers = tuppers.filter(tupper => (
-      tupper.category.includes("Pasta")
+      tupper.category.includes("pasta")
     ))
     return (pastaTuppers.map((tupper) => {
       if (tupper.available){
@@ -117,7 +117,7 @@ class TuppersList extends Component {
   renderGlutenfree= () => {
     const { tuppers } = this.state;
     const glutenfreeTuppers = tuppers.filter(tupper => (
-      tupper.category.includes("Gluten-free")
+      tupper.category.includes("gluten-free")
     ))
     return (glutenfreeTuppers.map((tupper) => {
       if (tupper.available){

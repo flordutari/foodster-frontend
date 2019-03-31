@@ -16,9 +16,9 @@ body, #root {
 nav {
   position: fixed;
   width: 100vw;
-  height: 7vh;
+  height: 7.2vh;
   color: #fff;
-  background: #ffa515;
+  background: #ffbe0b;
   font-size: .9rem;
   display: flex;
   flex-direction: row;
@@ -108,7 +108,7 @@ h1 {
 }
 
 .logo-login h1 {
-  margin: 3vh 0 8vh 0;
+  margin: 3vh 0 5vh 0;
   color: #fff;
 }
 
@@ -162,7 +162,7 @@ img.cover-logo {
   flex-direction: column;
   align-items: center;
   color: #fff;
-  background: linear-gradient(135deg, rgba(255, 79, 10, 0.9) 0%, rgba(235, 152, 44, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(255, 47, 10, 0.9) 0%, rgba(255, 49, 94, 0.9) 100%);
 }
 
 .login-page form, .signup-page form, .new-tupper form {
@@ -177,8 +177,7 @@ img.cover-logo {
 
 div.categories-page {
   flex-direction: column;
-  height: 100vh;
-  margin: 7vh 0 22vh 0;
+  margin: 7vh 0 10vh 0;
 }
 
 div.tuppers-page {
@@ -187,7 +186,7 @@ div.tuppers-page {
   width: 100%;
   align-self: center;
   justify-content: center;
-  margin: 8vh 0;
+  margin: 10.5vh 0 8vh 0;
 }
 
 div.new-tupper {
@@ -300,7 +299,7 @@ div.logo-login, div.logo-cover {
 }
 
 .valoration {
-  font-size: .5rem;
+  font-size: .7rem;
 }
 
 /* ---- forms ---- */
@@ -342,7 +341,7 @@ select {
 
 .category-card {
   width: 90vw;
-  height: 22vh; 
+  height: 20vh; 
   border-radius: 5px;
   align-self: center;
   margin-top: 2.5vh;
@@ -399,14 +398,13 @@ select {
 
 div.chef {
   flex-direction: row;
-  justify-content: center;
 }
 
 div.handle-image {
   display: inline;
 }
 
-.chef img {
+.chef img, .profile-followers img, .profile-following img {
   width: 7vh;
   height: 7vh;
   border-radius: 50%;
