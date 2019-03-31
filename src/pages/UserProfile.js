@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import authService from '../lib/auth-service';
 import profileService from '../lib/profile-service';
+import tupperService from '../lib/tupper-service';
 import { withAuth } from '../providers/AuthProvider';
 
 class UserProfile extends Component {
@@ -9,7 +10,10 @@ class UserProfile extends Component {
     otherUser: {},
     user: {},
     isLoading: true,
-    followed: false
+    followed: false,
+    favoritesList: [],
+    followersList: [],
+    followingList: [],
   }
 
   componentDidMount = () => {
@@ -38,6 +42,9 @@ class UserProfile extends Component {
       })
     })
     .then(() => {this.followerToggle()})
+    .then(() => {this.getFavoritesList()})
+    .then(() => {this.getFollowersList()})
+    .then(() => {this.getFollowingList()})
     .catch(err => console.log(err));
   }
 
@@ -94,16 +101,56 @@ class UserProfile extends Component {
     }
   }
 
-  listFavorites = () => {
-    const { favorites } = this.state.user;
-    favorites.map(favorite => {return console.log(favorite)})
-    this.setState({
-      isLoading: false
-    })
+  getFavoritesList = () => {
+    const { favorites } = this.state.otherUser;
+    console.log(favorites)
+    favorites.map(favoriteId => (
+      tupperService.getOne(favoriteId)
+      .then(favorite => {
+        this.setState({
+          favoritesList : [...this.state.favoritesList, favorite]
+        })
+      })
+      .catch(err => console.log(err))
+    ))
   }
 
+  getFollowersList = () => {
+    const { followers } = this.state.otherUser;
+    console.log(followers)
+    followers.map(followerId => (
+      profileService.getProfile(followerId)
+      .then(follower => {
+        this.setState({
+          followersList : [...this.state.followersList, follower]
+        })
+      })
+      .catch(err => console.log(err))
+    ))
+  }
+
+  getFollowingList = () => {
+    const { following } = this.state.otherUser;
+    console.log(following)
+    following.map(followingId => (
+      profileService.getProfile(followingId)
+      .then(following => {
+        this.setState({
+          followingList : [...this.state.followingList, following]
+        })
+      })
+      .catch(err => console.log(err))
+    ))
+  }
+    
   render() {
-    const { otherUser: { username, imageUrl }, isLoading, followed } = this.state;
+    const { otherUser: { username, imageUrl }, 
+            isLoading, 
+            followed, 
+            favoritesList,
+            followersList,
+            followingList
+          } = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
       <div className="profile-page">
@@ -123,15 +170,33 @@ class UserProfile extends Component {
         <button onClick={this.handleFollowers}>Follow</button> :
         <button onClick={this.handleFollowers}>Unfollow</button>
         }
-        {(isLoading) ? <p>Loading...</p> :
         <div className="profile-favorites">
-        {this.listFavorites()}
-        </div>}
+        <h2>My favorites</h2>
+          {favoritesList.map(favorite => (
+            <>
+              <p>{favorite.name}</p>
+            </>
+          ))}
+        </div>
+        <div className="profile-followers">
+          <h2>My followers</h2>
+          {followersList.map(follower => (
+            <>
+              <p>{follower.username}</p>
+            </>
+          ))}
+        </div>
+        <div className="profile-following">
+          <h2>I'm following</h2>
+        {followingList.map(following => (
+          <>
+            <p>{following.username}</p>
+          </>
+        ))}
+        </div>
       </div>
     );
   }
 }
 
 export default withAuth(UserProfile);
-
-      

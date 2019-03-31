@@ -23,7 +23,7 @@ class TuppersList extends Component {
   }
 
   render() {
-    const {tuppers} = this.state;
+    const { tuppers } = this.state;
     return (
       <div className="tuppers-page">
         {tuppers.map((tupper) => (
