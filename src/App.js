@@ -26,7 +26,12 @@ class App extends Component {
             <AnonRoute path="/signup" component={Signup} />
             <AnonRoute path="/login" component={Login} />
             <PrivateRoute path="/tuppers/categories" component={Categories} />
-            <PrivateRoute exact path="/tuppers" component={TuppersList} />
+            <PrivateRoute exact path="/tuppers/all" component={TuppersList} />
+            <PrivateRoute exact path="/tuppers/vegetarian" component={TuppersList} />
+            <PrivateRoute exact path="/tuppers/vegan" component={TuppersList} />
+            <PrivateRoute exact path="/tuppers/meat" component={TuppersList} />
+            <PrivateRoute exact path="/tuppers/pasta" component={TuppersList} />
+            <PrivateRoute exact path="/tuppers/gluten-free" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/new" component={NewTupper} />
             <PrivateRoute exact path="/tuppers/:id" component={TupperDetail} />
             <PrivateRoute path="/tuppers/:id/edit" component={EditTupper} />

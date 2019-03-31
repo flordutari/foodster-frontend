@@ -22,20 +22,153 @@ class TuppersList extends Component {
       .catch(err => console.log(err));
   }
 
-  render() {
+  renderAll = () => {
     const { tuppers } = this.state;
-    return (
-      <div className="tuppers-page">
-        {tuppers.map((tupper) => (
-          (tupper.available) ?
+    return (tuppers.map((tupper) => {
+      if (tupper.available){
+        return (
           <TupperCard
             key={tupper._id}
             tupper={tupper}
-          /> :
-          null
-        ))}
-      </div>
-    );
+          />
+        ) 
+      } else {
+        return null
+      }
+    }))
+  }
+
+  renderVegetarian = () => {
+    const { tuppers } = this.state;
+    const vegetarianTuppers = tuppers.filter(tupper => (
+      tupper.category.includes("Vegetarian")
+    ))
+    return (vegetarianTuppers.map((tupper) => {
+      if (tupper.available){
+        return (
+          <TupperCard
+            key={tupper._id}
+            tupper={tupper}
+          />
+        ) 
+      } else {
+        return null
+      }
+    }))
+  }
+
+  renderVegan= () => {
+    const { tuppers } = this.state;
+    const veganTuppers = tuppers.filter(tupper => (
+      tupper.category.includes("Vegan")
+    ))
+    return (veganTuppers.map((tupper) => {
+      if (tupper.available){
+        return (
+          <TupperCard
+            key={tupper._id}
+            tupper={tupper}
+          />
+        ) 
+      } else {
+        return null
+      }
+    }))
+  }
+
+  renderMeat= () => {
+    const { tuppers } = this.state;
+    const meatTuppers = tuppers.filter(tupper => (
+      tupper.category.includes("Meat")
+    ))
+    return (meatTuppers.map((tupper) => {
+      if (tupper.available){
+        return (
+          <TupperCard
+            key={tupper._id}
+            tupper={tupper}
+          />
+        ) 
+      } else {
+        return null
+      }
+    }))
+  }
+
+  renderPasta= () => {
+    const { tuppers } = this.state;
+    const pastaTuppers = tuppers.filter(tupper => (
+      tupper.category.includes("Pasta")
+    ))
+    return (pastaTuppers.map((tupper) => {
+      if (tupper.available){
+        return (
+          <TupperCard
+            key={tupper._id}
+            tupper={tupper}
+          />
+        ) 
+      } else {
+        return null
+      }
+    }))
+  }
+
+  renderGlutenfree= () => {
+    const { tuppers } = this.state;
+    const glutenfreeTuppers = tuppers.filter(tupper => (
+      tupper.category.includes("Gluten-free")
+    ))
+    return (glutenfreeTuppers.map((tupper) => {
+      if (tupper.available){
+        return (
+          <TupperCard
+            key={tupper._id}
+            tupper={tupper}
+          />
+        ) 
+      } else {
+        return null
+      }
+    }))
+  }
+
+  render() {
+    const { pathname } = this.props.location;
+    switch(pathname){
+      case '/tuppers/all':
+      return (
+        <div className="tuppers-page">
+          {this.renderAll()}
+      </div>);
+      case '/tuppers/vegetarian':
+      return (
+        <div className="tuppers-page">
+          {this.renderVegetarian()}
+      </div>);
+      case '/tuppers/vegan':
+      return (
+        <div className="tuppers-page">
+          {this.renderVegan()}
+      </div>);
+      case '/tuppers/meat':
+      return (
+        <div className="tuppers-page">
+          {this.renderMeat()}
+      </div>);
+      case '/tuppers/pasta':
+      return (
+        <div className="tuppers-page">
+          {this.renderPasta()}
+      </div>);
+      case '/tuppers/gluten-free':
+      return (
+        <div className="tuppers-page">
+          {this.renderGlutenfree()}
+      </div>);
+      default:
+        return null;
+    }
   }
 }
 

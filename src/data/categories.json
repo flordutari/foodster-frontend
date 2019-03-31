@@ -1,27 +1,26 @@
 [
   {
-    "name": "All",
-    "imageUrl": "../img/all.jpeg",
-    "link": "/tuppers/all"
+    "name": "all",
+    "imageUrl": "../img/all.jpeg"
   },
   {
-    "name": "Vegetarian",
-    "imageUrl": "../img/vegetarian.jpeg",
-    "link": "/tuppers/vegetarian"
+    "name": "vegetarian",
+    "imageUrl": "../img/vegetarian.jpeg"
   },
   {
-    "name": "Vegan",
-    "imageUrl": "../img/vegan.jpeg",
-    "link": "/tuppers/vegan"
+    "name": "vegan",
+    "imageUrl": "../img/vegan.jpeg"
   },
   {
-    "name": "Gluten-free",
-    "imageUrl": "../img/gluten-free.jpeg",
-    "link": "/tuppers/gluten-free"
+    "name": "pasta",
+    "imageUrl": "../img/pasta.jpeg"
   },
   {
-    "name": "Meat",
-    "imageUrl": "../img/meat.jpeg",
-    "link": "/tuppers/meat"
+    "name": "meat",
+    "imageUrl": "../img/meat.jpeg"
+  },
+  {
+    "name": "gluten-free",
+    "imageUrl": "../img/gluten-free.jpeg"
   }
 ]

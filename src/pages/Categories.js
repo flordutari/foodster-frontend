@@ -13,7 +13,7 @@ class Categories extends Component {
           key={`id${index}`}
           name={item.name}
           image={item.imageUrl}
-          link={item.link}
+          link={`/tuppers/${item.name}`}
           />
           ))}
       </div>
