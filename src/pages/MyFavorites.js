@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withAuth } from '../providers/AuthProvider';
 import tupperService from '../lib/tupper-service';
-import { Link } from 'react-router-dom';
+import FavoriteCard from '../components/FavoriteCard'
 
 class MyFavorites extends Component {
 
@@ -30,12 +30,18 @@ class MyFavorites extends Component {
     const { favoritesList } = this.state;
     return (
       <div className="favorites-page">
-        <h2>My favorites</h2>
-        {favoritesList.map(favorite => (
-          <>
-            <Link to={`/tuppers/${favorite._id}`}><p>{favorite.name}</p></Link>
-          </>
-        ))}
+        <h3>My favorites</h3>
+        <div className="all-favorites-cards">
+          {favoritesList.map((favorite, index) => (
+            <FavoriteCard
+            key={`id${index}`}
+            name={favorite.name}
+            imageUrl={favorite.imageUrl}
+            id={favorite._id}
+            price={favorite.price}
+            />
+          ))}
+        </div>
       </div>
     );
   }

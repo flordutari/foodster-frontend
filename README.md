@@ -237,10 +237,23 @@ The url to your repository and to your deployed project
 [Client repository Link](http://github.com)
 [Server repository Link](http://github.com)
 
-[Deploy Link](https://foodster-s.herokuapp.com/)
+[Deploy Link Backend](https://foodster-s.herokuapp.com/)
+[Deploy Link Frontend](https://foodster-fa4fb.firebaseapp.com/)
 
 ### Slides
 
 The url to your presentation slides
 
 [Slides Link](https://slides.com/florenciadutari/foodster)
+
+- mensajes de error
+- to rate - cambiar estado
+- subir imagenes firebase
+<!-- -en all, listar las que no son mias? no -->
+- my favorites card
+- show followers y following en perfil
+- que cuando clico la imagen vaya a mi perfil y no a mi perfil como otherUser
+- arreglar favorite, pasar por props e incluir en tupperList
+- botones de heart y mensaje flash de success
+- botton de I want it!
+- fix stars in otherUser profile

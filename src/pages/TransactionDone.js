@@ -5,7 +5,6 @@ class TransactionDone extends Component {
 
   render() {
     const { id } = this.props.match.params;
-    console.log(this.props.match) 
     return (
       <div className="transaction-page">
         <img src="../img/like.png" alt="."/>

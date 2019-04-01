@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Switch} from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
@@ -27,7 +27,7 @@ class App extends Component {
             <AnonRoute exact path="/" component={CoverPage} />
             <AnonRoute path="/signup" component={Signup} />
             <AnonRoute path="/login" component={Login} />
-            <PrivateRoute path="/tuppers/categories" component={Categories} />
+            <PrivateRoute exact path="/tuppers/categories" component={Categories} />
             <PrivateRoute exact path="/tuppers/all" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/search" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/vegetarian" component={TuppersList} />

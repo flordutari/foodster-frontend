@@ -1,26 +1,26 @@
 [
   {
     "name": "all",
-    "imageUrl": "../img/all.jpeg"
+    "imageUrl": "../img/all.jpg"
   },
   {
     "name": "vegetarian",
-    "imageUrl": "../img/vegetarian.jpeg"
+    "imageUrl": "../img/vegetarian.jpg"
   },
   {
     "name": "vegan",
-    "imageUrl": "../img/vegan.jpeg"
+    "imageUrl": "../img/vegan.jpg"
   },
   {
     "name": "pasta",
-    "imageUrl": "../img/pasta.jpeg"
+    "imageUrl": "../img/pasta.jpg"
   },
   {
     "name": "meat",
-    "imageUrl": "../img/meat.jpeg"
+    "imageUrl": "../img/meat.jpg"
   },
   {
     "name": "gluten-free",
-    "imageUrl": "../img/gluten-free.jpeg"
+    "imageUrl": "../img/gluten-free.jpg"
   }
 ]

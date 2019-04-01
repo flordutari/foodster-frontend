@@ -75,23 +75,22 @@ class TuppersList extends Component {
   }
 
   renderVegetarian = () => {
-    
     const { tuppers } = this.state;
     const vegetarianTuppers = tuppers.filter(tupper => (
       tupper.category.includes("vegetarian")
     ))
-    return (vegetarianTuppers.map((tupper) => {
-      if (tupper.available){
-        return (
-          <TupperCard
-            key={tupper._id}
-            tupper={tupper}
-          />
-        ) 
-      } else {
-        return null
-      }
-    }))
+    if(vegetarianTuppers.length > 0) {
+      return (vegetarianTuppers.map((tupper) => {
+        if (tupper.available){
+          return (
+            <TupperCard
+              key={tupper._id}
+              tupper={tupper}
+            />
+          ) 
+        } else { return null }
+      })) 
+    } else { return <p>No vegetarian tuppers yet</p> }
   }
 
   renderVegan= () => {
@@ -99,18 +98,18 @@ class TuppersList extends Component {
     const veganTuppers = tuppers.filter(tupper => (
       tupper.category.includes("vegan")
     ))
-    return (veganTuppers.map((tupper) => {
-      if (tupper.available){
-        return (
-          <TupperCard
-            key={tupper._id}
-            tupper={tupper}
-          />
-        ) 
-      } else {
-        return null
-      }
-    }))
+    if(veganTuppers.length > 0) {
+      return (veganTuppers.map((tupper) => {
+        if (tupper.available){
+          return (
+            <TupperCard
+              key={tupper._id}
+              tupper={tupper}
+            />
+          ) 
+        } else { return null }
+      }))
+    } else { return <p>No vegan tuppers yet</p> }
   }
 
   renderMeat= () => {
@@ -118,18 +117,18 @@ class TuppersList extends Component {
     const meatTuppers = tuppers.filter(tupper => (
       tupper.category.includes("meat")
     ))
-    return (meatTuppers.map((tupper) => {
-      if (tupper.available){
-        return (
-          <TupperCard
-            key={tupper._id}
-            tupper={tupper}
-          />
-        ) 
-      } else {
-        return null
-      }
-    }))
+    if(meatTuppers.length > 0) {
+      return (meatTuppers.map((tupper) => {
+        if (tupper.available){
+          return (
+            <TupperCard
+              key={tupper._id}
+              tupper={tupper}
+            />
+          ) 
+        } else { return null }
+      }))
+    } else { return <p>No meat tuppers yet</p> }
   }
 
   renderPasta= () => {
@@ -137,18 +136,18 @@ class TuppersList extends Component {
     const pastaTuppers = tuppers.filter(tupper => (
       tupper.category.includes("pasta")
     ))
-    return (pastaTuppers.map((tupper) => {
-      if (tupper.available){
-        return (
-          <TupperCard
-            key={tupper._id}
-            tupper={tupper}
-          />
-        ) 
-      } else {
-        return null
-      }
-    }))
+    if(pastaTuppers.length > 0) {
+      return (pastaTuppers.map((tupper) => {
+        if (tupper.available){
+          return (
+            <TupperCard
+              key={tupper._id}
+              tupper={tupper}
+            />
+          ) 
+        } else { return null }
+      }))
+    } else { return <p>No pasta tuppers yet</p> }
   }
 
   renderGlutenfree= () => {
@@ -156,18 +155,18 @@ class TuppersList extends Component {
     const glutenfreeTuppers = tuppers.filter(tupper => (
       tupper.category.includes("gluten-free")
     ))
-    return (glutenfreeTuppers.map((tupper) => {
-      if (tupper.available){
-        return (
-          <TupperCard
-            key={tupper._id}
-            tupper={tupper}
-          />
-        ) 
-      } else {
-        return null
-      }
-    }))
+    if(glutenfreeTuppers.length > 0) {
+      return (glutenfreeTuppers.map((tupper) => {
+        if (tupper.available){
+          return (
+            <TupperCard
+              key={tupper._id}
+              tupper={tupper}
+            />
+          ) 
+        } else { return null }
+      }))
+    } else { return <p>No gluten-free tuppers yet</p> }    
   }
 
   render() {

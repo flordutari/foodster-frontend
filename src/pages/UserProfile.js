@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import authService from '../lib/auth-service';
 import profileService from '../lib/profile-service';
-import tupperService from '../lib/tupper-service';
 import { withAuth } from '../providers/AuthProvider';
 import Rate from '../components/Rate';
 
@@ -12,7 +11,6 @@ class UserProfile extends Component {
     user: {},
     isLoading: true,
     followed: false,
-    favoritesList: [],
     followersList: [],
     followingList: [],
   }
@@ -43,7 +41,6 @@ class UserProfile extends Component {
       })
     })
     .then(() => {this.followerToggle()})
-    .then(() => {this.getFavoritesList()})
     .then(() => {this.getFollowersList()})
     .then(() => {this.getFollowingList()})
     .catch(err => console.log(err));
@@ -100,19 +97,6 @@ class UserProfile extends Component {
     }
   }
 
-  getFavoritesList = () => {
-    const { favorites } = this.state.otherUser;
-    favorites.map(favoriteId => (
-      tupperService.getOne(favoriteId)
-      .then(favorite => {
-        this.setState({
-          favoritesList : [...this.state.favoritesList, favorite]
-        })
-      })
-      .catch(err => console.log(err))
-    ))
-  }
-
   getFollowersList = () => {
     const { followers } = this.state.otherUser;
     followers.map(followerId => (
@@ -128,7 +112,6 @@ class UserProfile extends Component {
 
   getFollowingList = () => {
     const { following } = this.state.otherUser;
-    console.log(following)
     following.map(followingId => (
       profileService.getProfile(followingId)
       .then(following => {
@@ -141,12 +124,9 @@ class UserProfile extends Component {
   }
     
   render() {
-    const { otherUser: { username, imageUrl }, 
+    const { otherUser: { _id, username, imageUrl }, 
             isLoading, 
             followed, 
-            favoritesList,
-            followersList,
-            followingList
           } = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
@@ -156,7 +136,7 @@ class UserProfile extends Component {
           <div className="profile-text">
             <h2 className="profile">Hi, I'm {username}</h2>
             <div className="profile-rate">
-              <Rate />
+              <Rate user={_id}/>
             </div>
             <p>0.3 km</p>
           </div>

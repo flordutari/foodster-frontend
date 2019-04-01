@@ -4,7 +4,7 @@ import { withAuth } from '../providers/AuthProvider';
 import searchLogo from '../img/search.svg';
 import likeLogo from '../img/like.svg';
 import plusLogo from '../img/plus.svg';
-import lunchLogo from '../img/lunch-box.svg';
+import lunchLogo from '../img/salad.png';
 import userLogo from '../img/user.svg'
 
 class FootBar extends Component {
@@ -16,7 +16,7 @@ class FootBar extends Component {
         <Link to="/tuppers/search"><img src={searchLogo} alt=""/></Link>
         <Link to="/tuppers/favorites"><img src={likeLogo} alt=""/></Link>
         <Link to="/tuppers/new"><img src={plusLogo} alt=""/></Link>
-        <Link to="/tuppers/all"><img src={lunchLogo} alt=""/></Link>
+        <Link to="/tuppers/categories"><img src={lunchLogo} alt=""/></Link>
         <Link to="/profile"><img src={userLogo} alt=""/></Link>
       </div>
     )

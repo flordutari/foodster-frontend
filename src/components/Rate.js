@@ -9,15 +9,15 @@ class Rate extends Component {
   }
 
   componentDidMount = () => {
-    this.getCreator();
+    this.getUser();
   }
 
-  getCreator = () => {
+  getUser = () => {
     const { user } = this.props;
     profileService.getProfile(user)
     .then(user => {
       this.setState({
-        user: user,
+        user,
         isLoading: false
       })
     })

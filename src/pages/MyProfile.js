@@ -4,6 +4,7 @@ import profileService from '../lib/profile-service';
 import { withAuth } from '../providers/AuthProvider';
 import { Link } from 'react-router-dom';
 import Rate from '../components/Rate';
+import editLogo from '../img/edit.png';
 
 class MyProfile extends Component {
 
@@ -60,10 +61,10 @@ class MyProfile extends Component {
 
   render() {
     const { username, imageUrl, _id } = this.props.user;
-    // const { favoritesList, followersList, followingList } = this.state;
-    const { boughtList } = this.state;
+    const { boughtList, followersList, followingList } = this.state;
     return (
       <div className="profile-page">
+        <Link className="edit-logo" to={`./profile/edit`}><img src={editLogo} alt="edit"/></Link>
         <div className="profile-card">
           <img className="profile" src={imageUrl} alt={`${username}`}/>
           <div className="profile-text">
@@ -74,40 +75,39 @@ class MyProfile extends Component {
             </div>
             <p>0.3 km</p>
           </div>
-          <Link to={`./profile/edit`}><i className="fas fa-edit"></i></Link>
         </div>
-        <div className="profile-favorites">
-          <h2>To rate</h2>
-            {boughtList.map(item => (
-              <>
-                <Link to={`/tuppers/${item._id}`}><p>{item.name}</p></Link>
-              </>
-            ))}
+        <div className="profile-social">
+          <div className="profile-bought">
+            <h4>To rate</h4>
+            <div>
+              {boughtList.map(item => (
+                <>
+                  <Link to={`/tuppers/${item._id}`}><p>{item.name}</p></Link>
+                </>
+              ))}
+            </div>
+          </div>
+          <div className="profile-followers">
+            <h4>My followers</h4>
+            <div>
+              {followersList.map(follower => (
+                <>
+                  <Link to={`/profile/${follower._id}`}><img src={follower.imageUrl} alt=""/></Link>
+                </>
+              ))}
+            </div>
+          </div>
+          <div className="profile-following">
+            <h4>Who I'm following</h4>
+            <div>
+              {followingList.map(following => (
+                <>
+                  <Link to={`/profile/${following._id}`}><img src={following.imageUrl} alt=""/></Link>
+                </>
+              ))}
+            </div>
+          </div>
         </div>
-        {/* <div className="profile-favorites">
-          <h2>My favorites</h2>
-            {favoritesList.map(favorite => (
-              <>
-                <p>{favorite.name}</p>
-              </>
-            ))}
-        </div> */}
-        {/* <div className="profile-followers">
-          <h2>My followers</h2>
-          {followersList.map(follower => (
-            <>
-              <Link to={`/profile/${follower._id}`}><img src={follower.imageUrl} alt=""/></Link>
-            </>
-          ))}
-        </div>
-        <div className="profile-following">
-          <h2>I'm following</h2>
-        {followingList.map(following => (
-          <>
-            <Link to={`/profile/${following._id}`}><img src={following.imageUrl} alt=""/></Link>
-          </>
-        ))}
-        </div> */}
       </div>
     );
   }

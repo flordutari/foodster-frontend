@@ -60,14 +60,12 @@ class TupperDetail extends Component {
   }
 
   getUsersList = () => {
-    const { allUsers } = this.state;
     profileService.getAllProfiles()
     .then(allUsers => {
       this.setState({
         allUsers
       })
     })
-    console.log(allUsers)
     .catch(err => console.log(err))
   }
 
@@ -91,24 +89,7 @@ class TupperDetail extends Component {
       })
       .catch(err => console.log(err));
     }
-  }
-
-  // favoriteDelete = (tupper) => {
-  //   const { allUsers } = this.state;
-  //   allUsers.map(user => (
-  //     (user.favorites.includes(tupper)) ?
-  //       profileService.deleteFavorites({
-  //         tupper,
-  //         user
-  //       })
-  //       .then(user => {
-  //         console.log(user)
-  //         this.props.setUser(user)
-  //       }) 
-  //       .catch(err => console.log(err)) :
-  //     console.log(user))
-  //   )
-  // }     
+  }    
 
   favoriteToggle = () => {
     const tupperId = this.state.tupper._id;
@@ -138,7 +119,6 @@ class TupperDetail extends Component {
           user,
           favorite: true
         })
-        console.log(user.favorites)
         this.props.setUser(user)
       })
       .catch(err => console.log(err));
@@ -152,7 +132,6 @@ class TupperDetail extends Component {
           user,
           favorite: false,
         })
-        console.log(user.favorites)
         this.props.setUser(user)
       })
       .catch(err => console.log(err));
