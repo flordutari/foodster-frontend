@@ -8,7 +8,7 @@ class TransactionDone extends Component {
     console.log(this.props.match) 
     return (
       <div className="transaction-page">
-        <img src="./img/done.png" alt="."/>
+        <img src="../img/like.png" alt="."/>
         <p>Good choise!</p>
         <p>After tasting the food, <br/> please rate the chef</p>
         <Link to={`/tuppers/${id}`}><p>Rate it now!</p></Link>

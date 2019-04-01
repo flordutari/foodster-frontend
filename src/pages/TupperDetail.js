@@ -101,8 +101,9 @@ class TupperDetail extends Component {
   //         tupper,
   //         user
   //       })
-  //       .then(result => {
-  //         console.log(result)
+  //       .then(user => {
+  //         console.log(user)
+  //         this.props.setUser(user)
   //       }) 
   //       .catch(err => console.log(err)) :
   //     console.log(user))
