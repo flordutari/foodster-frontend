@@ -88,7 +88,7 @@ class TupperDetail extends Component {
       .then((result) => {
         console.log(result);
         this.favoriteDelete(_id)
-        this.props.history.push('/tuppers/all');
+        this.props.history.push(`/tuppers/${_id}/transaction`);
         this.props.setUser(result.data.buyerUser)
       })
       .catch(err => console.log(err));
@@ -159,19 +159,38 @@ class TupperDetail extends Component {
       .catch(err => console.log(err));
     }
   }
- 
+
+  handleStatus = (value) => {
+    const { status, _id } = this.state.creatorUser;
+    let newStatus = 0;
+    if(status === 0){
+      newStatus = value
+    } else {
+      newStatus = (status + value) / 2;
+    }
+    profileService.rateUser({
+      _id,
+      status: newStatus
+    })
+    .then(result => {
+      console.log(result);
+      this.props.history.push('/tuppers/all')
+    })
+    .catch(err => console.log(err));
+  }
+
   handleDelete = () => {
     const { id } = this.props.match.params;
     tupperService.deleteTupper(id)
     .then(result => {
       console.log(result);
-      this.props.history.push('/tuppers');
+      this.props.history.push('/tuppers/all');
     })
     .catch(err => console.log(err));
   }
 
   render() {
-    const { tupper:{name, _id, creator, imageUrl, price}, creatorUser, isLoading, favorite } = this.state;
+    const { tupper:{name, _id, creator, imageUrl, price, available}, creatorUser, isLoading, favorite } = this.state;
     return (
       (isLoading) ? <p>Loading...</p> :
         <div className="tupper-detail-page">
@@ -187,17 +206,34 @@ class TupperDetail extends Component {
             <p className="distance">0.3 km - </p>
             <p>{price}  <i className="fas fa-ticket-alt"></i></p>
           </div>
-          {(creator === (this.props.user._id)) ?
-          <>
-            <Link to={`./${_id}/edit`}><i className="fas fa-edit"></i></Link> 
-            <button onClick={this.handleDelete}><i className="far fa-trash-alt"></i></button> 
-          </> :
-          <>
-            {(!favorite) ?
-              <button className="icon-button" onClick={this.handleFavorite}><i className="far fa-heart"></i></button> :
-              <button className="icon-button" onClick={this.handleFavorite}><i className="fas fa-heart"></i></button>}
-            <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
-          </>}
+          {(available) ? 
+          <div>
+            {(creator === (this.props.user._id)) ?
+            <>
+              <Link to={`./${_id}/edit`}><i className="fas fa-edit"></i></Link> 
+              <button onClick={this.handleDelete}><i className="far fa-trash-alt"></i></button> 
+            </> :
+            <>
+              {(!favorite) ?
+                <button className="icon-button" onClick={this.handleFavorite}><i className="far fa-heart"></i></button> :
+                <button className="icon-button" onClick={this.handleFavorite}><i className="fas fa-heart"></i></button>}
+              <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
+            </>}
+          </div>
+          : null}
+          <div>
+            {(!available) ? 
+            <>
+              <p>Rate it!</p> 
+              <p onClick={() => {this.handleStatus(1)}}>1</p>
+              <p onClick={() => {this.handleStatus(2)}}>2</p>
+              <p onClick={() => {this.handleStatus(3)}}>3</p>
+              <p onClick={() => {this.handleStatus(4)}}>4</p>
+              <p onClick={() => {this.handleStatus(5)}}>5</p>
+            </>
+            : 
+            null}
+          </div>
         </div>
     );
   }

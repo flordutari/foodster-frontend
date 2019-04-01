@@ -3,6 +3,7 @@ import authService from '../lib/auth-service';
 import profileService from '../lib/profile-service';
 import tupperService from '../lib/tupper-service';
 import { withAuth } from '../providers/AuthProvider';
+import Rate from '../components/Rate';
 
 class UserProfile extends Component {
   
@@ -154,10 +155,8 @@ class UserProfile extends Component {
           <img className="profile" src={imageUrl} alt={`${username}`}/>
           <div className="profile-text">
             <h2 className="profile">Hi, I'm {username}</h2>
-            <div className="profile-valoration">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+            <div className="profile-rate">
+              <Rate />
             </div>
             <p>0.3 km</p>
           </div>

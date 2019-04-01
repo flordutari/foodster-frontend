@@ -10,7 +10,6 @@ class Navbar extends Component {
     return (
       <nav>
         <div className="logout-button">
-          <Link to="/tuppers"><img src="../img/back.svg" alt=""/></Link>
           <p onClick={logout}>Logout</p>
         </div>
         <Link to="/profile">

@@ -137,35 +137,35 @@ class TuppersList extends Component {
     const { pathname } = this.props.location;
     switch(pathname){
       case '/tuppers/all':
-      return (
-        <div className="tuppers-page">
-          {this.renderAll()}
-      </div>);
+        return (
+          <div className="tuppers-page">
+            {this.renderAll()}
+          </div>);
       case '/tuppers/vegetarian':
-      return (
-        <div className="tuppers-page">
-          {this.renderVegetarian()}
-      </div>);
+        return (
+          <div className="tuppers-page">
+            {this.renderVegetarian()}
+          </div>);
       case '/tuppers/vegan':
-      return (
-        <div className="tuppers-page">
-          {this.renderVegan()}
-      </div>);
+        return (
+          <div className="tuppers-page">
+            {this.renderVegan()}
+          </div>);
       case '/tuppers/meat':
-      return (
-        <div className="tuppers-page">
-          {this.renderMeat()}
-      </div>);
+        return (
+          <div className="tuppers-page">
+            {this.renderMeat()}
+          </div>);
       case '/tuppers/pasta':
-      return (
-        <div className="tuppers-page">
-          {this.renderPasta()}
-      </div>);
+        return (
+          <div className="tuppers-page">
+            {this.renderPasta()}
+          </div>);
       case '/tuppers/gluten-free':
-      return (
-        <div className="tuppers-page">
-          {this.renderGlutenfree()}
-      </div>);
+        return (
+          <div className="tuppers-page">
+            {this.renderGlutenfree()}
+          </div>);
       default:
         return null;
     }

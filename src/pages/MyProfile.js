@@ -3,6 +3,7 @@ import tupperService from '../lib/tupper-service';
 import profileService from '../lib/profile-service';
 import { withAuth } from '../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import Rate from '../components/Rate';
 
 class MyProfile extends Component {
 
@@ -10,12 +11,27 @@ class MyProfile extends Component {
     favoritesList: [],
     followersList: [],
     followingList: [],
+    boughtList: []
   }
 
   componentDidMount = () => {
     this.getFavoritesList();
     this.getFollowersList();
     this.getFollowingList();
+    this.getBoughtList();
+  }
+
+  getBoughtList = () => {
+    const { bought } = this.props.user;
+    bought.map(boughtId => (
+      tupperService.getOne(boughtId)
+      .then(bought => {
+        this.setState({
+          boughtList : [...this.state.boughtList, bought]
+        })
+      })
+      .catch(err => console.log(err))
+    ))
   }
 
   getFavoritesList = () => {
@@ -58,23 +74,30 @@ class MyProfile extends Component {
   }
 
   render() {
-    const { username, imageUrl } = this.props.user;
-    const { favoritesList, followersList, followingList } = this.state;
+    const { username, imageUrl, _id } = this.props.user;
+    // const { favoritesList, followersList, followingList } = this.state;
+    const { boughtList } = this.state;
     return (
       <div className="profile-page">
         <div className="profile-card">
           <img className="profile" src={imageUrl} alt={`${username}`}/>
           <div className="profile-text">
             <h2 className="profile">{username}</h2>
-            <div className="profile-valoration">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
+            <div className="profile-rate">
+              <Rate 
+              user={_id}/>
             </div>
             <p>0.3 km</p>
           </div>
           <Link to={`./profile/edit`}><i className="fas fa-edit"></i></Link>
+        </div>
+        <div className="profile-favorites">
+          <h2>My favorites</h2>
+            {boughtList.map(item => (
+              <>
+                <Link to={`/tuppers/${item._id}`}><p>{item.name}</p></Link>
+              </>
+            ))}
         </div>
         {/* <div className="profile-favorites">
           <h2>My favorites</h2>

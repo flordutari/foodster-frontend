@@ -18,6 +18,11 @@ class ProfileService {
     .then(response => response.data)
   }
 
+  editProfile(body) {
+    return this.profile.put('/profile/edit', body)
+    .then(response => response.data)
+  }
+
   addFavorite(body) {
     return this.profile.put('/profile/favorite', body)
     .then(response => response.data)
@@ -43,8 +48,8 @@ class ProfileService {
     .then(response => response.data)
   }
 
-  editProfile(body) {
-    return this.profile.put('/profile/edit', body)
+  rateUser(body) {
+    return this.profile.put('/profile/rate', body)
     .then(response => response.data)
   }
 }
