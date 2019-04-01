@@ -87,29 +87,27 @@ class TupperDetail extends Component {
       id)
       .then((result) => {
         console.log(result);
-        this.favoriteDelete(_id)
         this.props.history.push(`/tuppers/${_id}/transaction`);
-        this.props.setUser(result.data.buyerUser)
       })
       .catch(err => console.log(err));
     }
   }
 
-  favoriteDelete = (tupper) => {
-    const { allUsers } = this.state;
-    allUsers.map(user => (
-      (user.favorites.includes(tupper)) ?
-        profileService.deleteFavorites({
-          tupper,
-          user
-        })
-        .then(result => {
-          console.log(result)
-        }) 
-        .catch(err => console.log(err)) :
-      console.log(user))
-    )
-  }     
+  // favoriteDelete = (tupper) => {
+  //   const { allUsers } = this.state;
+  //   allUsers.map(user => (
+  //     (user.favorites.includes(tupper)) ?
+  //       profileService.deleteFavorites({
+  //         tupper,
+  //         user
+  //       })
+  //       .then(result => {
+  //         console.log(result)
+  //       }) 
+  //       .catch(err => console.log(err)) :
+  //     console.log(user))
+  //   )
+  // }     
 
   favoriteToggle = () => {
     const tupperId = this.state.tupper._id;

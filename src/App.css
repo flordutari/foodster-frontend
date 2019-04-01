@@ -76,7 +76,7 @@ a {
 
 #footbar {
   background-color: #fff;
-  height: 7vh;
+  height: 6.5vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -192,6 +192,10 @@ div.tuppers-page {
   margin: 10.5vh 0 8vh 0;
 }
 
+div.search {
+  margin: 8.5vh 0;
+}
+
 div.new-tupper {
   display: flex;
   margin: 8vh 0;
@@ -215,6 +219,11 @@ div.transaction-page {
   align-items: center;
 }
 
+div.favorites-page {
+  flex-direction: column;
+  margin: 9vh 5vw 0 5vw;
+  align-items: center;
+}
 
 /* ---- logo ---- */
 
@@ -355,6 +364,12 @@ select {
 
 ::placeholder {
   color: #ddd; 
+}
+
+input.search-bar {
+  width: 85vw;
+  background: #f5f5f5;
+  border-radius: 2vw;
 }
 
 /* ---- cards ---- */

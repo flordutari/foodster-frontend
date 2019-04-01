@@ -6,7 +6,8 @@ import SearchBar from '../components/SearchBar';
 class TuppersList extends Component {
 
   state={
-    tuppers: []
+    tuppers: [],
+    filteredList: []
   }
 
   componentDidMount() {
@@ -17,7 +18,8 @@ class TuppersList extends Component {
     tupperService.getAll()
     .then(tuppers => {
       this.setState({
-        tuppers
+        tuppers,
+        filteredList: tuppers
       })
     })
     .catch(err => console.log(err));
@@ -39,14 +41,22 @@ class TuppersList extends Component {
     }))
   }
 
+  handleSearch = (tupperName) => {
+    const { tuppers, } = this.state;
+    const filteredList = tuppers.filter((e) => e.name.toLowerCase().includes(tupperName.toLowerCase()));
+    this.setState({
+      filteredList
+    })
+  } 
+
   renderSearch = () => {
-    const { tuppers } = this.state;
+    const { filteredList } = this.state;
     return (
       <>
         <SearchBar 
         change={this.handleSearch}
         />
-        {(tuppers.map((tupper) => {
+        {(filteredList.map((tupper) => {
           if (tupper.available){
             return (
               <>
@@ -64,15 +74,8 @@ class TuppersList extends Component {
     )
   }
 
-  handleSearch = (tupperName) => {
-    const { tuppers } = this.state;
-    const filteredList = tuppers.filter((e) => e.name.toLowerCase().includes(tupperName.toLowerCase()));
-      this.setState({
-      tuppers: filteredList
-    })
-  } 
-
   renderVegetarian = () => {
+    
     const { tuppers } = this.state;
     const vegetarianTuppers = tuppers.filter(tupper => (
       tupper.category.includes("vegetarian")
@@ -177,7 +180,7 @@ class TuppersList extends Component {
           </div>);
       case '/tuppers/search':
         return (
-          <div className="tuppers-page">
+          <div className="tuppers-page search">
             {this.renderSearch()}
           </div>);
       case '/tuppers/vegetarian':

@@ -19,7 +19,7 @@ class SearchBar extends Component {
         className="input search-bar"
         placeholder="Search..." 
         onChange={(e)=>this.handleChange(e)}
-        value={this.state.search}
+        value={this.state.name}
         type="text"
         name="name"
         />

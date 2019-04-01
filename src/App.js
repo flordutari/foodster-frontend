@@ -11,6 +11,7 @@ import TuppersList from './pages/TuppersList';
 import NewTupper from './pages/NewTupper';
 import TupperDetail from './pages/TupperDetail';
 import EditTupper from './pages/EditTupper';
+import MyFavorites from './pages/MyFavorites';
 import TransactionDone from './pages/TransactionDone';
 import MyProfile from './pages/MyProfile';
 import EditProfile from './pages/EditProfile';
@@ -35,9 +36,10 @@ class App extends Component {
             <PrivateRoute exact path="/tuppers/pasta" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/gluten-free" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/new" component={NewTupper} />
+            <PrivateRoute exact path="/tuppers/favorites" component={MyFavorites} />            
             <PrivateRoute exact path="/tuppers/:id" component={TupperDetail} />
             <PrivateRoute path="/tuppers/:id/edit" component={EditTupper} />
-            <PrivateRoute path="/tuppers/:id/transaction" component={TransactionDone} />
+            <PrivateRoute exact path="/tuppers/:id/transaction" component={TransactionDone} />
             <PrivateRoute exact path="/profile" component={MyProfile} />
             <PrivateRoute exact path="/profile/edit" component={EditProfile} />
             <PrivateRoute path="/profile/:id" component={UserProfile} />

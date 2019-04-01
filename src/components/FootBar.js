@@ -14,7 +14,7 @@ class FootBar extends Component {
     return (
       <div id="footbar">
         <Link to="/tuppers/search"><img src={searchLogo} alt=""/></Link>
-        <Link to="/"><img src={likeLogo} alt=""/></Link>
+        <Link to="/tuppers/favorites"><img src={likeLogo} alt=""/></Link>
         <Link to="/tuppers/new"><img src={plusLogo} alt=""/></Link>
         <Link to="/tuppers/all"><img src={lunchLogo} alt=""/></Link>
         <Link to="/profile"><img src={userLogo} alt=""/></Link>

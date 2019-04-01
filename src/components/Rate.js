@@ -31,7 +31,6 @@ class Rate extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { isLoading } = this.state;
     if(isLoading) {
       return <p>Loading...</p>

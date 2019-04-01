@@ -8,14 +8,12 @@ import Rate from '../components/Rate';
 class MyProfile extends Component {
 
   state = {
-    favoritesList: [],
     followersList: [],
     followingList: [],
     boughtList: []
   }
 
   componentDidMount = () => {
-    this.getFavoritesList();
     this.getFollowersList();
     this.getFollowingList();
     this.getBoughtList();
@@ -33,20 +31,7 @@ class MyProfile extends Component {
       .catch(err => console.log(err))
     ))
   }
-
-  getFavoritesList = () => {
-    const { favorites } = this.props.user;
-    favorites.map(favoriteId => (
-      tupperService.getOne(favoriteId)
-      .then(favorite => {
-        this.setState({
-          favoritesList : [...this.state.favoritesList, favorite]
-        })
-      })
-      .catch(err => console.log(err))
-    ))
-  }
-
+  
   getFollowersList = () => {
     const { followers } = this.props.user;
     followers.map(followerId => (
