@@ -92,7 +92,7 @@ class MyProfile extends Component {
           <Link to={`./profile/edit`}><i className="fas fa-edit"></i></Link>
         </div>
         <div className="profile-favorites">
-          <h2>My favorites</h2>
+          <h2>To rate</h2>
             {boughtList.map(item => (
               <>
                 <Link to={`/tuppers/${item._id}`}><p>{item.name}</p></Link>

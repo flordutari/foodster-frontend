@@ -20,7 +20,7 @@ nav {
   width: 100vw;
   height: 7.2vh;
   color: #fff;
-  background: #ff5233;
+  background: linear-gradient(45deg, #ff2f0a 0%, #ff315e 100%);
   font-size: .9rem;
   display: flex;
   flex-direction: row;
@@ -40,14 +40,17 @@ nav>a {
 }
 
 .current-user img {
-  height: 5vh;
-  width: 5vh;
+  height: 4vh;
+  width: 4vh;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.logout-button {
-  margin-left: 3vw;
+.logout-button img {
+  margin-left: 5vw;
+  height: 2.5vh;
+  width: 2.5vh;
+  transform: scaleX(-1);
 }
 
 .current-user p {
@@ -72,8 +75,6 @@ a {
 }
 
 #footbar {
-  font-size: 1.2em;
-  color: #333;
   background-color: #fff;
   height: 7vh;
   display: flex;
@@ -89,8 +90,8 @@ a {
 
 #footbar img {
   margin-top: 0.5vh;
-  width: 3.2vh;
-  height: 3.2vh;
+  width: 2.8vh;
+  height: 2.8vh;
 }
 
 /* ---- typography ---- */
@@ -106,7 +107,7 @@ body {
 h1 {
   font-size: 2.2rem;
   margin: 3vh 0 12vh 0;
-  color: #ff5233;
+  color: #ff2f0a;
 }
 
 .logo-login h1 {
@@ -143,7 +144,7 @@ h3::first-letter {
 }
 
 .cover-page {
-  background-image: url(/img/cover-background.png);
+  background-image: url(../src/img/cover-background.png);
   background-size: cover;
   height: 100vh;
   max-height: 100vh;
@@ -164,7 +165,7 @@ img.cover-logo {
   flex-direction: column;
   align-items: center;
   color: #fff;
-  background: linear-gradient(135deg, rgba(255, 47, 10, 0.9) 0%, rgba(255, 49, 94, 0.9) 100%);
+  background: linear-gradient(135deg, hsla(9, 100%, 52%, 0.85) 0%, rgba(255, 50, 95, 0.85) 100%);
 }
 
 .login-page form, .signup-page form, .new-tupper form {
@@ -251,7 +252,7 @@ div.logo-login, div.logo-cover {
   border-radius: 30px;
   text-decoration: none;
   text-align: center;
-  padding: 10px;
+  padding: 1.5vh;
   font-size: 1.2rem;
   font-weight: 800;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
@@ -260,11 +261,11 @@ div.logo-login, div.logo-cover {
 
 .login-link, .new-tupper button {
   color: #fff;
-  background: #ff5233;
+  background: #ff2f0a;
 }
 
 .login-button, .signup-button {
-  color: #ff5233;
+  color: #ff2f0a;
   background: #fff;
   margin-top: 8vh;
   width: 80vw;
@@ -273,7 +274,7 @@ div.logo-login, div.logo-cover {
 
 .signup-link {
   margin-top: 1vh;
-  color: #ff5233;
+  color: #ff2f0a;
 }
 
 .signup-link-in-login {
@@ -381,7 +382,7 @@ select {
 .category-card h2 {
   position: absolute;
   color: #fff;
-  margin: 5vw;
+  margin: 15vh 5vw 5vw 5vw;
   align-self: end;
   font-weight: 900;
 }

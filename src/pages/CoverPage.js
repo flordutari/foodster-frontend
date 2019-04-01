@@ -6,7 +6,7 @@ class CoverPage extends Component {
     return (
       <div className="cover-page">
         <div className="logo-cover">
-          <img className="cover-logo" src="./img/logo1.svg" alt="logo"/>
+          <img className="cover-logo" src="../img/logo.png" alt="logo"/>
           <h1>foodster</h1>
         </div>
         <Link className="login-link" to='/login'>Login</Link>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import tupperService from '../lib/tupper-service';
 import TupperCard from '../components/TupperCard';
+import SearchBar from '../components/SearchBar';
 
 class TuppersList extends Component {
 
@@ -37,6 +38,39 @@ class TuppersList extends Component {
       }
     }))
   }
+
+  renderSearch = () => {
+    const { tuppers } = this.state;
+    return (
+      <>
+        <SearchBar 
+        change={this.handleSearch}
+        />
+        {(tuppers.map((tupper) => {
+          if (tupper.available){
+            return (
+              <>
+                <TupperCard
+                  key={tupper._id}
+                  tupper={tupper}
+                />
+              </>
+            ) 
+          } else {
+            return null
+          }
+        }))}
+    </>
+    )
+  }
+
+  handleSearch = (tupperName) => {
+    const { tuppers } = this.state;
+    const filteredList = tuppers.filter((e) => e.name.toLowerCase().includes(tupperName.toLowerCase()));
+      this.setState({
+      tuppers: filteredList
+    })
+  } 
 
   renderVegetarian = () => {
     const { tuppers } = this.state;
@@ -140,6 +174,11 @@ class TuppersList extends Component {
         return (
           <div className="tuppers-page">
             {this.renderAll()}
+          </div>);
+      case '/tuppers/search':
+        return (
+          <div className="tuppers-page">
+            {this.renderSearch()}
           </div>);
       case '/tuppers/vegetarian':
         return (
