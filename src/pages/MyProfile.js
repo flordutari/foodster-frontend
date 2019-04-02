@@ -18,6 +18,18 @@ class MyProfile extends Component {
     this.getFollowersList();
     this.getFollowingList();
     this.getBoughtList();
+    this.getTupperList();
+  }
+
+  getTupperList = () => {
+    tupperService.getAll()
+    .then(tuppers => {
+      this.setState({
+        tuppers,
+        filteredList: tuppers
+      })
+    })
+    .catch(err => console.log(err));
   }
 
   getBoughtList = () => {
@@ -78,6 +90,16 @@ class MyProfile extends Component {
         </div>
         <div className="profile-social">
           <div className="profile-bought">
+            <h4>To rate</h4>
+            <div>
+              {boughtList.map(item => (
+                <>
+                  <Link to={`/tuppers/${item._id}`}><p>{item.name}</p></Link>
+                </>
+              ))}
+            </div>
+          </div>
+          <div className="my-tuppers">
             <h4>To rate</h4>
             <div>
               {boughtList.map(item => (

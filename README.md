@@ -248,10 +248,10 @@ The url to your presentation slides
 
 - mensajes de error
 - to rate - cambiar estado
-- subir imagenes firebase
+<!-- - subir imagenes firebase -->
 <!-- -en all, listar las que no son mias? no -->
-- my favorites card
-- show followers y following en perfil
+<!-- - my favorites card --> MEJORAR
+<!-- - show followers y following en perfil -->
 - que cuando clico la imagen vaya a mi perfil y no a mi perfil como otherUser
 - arreglar favorite, pasar por props e incluir en tupperList
 - botones de heart y mensaje flash de success

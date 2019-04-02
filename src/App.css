@@ -393,6 +393,27 @@ select {
   color: #333;
 }
 
+.profile-edit-picture, 
+.tupper-edit-picture, 
+.tupper-create-picture {
+  overflow: hidden;
+  object-fit: cover;
+  justify-self: center;
+  margin-top: 2vh;
+}
+
+.profile-edit-picture {
+  height: 16vh;
+  width: 16vh;
+  border-radius: 50%;
+}
+
+.tupper-edit-picture,
+.tupper-create-picture {
+  height: 16vh;
+  width: 80vw;
+}
+
 ::placeholder {
   color: #ddd; 
 }

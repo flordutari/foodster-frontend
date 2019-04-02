@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import tupperService from '../lib/tupper-service';
-import EditForm from '../components/EditForm'
+import EditForm from '../components/EditForm';
 
 class EditTupper extends Component {
 

@@ -18,6 +18,7 @@ class MyFavorites extends Component {
     favorites.map(favoriteId => (
       tupperService.getOne(favoriteId)
       .then(favorite => {
+        if(favorite.available)
         this.setState({
           favoritesList : [...this.state.favoritesList, favorite]
         })

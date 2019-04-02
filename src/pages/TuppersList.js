@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import tupperService from '../lib/tupper-service';
 import TupperCard from '../components/TupperCard';
 import SearchBar from '../components/SearchBar';
+import { withAuth } from '../providers/AuthProvider';
 
 class TuppersList extends Component {
 
@@ -27,8 +28,9 @@ class TuppersList extends Component {
 
   renderAll = () => {
     const { tuppers } = this.state;
+    const { _id } = this.props.user;
     return (tuppers.map((tupper) => {
-      if (tupper.available){
+      if (tupper.available && tupper.creator !== _id){
         return (
           <TupperCard
             key={tupper._id}
@@ -51,13 +53,14 @@ class TuppersList extends Component {
 
   renderSearch = () => {
     const { filteredList } = this.state;
+    const { _id } = this.props.user;
     return (
       <>
         <SearchBar 
         change={this.handleSearch}
         />
         {(filteredList.map((tupper) => {
-          if (tupper.available){
+          if (tupper.available && tupper.creator !== _id){
             return (
               <>
                 <TupperCard
@@ -76,95 +79,100 @@ class TuppersList extends Component {
 
   renderVegetarian = () => {
     const { tuppers } = this.state;
+    const { _id } = this.props.user;
     const vegetarianTuppers = tuppers.filter(tupper => (
       tupper.category.includes("vegetarian")
     ))
     if(vegetarianTuppers.length > 0) {
       return (vegetarianTuppers.map((tupper) => {
-        if (tupper.available){
+        if (tupper.available && tupper.creator !== _id){
           return (
             <TupperCard
               key={tupper._id}
               tupper={tupper}
             />
           ) 
-        } else { return null }
+        } else { return <p>No vegetarian tuppers yet</p> }
       })) 
     } else { return <p>No vegetarian tuppers yet</p> }
   }
 
   renderVegan= () => {
     const { tuppers } = this.state;
+    const { _id } = this.props.user;
     const veganTuppers = tuppers.filter(tupper => (
       tupper.category.includes("vegan")
     ))
     if(veganTuppers.length > 0) {
       return (veganTuppers.map((tupper) => {
-        if (tupper.available){
+        if (tupper.available && tupper.creator !== _id){
           return (
             <TupperCard
               key={tupper._id}
               tupper={tupper}
             />
           ) 
-        } else { return null }
+        } else { return <p>No vegan tuppers yet</p> }
       }))
     } else { return <p>No vegan tuppers yet</p> }
   }
 
   renderMeat= () => {
     const { tuppers } = this.state;
+    const { _id } = this.props.user;
     const meatTuppers = tuppers.filter(tupper => (
       tupper.category.includes("meat")
     ))
     if(meatTuppers.length > 0) {
       return (meatTuppers.map((tupper) => {
-        if (tupper.available){
+        if (tupper.available && tupper.creator !== _id){
           return (
             <TupperCard
               key={tupper._id}
               tupper={tupper}
             />
           ) 
-        } else { return null }
+        } else { return <p>No meat tuppers yet</p> }
       }))
     } else { return <p>No meat tuppers yet</p> }
   }
 
   renderPasta= () => {
     const { tuppers } = this.state;
+    const { _id } = this.props.user;
     const pastaTuppers = tuppers.filter(tupper => (
       tupper.category.includes("pasta")
     ))
     if(pastaTuppers.length > 0) {
       return (pastaTuppers.map((tupper) => {
-        if (tupper.available){
+        if (tupper.available && tupper.creator !== _id){
           return (
             <TupperCard
               key={tupper._id}
               tupper={tupper}
             />
           ) 
-        } else { return null }
+        } else { return <p>No pasta tuppers yet</p>  }
       }))
     } else { return <p>No pasta tuppers yet</p> }
   }
 
   renderGlutenfree= () => {
     const { tuppers } = this.state;
+    const { _id } = this.props.user;
     const glutenfreeTuppers = tuppers.filter(tupper => (
       tupper.category.includes("gluten-free")
     ))
     if(glutenfreeTuppers.length > 0) {
       return (glutenfreeTuppers.map((tupper) => {
-        if (tupper.available){
+        if (tupper.available && tupper.creator !== _id){
           return (
             <TupperCard
               key={tupper._id}
               tupper={tupper}
             />
           ) 
-        } else { return null }
+        } else { return <p>No gluten-free tuppers yet</p> }
       }))
     } else { return <p>No gluten-free tuppers yet</p> }    
   }
@@ -213,5 +221,5 @@ class TuppersList extends Component {
   }
 }
 
-export default TuppersList;
+export default withAuth(TuppersList);
 
