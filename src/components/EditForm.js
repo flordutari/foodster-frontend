@@ -55,22 +55,10 @@ class EditForm extends Component {
   render() {
     const { name, category, price } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="edit-form" onSubmit={this.handleSubmit}>
         <label>Name</label>
-        <input type="text" name="name" onChange={this.handleChange} value={name}/>
-        <label>Image</label>
-          {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          {this.state.imageUrl && <img class="tupper-edit-picture" src={this.state.imageUrl} alt=""/>}
-          <FileUploader
-          accept="image/*"
-          name="imageUrl"
-          randomizeFilename
-          storageRef={firebase.storage().ref('tupperImages')}
-          onUploadStart={this.handleUploadStart}
-          onUploadError={this.handleUploadError}
-          onUploadSuccess={this.handleUploadSuccess}
-          onProgress={this.handleProgress}
-          />
+        <input className="create-edit-input" type="text" name="name" onChange={this.handleChange} value={name}/>
+        <br/>
         <label>Category</label>
         <select name="category" onChange={this.handleChange} multiple={true} value={category}>
           <option value="All">All</option>
@@ -80,6 +68,7 @@ class EditForm extends Component {
           <option value="Lactose-free">Lactose-free</option>
           <option value="Meat">Meat</option>
         </select>
+        <br/>
         <label>Value</label>
         <select name="price" onChange={this.handleChange} value={price}>
           <option value="1">1</option>
@@ -88,7 +77,22 @@ class EditForm extends Component {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <button type="submit">Edit</button>
+        <br/>
+        <label>Image</label>
+          {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+          {this.state.imageUrl && <img className="tupper-edit-picture" src={this.state.imageUrl} alt=""/>}
+          <FileUploader
+          className="firebase"
+          accept="image/*"
+          name="imageUrl"
+          randomizeFilename
+          storageRef={firebase.storage().ref('tupperImages')}
+          onUploadStart={this.handleUploadStart}
+          onUploadError={this.handleUploadError}
+          onUploadSuccess={this.handleUploadSuccess}
+          onProgress={this.handleProgress}
+          />
+        <button className="edit" type="submit">Edit</button>
       </form>
     );
   }

@@ -9,6 +9,7 @@ class EditProfileForm extends Component {
     username: this.props.value.username,
     imageUrl: this.props.value.imageUrl,
     email: this.props.value.email,
+    description: this.props.value.description,
   }
 
   handleChange = (e) => {
@@ -24,6 +25,7 @@ class EditProfileForm extends Component {
       username: this.props.value.username,
       imageUrl: this.props.value.imageUrl,
       email: this.props.value.email,
+      description: this.props.value.description,
     })
   }
 
@@ -39,15 +41,17 @@ class EditProfileForm extends Component {
     };
 
   render() {
-    const { username, email } = this.state;
+    const { username, email, description } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="edit-profile-form" onSubmit={this.handleSubmit}>
         <label>Name</label>
-        <input type="text" name="username" onChange={this.handleChange} value={username}/>
+        <input className="create-edit-input" type="text" name="username" onChange={this.handleChange} value={username}/>
+        <br/>
         <label>Image</label>
         {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          {this.state.imageUrl && <img class="profile-edit-picture" src={this.state.imageUrl} alt=""/>}
+          {this.state.imageUrl && <img className="profile-edit-picture" src={this.state.imageUrl} alt=""/>}
           <FileUploader
+          className="firebase"
           accept="image/*"
           name="imageUrl"
           randomizeFilename
@@ -59,6 +63,9 @@ class EditProfileForm extends Component {
           />
         <label>Email</label>
         <input type="email" name="email" onChange={this.handleChange} value={email}/>
+        <label>Description</label>
+        <br/>
+        <textarea name="description" placeholder="Tell something about you..." tabindex="5" onChange={this.handleChange} value={description}></textarea>
         <button type="submit">Edit</button>
       </form>
     );

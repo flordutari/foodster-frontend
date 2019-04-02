@@ -10,9 +10,7 @@ class UserProfile extends Component {
     otherUser: {},
     user: {},
     isLoading: true,
-    followed: false,
-    followersList: [],
-    followingList: [],
+    followed: false
   }
 
   componentDidMount = () => {
@@ -41,8 +39,6 @@ class UserProfile extends Component {
       })
     })
     .then(() => {this.followerToggle()})
-    .then(() => {this.getFollowersList()})
-    .then(() => {this.getFollowingList()})
     .catch(err => console.log(err));
   }
 
@@ -96,35 +92,9 @@ class UserProfile extends Component {
       .catch(err => console.log(err));
     }
   }
-
-  getFollowersList = () => {
-    const { followers } = this.state.otherUser;
-    followers.map(followerId => (
-      profileService.getProfile(followerId)
-      .then(follower => {
-        this.setState({
-          followersList : [...this.state.followersList, follower]
-        })
-      })
-      .catch(err => console.log(err))
-    ))
-  }
-
-  getFollowingList = () => {
-    const { following } = this.state.otherUser;
-    following.map(followingId => (
-      profileService.getProfile(followingId)
-      .then(following => {
-        this.setState({
-          followingList : [...this.state.followingList, following]
-        })
-      })
-      .catch(err => console.log(err))
-    ))
-  }
     
   render() {
-    const { otherUser: { _id, username, imageUrl }, 
+    const { otherUser: { _id, username, imageUrl, description }, 
             isLoading, 
             followed, 
           } = this.state;
@@ -141,34 +111,14 @@ class UserProfile extends Component {
             <p>0.3 km</p>
           </div>
         </div>
+        <div className="description">
+          <p>{description}</p>
+        </div>
         {(!followed) ?
-        <button onClick={this.handleFollowers}>Follow</button> :
-        <button onClick={this.handleFollowers}>Unfollow</button>
+        <button className="follow-button" onClick={this.handleFollowers}>Follow</button> :
+        <button className="follow-button" onClick={this.handleFollowers}>Unfollow</button>
         }
-        {/* <div className="profile-favorites">
-          <h2>My favorites</h2>
-            {favoritesList.map(favorite => (
-              <>
-                <p>{favorite.name}</p>
-              </>
-            ))}
-        </div>
-        <div className="profile-followers">
-          <h2>My followers</h2>
-          {followersList.map(follower => (
-            <>
-              <p>{follower.username}</p>
-            </>
-          ))}
-        </div>
-        <div className="profile-following">
-          <h2>I'm following</h2>
-        {followingList.map(following => (
-          <>
-            <p>{following.username}</p>
-          </>
-        ))}
-        </div> */}
+
       </div>
     );
   }

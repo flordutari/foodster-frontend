@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import Rate from '../components/Rate';
 import profileService from '../lib/profile-service';
 import { withAuth } from '../providers/AuthProvider';
+import emptyHeart from '../img/like-empty.png';
+import redHeart from '../img/like-red.png';
 
 class TupperCard extends Component {
 
@@ -83,8 +85,8 @@ class TupperCard extends Component {
     return (
       <div className="tupper-card">
         {(favorite === false) ?
-        <button onClick={this.handleFavorite} className="icon-button fav-card"><i className="far fa-heart"></i></button> :
-        <button onClick={this.handleFavorite} className="icon-button fav-card"><i className="fas fa-heart"></i></button>}
+        <img onClick={this.handleFavorite} id="fav-empty" src={emptyHeart} alt="like"/> :
+        <img onClick={this.handleFavorite} id="fav-red" src={redHeart} alt="like"/>}
         <Link to={`/tuppers/${_id}`}>
           <img src={imageUrl} alt="tupper" />
           <h3>{name}</h3>

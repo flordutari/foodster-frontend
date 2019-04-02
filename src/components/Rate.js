@@ -4,8 +4,7 @@ import { withAuth } from '../providers/AuthProvider';
 
 class Rate extends Component {
   state = {
-    user: {},
-    isLoading: true
+    user: {}
   }
 
   componentDidMount = () => {
@@ -17,8 +16,7 @@ class Rate extends Component {
     profileService.getProfile(user)
     .then(user => {
       this.setState({
-        user,
-        isLoading: false
+        user
       })
     })
     .catch(err => console.log(err));
@@ -31,68 +29,63 @@ class Rate extends Component {
   }
 
   render() {
-    const { isLoading } = this.state;
-    if(isLoading) {
-      return <p>Loading...</p>
-    } else if (isLoading === false) {
-      switch(this.handleRate()){
-        case 0:
-        return (
-          <>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-          </>);
-        case 1:
-        return (
-          <>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-          </>);
-        case 2:
-        return (
-          <>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-          </>);
-        case 3:
-        return (
-          <>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star star-grey"></i>
-            <i className="fas fa-star star-grey"></i>
-          </>);
-        case 4:
-        return (
-          <>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star star-grey"></i>
-          </>);
-        case 5:
-        return (
-          <>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-          </>);
-        default:
-        return null;
-      }
+    switch(this.handleRate()){
+      case 0:
+      return (
+        <>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+        </>);
+      case 1:
+      return (
+        <>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+        </>);
+      case 2:
+      return (
+        <>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+        </>);
+      case 3:
+      return (
+        <>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star star-grey"></i>
+          <i className="fas fa-star star-grey"></i>
+        </>);
+      case 4:
+      return (
+        <>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star star-grey"></i>
+        </>);
+      case 5:
+      return (
+        <>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+        </>);
+      default:
+      return null;
     }
   }
 }

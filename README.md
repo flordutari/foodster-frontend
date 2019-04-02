@@ -250,10 +250,10 @@ The url to your presentation slides
 <!-- - to rate - cambiar estado -->
 <!-- - subir imagenes firebase -->
 <!-- -en all, listar las que no son mias? no -->
-<!-- - my favorites card --> MEJORAR
+<!-- - my favorites card --> 
 <!-- - show followers y following en perfil -->
 <!-- - que cuando clico la imagen vaya a mi perfil y no a mi perfil como otherUser -->
 <!-- - arreglar favorite, pasar por props e incluir en tupperList -->
-- mensaje flash de success
-- botton de I want it!
+<!-- - mensaje flash de success -->
+<!-- - botton de I want it! -->
 <!-- - fix stars in otherUser profile -->

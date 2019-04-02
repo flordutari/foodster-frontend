@@ -3,6 +3,10 @@ import tupperService from '../lib/tupper-service';
 import profileService from '../lib/profile-service';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
+import emptyHeart from '../img/like-empty.png';
+import redHeart from '../img/like-red.png';
+import editLogo from '../img/edit-white.png';
+import trashLogo from '../img/trash.png';
 
 class TupperDetail extends Component {
 
@@ -144,54 +148,68 @@ class TupperDetail extends Component {
   }
 
   render() {
-    const { tupper:{name, _id, creator, imageUrl, price, available, rated}, creatorUser, isLoading, favorite } = this.state;
+    const { tupper:{name, creator, imageUrl, price, available, rated}, creatorUser, isLoading, favorite } = this.state;
     const currentUserId = this.props.user._id;
     return (
       (isLoading) ? <p>Loading...</p> :
         <div className="tupper-detail-page">
-          <img src={imageUrl} alt=""/>
-          <h2>{name}</h2>
           {(creator !== currentUserId) ?
-          <div className="chef">
-            <p>Chef: {creatorUser.username}</p>
-            <div className="handle-image">
-              <Link to={`/profile/${creatorUser._id}`}><img src={creatorUser.imageUrl} alt=""/></Link>
-            </div>
-          </div> : 
-          null
-          }
-          <div>
-            <p className="distance">0.3 km - </p>
-            <p>{price}  <i className="fas fa-ticket-alt"></i></p>
-          </div>
-          {(available) ? 
-          <div>
-            {(creator === (this.props.user._id)) ?
-            <>
-              <Link to={`./${_id}/edit`}><i className="fas fa-edit"></i></Link> 
-              <button onClick={this.handleDelete}><i className="far fa-trash-alt"></i></button> 
-            </> :
             <>
               {(favorite === false) ?
-                <button className="icon-button" onClick={this.handleFavorite}><i className="far fa-heart"></i></button> :
-                <button className="icon-button" onClick={this.handleFavorite}><i className="fas fa-heart"></i></button>}
-              <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
-            </>}
+              <img onClick={this.handleFavorite} id="fav-empty-det" src={emptyHeart} alt="like"/> :
+              <img onClick={this.handleFavorite} id="fav-red-det" src={redHeart} alt="like"/>} 
+            </> : null }
+
+          <img src={imageUrl} alt=""/>
+
+          <div className="detail-info">
+            <h2>{name}</h2>
+            {(creator !== currentUserId) ?
+            <div className="chef">
+              <p className="chef">Chef: </p>
+              <p>{creatorUser.username}</p>
+              <div className="handle-image">
+                <Link to={`/profile/${creatorUser._id}`}><img src={creatorUser.imageUrl} alt=""/></Link>
+              </div>
+            </div> : 
+            null
+            }
+            <div>
+              <p className="chef">Distance: </p>
+              <p className="distance">0.3 km</p>
+            </div>
+            <div>
+              <p className="chef">Price: </p>
+              <p>{price}  <i className="fas fa-ticket-alt"></i></p>
+            </div>
           </div>
-          : null}
-          <div>
+
+            {(available) ? 
+            <div className="buttons-in-detail">
+              {(creator === currentUserId) ?
+              <>
+                <Link id="edit-logo-det" to={`./profile/edit`}><img src={editLogo} alt="edit"/></Link>
+                <button id="trash-logo-det" onClick={this.handleDelete}><img src={trashLogo} alt="trash"/></button> 
+              </> :
+              <button id="want-it" onClick={this.handleTransaction}>I want it!</button>
+              }
+            </div>
+            : null}
+            <div>
+          </div>
             {(!available && !rated) ? 
-            <>
-              <p>Rate it!</p> 
-              <p onClick={() => {this.handleStatus(1)}}>1</p>
-              <p onClick={() => {this.handleStatus(2)}}>2</p>
-              <p onClick={() => {this.handleStatus(3)}}>3</p>
-              <p onClick={() => {this.handleStatus(4)}}>4</p>
-              <p onClick={() => {this.handleStatus(5)}}>5</p>
-            </>
+            <div className="detail-info">
+              <p className="chef red">Rate it!</p> 
+              <div className="punctuation">
+                <p onClick={() => {this.handleStatus(1)}}>1</p>
+                <p onClick={() => {this.handleStatus(2)}}>2</p>
+                <p onClick={() => {this.handleStatus(3)}}>3</p>
+                <p onClick={() => {this.handleStatus(4)}}>4</p>
+                <p onClick={() => {this.handleStatus(5)}}>5</p>
+              </div>
+            </div>
             : 
             null}
-          </div>
         </div>
     );
   }

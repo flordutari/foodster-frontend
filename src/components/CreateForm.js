@@ -57,13 +57,33 @@ class CreateForm extends Component {
   render() {
     const {name, category, price} = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="create-form" onSubmit={this.handleSubmit}>
         <label>Name</label>
         <input className="create-edit-input" type="text" name="name" onChange={this.handleChange} value={name} />
+        <br/>
+        <label>Category</label>
+        <select name="category" onChange={this.handleChange} multiple={true} value={category}>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="meat">Meat</option>
+          <option value="pasta">Pasta</option>
+          <option value="gluten-free">Gluten-free</option>
+        </select>
+        <br/>
+        <label>Value</label>
+        <select name="price" onChange={this.handleChange} value={price}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <br/>
         <label>Image</label>
-          {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          {this.state.imageUrl && <img class="tupper-create-picture" src={this.state.imageUrl} alt=""/>}
+          {this.state.isUploading && <p> {this.state.progress}</p>}
+          {this.state.imageUrl && <img className="tupper-create-picture" src={this.state.imageUrl} alt=""/>}
           <FileUploader
+          className="firebase"
           accept="image/*"
           name="imageUrl"
           randomizeFilename
@@ -73,23 +93,7 @@ class CreateForm extends Component {
           onUploadSuccess={this.handleUploadSuccess}
           onProgress={this.handleProgress}
           />
-        <label>Category</label>
-        <select name="category" onChange={this.handleChange} multiple={true} value={category}>
-          <option value="vegetarian">Vegetarian</option>
-          <option value="vegan">Vegan</option>
-          <option value="meat">Meat</option>
-          <option value="pasta">Pasta</option>
-          <option value="gluten-free">Gluten-free</option>
-        </select>
-        <label>Value</label>
-        <select name="price" onChange={this.handleChange} value={price}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <button type="submit">Create </button>
+        <button className="upload" type="submit">Do it!</button>
       </form>
     );
   }

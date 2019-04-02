@@ -31,7 +31,7 @@ class MyFavorites extends Component {
     const { favoritesList } = this.state;
     return (
       <div className="favorites-page">
-        <h3>My favorites</h3>
+        <h2>My favorites</h2>
         <div className="all-favorites-cards">
           {(favoritesList.length > 0) ?
               favoritesList.map((favorite, index) => (

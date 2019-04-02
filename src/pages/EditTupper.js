@@ -39,7 +39,8 @@ class EditTupper extends Component {
     const {isLoading} = this.state;
     return (
       (isLoading) ? <p>Loading...</p> : 
-        <div>
+        <div className="edit-tupper">
+          <h2 className="edit-form">Edit your tupper</h2>
           <EditForm onSubmit={this.handleSubmit} value={this.state.tupper}/>
         </div>
     )

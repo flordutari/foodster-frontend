@@ -124,7 +124,6 @@ h1 {
 
 h2 {
   color: #333;
-  margin: 5vw;
   font-weight: 500;
 }
 
@@ -196,22 +195,27 @@ div.tuppers-page {
   width: 100vw;
   align-self: center;
   justify-content: center;
-  margin: 10.5vh 0 8vh 0;
+  margin: 9vh 0 8vh 0;
 }
 
 div.search {
   margin: 8.5vh 0;
 }
 
-div.new-tupper {
+div.new-tupper,
+div.edit-tupper,
+div.edit-profile {
   display: flex;
   margin: 8vh 0;
+  flex-direction: column;
+  align-items: center;
 }
 
 div.tupper-detail-page {
   display: flex;
   margin: 7vh 0;
   flex-direction: column;
+  justify-items: center;
 }
 
 div.profile-page {
@@ -222,25 +226,21 @@ div.profile-page {
 
 div.transaction-page {
   flex-direction: column;
-  margin: 9vh 5vw 0 5vw;
+  margin: 10vh 5vw 0 5vw;
   align-items: center;
 }
 
 div.favorites-page {
   flex-direction: column;
-  margin: 9vh 5vw 0 5vw;
+  margin: 7vh 5vw 0 5vw;
   align-items: center;
-}
-
-.favorites-page  h3 {
-  font-weight: 200;
-  margin-bottom: 2vh;
 }
 
 div.all-favorites-cards {
   flex-wrap: wrap;
   width: 85vw;
   justify-content: space-between;
+  margin: 2vh 0;
 }
 
 div.profile-social {
@@ -283,7 +283,12 @@ div.logo-login, div.logo-cover {
 .login-link, 
 .login-button, 
 .signup-button, 
-.new-tupper button {
+.follow-button,
+.new-tupper button,
+.edit-tupper button,
+.edit-profile button,
+.tupper-detail-page button,
+.transaction-page a {
   width: 40vw;
   border-radius: 30px;
   text-decoration: none;
@@ -293,10 +298,15 @@ div.logo-login, div.logo-cover {
   font-weight: 800;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   border: none;
+  align-self: center;
 }
 
-.login-link, 
-.new-tupper button {
+.login-link,
+.follow-button,
+.new-tupper button,
+.edit-tupper button,
+.edit-profile button,
+.tupper-detail-page button  {
   color: #fff;
   background: #ff2f0a;
 }
@@ -323,17 +333,31 @@ div.logo-login, div.logo-cover {
   margin-top: 8vh;
 }
 
-.icon-button {
-  background: none;
-  border: none;
-  outline: none;
+button#want-it {
+  align-self: center;
 }
 
-.fav-card {
+.buttons-in-detail {
+  justify-content: space-evenly;
+  margin-top: 5vh;
+}
+
+img#fav-empty,
+img#fav-red {
   position: absolute;
-  margin: .5vh 0 0 75vw;
-  font-size: 1.4rem;
+  margin: 1.5vh 0 0 75vw;
   color: #fff;
+  width: 6vw;
+  height: 6vw;
+}
+
+img#fav-empty-det,
+img#fav-red-det {
+  position: absolute;
+  margin: 25vh 0 0 88vw;
+  color: #fff;
+  width: 6vw;
+  height: 6vw;
 }
 
 .fa-ticket-alt {
@@ -375,12 +399,25 @@ input {
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
 }
 
+label {
+  font-weight: 200;
+  color: #ff2f0a;
+  align-self: flex-start;
+  margin-left: 5.5vw;
+}
+
 select {
   width: 80vw;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
+  font-size: 1em;
   background: none;
-  padding: 10px;
-  margin: 10px 0;
+  padding: .5vh;
+  margin: .5vh 0;
+  color: #999;
+}
+
+option:checked {
+  background: red;
 }
 
 .standard-input {
@@ -389,7 +426,7 @@ select {
 }
 
 .create-edit-input {
-  border-bottom: 1px solid #333;
+  border-bottom: .5px solid #333;
   color: #333;
 }
 
@@ -410,7 +447,7 @@ select {
 
 .tupper-edit-picture,
 .tupper-create-picture {
-  height: 16vh;
+  height: 14vh;
   width: 80vw;
 }
 
@@ -420,8 +457,34 @@ select {
 
 input.search-bar {
   width: 85vw;
-  background: #f5f5f5;
+  background: #eee;
   border-radius: 2vw;
+  color: #333;
+}
+
+input.search-bar::placeholder {
+  color: #bbb;
+}
+
+textarea {
+  height: 12vh;
+  width: 80vw;
+  max-width: 80vw;
+  min-height: 12vh;
+  max-height: 25vh;
+  resize: vertical;
+  align-self: center;
+  background: #eee;
+  color: #333;
+  border: .5px solid #333;
+  outline: none;
+  font-family: "Quicksand", Helvetica, Arial, sans-serif;
+  margin-bottom: 3vh;
+  padding: 1vh;
+}
+
+textarea::placeholder {
+  color: #999;
 }
 
 /* ---- cards ---- */
@@ -491,8 +554,13 @@ input.search-bar {
   object-fit: cover;
 }
 
-div.chef {
-  flex-direction: row;
+p.chef {
+  font-weight: 600;
+  margin-right: 5vw;
+}
+
+.chef img {
+  margin-left: 4vw;
 }
 
 div.handle-image {
@@ -502,8 +570,8 @@ div.handle-image {
 .chef img, 
 .profile-followers img, 
 .profile-following img {
-  width: 7vh;
-  height: 7vh;
+  width: 6vh;
+  height: 6vh;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -516,8 +584,54 @@ div.profile-my-tuppers {
   flex-direction: column;
 }
 
-.new-tupper form, .new-tupper input {
-  margin-top: 5vh;
+h2.create-form {
+  font-size: 1.3rem;
+  margin-bottom: 0vh;
+}
+
+input.create-edit-input  {
+  margin: 0;
+}
+
+input[type="file" i]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file" i]::before {
+  content: 'Select picture';
+  display: inline-block;
+  background: #fd7760;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.firebase {
+  color: #fff;
+}
+
+input[type="email" i] {
+  margin: 0;
+}
+
+#edit-form label,
+#edit-profile-form label {
+  margin: 0;
+}
+
+button.upload,
+button.edit {
+  margin-top: 1.5vh;
+  align-self: center;
+}
+
+br {
+  line-height: .2vh;
 }
 
 .edit-logo {
@@ -533,13 +647,73 @@ div.profile-my-tuppers {
   margin-right: 7vw;
 }
 
-h2.profile {
+#trash-logo-det,
+#edit-logo-det {
+  background: #ff2f0a;
+  width: 7vh;
+  height: 7vh;
+  border-radius: 50%
+}
+
+#edit-logo-det {
+  padding: 4.5vw;
+}
+
+#edit-logo-det img,
+#trash-logo-det img {
+  width: 5.5vw;
+  height: 5.5vw;
+}
+
+h2.profile,
+.detail-info h2 {
   margin: 3vh 0;
+  font-weight: 600;
 }
 
 .profile-page h4 {
   font-weight: 600;
   margin-bottom: 1vh;
+  color: #ff2f0a;
+}
+
+p.red {
+  color: #ff2f0a;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.transaction-page p {
+  margin-top: 3vh;
+  text-align: center;
+}
+
+.transaction-page img {
+  margin: 10vh 0 5vh 0;
+}
+
+#rate-link {
+  background-color: #ff2f0a;
+  color: #fff;
+  padding: 0;
+  height: 7vh;
+  margin-top: 3vh;
+}
+
+#rate-link p {
+  margin-top: 2vh;
+}
+
+div.punctuation {
+  justify-content: space-evenly;
+}
+
+.punctuation p {
+  font-size: 1.4rem;
+}
+
+.punctuation p::before {
+  color:  #ff2f0a;
 }
 
 img.profile {
@@ -560,11 +734,17 @@ div.profile-card {
   align-items: center;
 }
 
+div.description {
+  width: 80vw;
+  font-style: italic;
+  margin: 3vh 0 10vh 0;
+}
+
 .favorite-card {
   width: 40vw;
   height: 50vw;
   border-radius: 5px;
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
   -webkit-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.12);
   -moz-box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.12);
   box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.12);
@@ -572,9 +752,10 @@ div.profile-card {
 
 .favorite-card img {
   width: 40vw;
-  height: 40vw;
+  height: 32vw;
   object-fit: cover;
   justify-self: center;
+  border-radius: 5px 5px 0 0;
 }
 
 .favorite-card p {
@@ -589,4 +770,12 @@ div.profile-card {
 .detail-fav-card {
   align-items: center;
   justify-content: space-evenly;
+  flex-direction: column;
+  margin-top: 1vh;
+}
+
+div.detail-info {
+  width: 85vw;
+  flex-direction: column;
+  align-self: center;
 }

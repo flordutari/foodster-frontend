@@ -54,27 +54,25 @@ class TuppersList extends Component {
   renderSearch = () => {
     const { filteredList } = this.state;
     const { _id } = this.props.user;
-    if(filteredList.length > 0) {
-      return (
-        <>
-          <SearchBar 
-          change={this.handleSearch}
-          />
-          {(filteredList.map((tupper) => {
-            if (tupper.available && tupper.creator !== _id){
-              return (
-                <>
-                  <TupperCard
-                    key={tupper._id}
-                    tupper={tupper}
-                  />
-                </>
-              ) 
-            } else { return null }
-          }))}
-      </>
-      )
-    } else { return <p>No tuppers founded</p> }
+    return (
+      <>
+        <SearchBar 
+        change={this.handleSearch}
+        />
+        {(filteredList.map((tupper) => {
+          if (tupper.available && tupper.creator !== _id){
+            return (
+              <>
+                <TupperCard
+                  key={tupper._id}
+                  tupper={tupper}
+                />
+              </>
+            ) 
+          } else { return null }
+        }))}
+    </>
+    )
   }
 
   renderVegetarian = () => {
