@@ -13,7 +13,7 @@ body, #root {
   color: #333;
   max-width: 100vw;
   max-height: 100vh;
-  background: #f8f8f8;
+  background: #f9f9f9;
 }
 
 nav {
@@ -82,7 +82,7 @@ a {
 }
 
 #footbar {
-  background-color: #f8f8f8;
+  background-color: #f9f9f9;
   height: 6.5vh;
   display: flex;
   justify-content: space-around;
@@ -524,12 +524,13 @@ div.profile-my-tuppers {
   align-self: flex-end;
   z-index: 5;
   position: absolute;
-  margin-top: 13vh;
+  margin-top: 18vh;
 }
 
 .edit-logo img {
-  width: 5vw;
-  height: 5vw;
+  width: 5.5vw;
+  height: 5.5vw;
+  margin-right: 7vw;
 }
 
 h2.profile {
@@ -546,7 +547,6 @@ img.profile {
   width: 16vh;
   border-radius: 50%;
   object-fit: cover;
-  justify-self: center;
 }
 
 div.profile-text {
@@ -555,7 +555,7 @@ div.profile-text {
 }
 
 div.profile-card {
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 90vw;
   align-items: center;
 }

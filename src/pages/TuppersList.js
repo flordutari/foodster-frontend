@@ -29,18 +29,18 @@ class TuppersList extends Component {
   renderAll = () => {
     const { tuppers } = this.state;
     const { _id } = this.props.user;
-    return (tuppers.map((tupper) => {
-      if (tupper.available && tupper.creator !== _id){
-        return (
-          <TupperCard
-            key={tupper._id}
-            tupper={tupper}
-          />
-        ) 
-      } else {
-        return null
-      }
-    }))
+    if(tuppers.length > 0) {
+      return (tuppers.map((tupper) => {
+        if (tupper.available && tupper.creator !== _id){
+          return (
+            <TupperCard
+              key={tupper._id}
+              tupper={tupper}
+            />
+          ) 
+        } else { return null }
+      }))
+    } else { return <p>No tuppers yet</p> }
   }
 
   handleSearch = (tupperName) => {
@@ -54,27 +54,27 @@ class TuppersList extends Component {
   renderSearch = () => {
     const { filteredList } = this.state;
     const { _id } = this.props.user;
-    return (
-      <>
-        <SearchBar 
-        change={this.handleSearch}
-        />
-        {(filteredList.map((tupper) => {
-          if (tupper.available && tupper.creator !== _id){
-            return (
-              <>
-                <TupperCard
-                  key={tupper._id}
-                  tupper={tupper}
-                />
-              </>
-            ) 
-          } else {
-            return null
-          }
-        }))}
-    </>
-    )
+    if(filteredList.length > 0) {
+      return (
+        <>
+          <SearchBar 
+          change={this.handleSearch}
+          />
+          {(filteredList.map((tupper) => {
+            if (tupper.available && tupper.creator !== _id){
+              return (
+                <>
+                  <TupperCard
+                    key={tupper._id}
+                    tupper={tupper}
+                  />
+                </>
+              ) 
+            } else { return null }
+          }))}
+      </>
+      )
+    } else { return <p>No tuppers founded</p> }
   }
 
   renderVegetarian = () => {
@@ -92,7 +92,7 @@ class TuppersList extends Component {
               tupper={tupper}
             />
           ) 
-        } else { return <p>No vegetarian tuppers yet</p> }
+        } else { return null }
       })) 
     } else { return <p>No vegetarian tuppers yet</p> }
   }
@@ -112,7 +112,7 @@ class TuppersList extends Component {
               tupper={tupper}
             />
           ) 
-        } else { return <p>No vegan tuppers yet</p> }
+        } else { return null }
       }))
     } else { return <p>No vegan tuppers yet</p> }
   }
@@ -132,7 +132,7 @@ class TuppersList extends Component {
               tupper={tupper}
             />
           ) 
-        } else { return <p>No meat tuppers yet</p> }
+        } else { return null }
       }))
     } else { return <p>No meat tuppers yet</p> }
   }
@@ -152,7 +152,7 @@ class TuppersList extends Component {
               tupper={tupper}
             />
           ) 
-        } else { return <p>No pasta tuppers yet</p>  }
+        } else { return null }
       }))
     } else { return <p>No pasta tuppers yet</p> }
   }
@@ -172,7 +172,7 @@ class TuppersList extends Component {
               tupper={tupper}
             />
           ) 
-        } else { return <p>No gluten-free tuppers yet</p> }
+        } else { return null }
       }))
     } else { return <p>No gluten-free tuppers yet</p> }    
   }

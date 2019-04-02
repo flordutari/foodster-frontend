@@ -33,15 +33,17 @@ class MyFavorites extends Component {
       <div className="favorites-page">
         <h3>My favorites</h3>
         <div className="all-favorites-cards">
-          {favoritesList.map((favorite, index) => (
-            <FavoriteCard
-            key={`id${index}`}
-            name={favorite.name}
-            imageUrl={favorite.imageUrl}
-            id={favorite._id}
-            price={favorite.price}
-            />
-          ))}
+          {(favoritesList.length > 0) ?
+              favoritesList.map((favorite, index) => (
+                <FavoriteCard
+                key={`id${index}`}
+                name={favorite.name}
+                imageUrl={favorite.imageUrl}
+                id={favorite._id}
+                price={favorite.price}
+                />
+            )) :
+            <p>You don't have favorites yet</p>}
         </div>
       </div>
     );

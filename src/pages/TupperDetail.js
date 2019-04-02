@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import tupperService from '../lib/tupper-service';
-import authService from '../lib/auth-service';
 import profileService from '../lib/profile-service';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
@@ -11,67 +10,40 @@ class TupperDetail extends Component {
     user: {},
     tupper: {},
     creatorUser: {},
-    allUsers: [],
     isLoading: true,
-    favorite: false
+    favorite: false,
+    alreadyFavorite: false
   }
 
   componentDidMount() {
     this.getTupperToBuy();
-    this.getCurrentUser();
   }
   
   getTupperToBuy = () => {
     const { id } = this.props.match.params;
     tupperService.getOne(id)
     .then(tupper => {
-      this.setState({
-        tupper,
-        isLoading: false
-      })
+      this.getCreator(tupper)
     })
-    .then(() => {this.getCreator()})
     .catch(err => console.log(err));
   }
 
-  getCurrentUser = () => {
-    authService.me()
-    .then(user => {
-      this.setState({
-        user,
-        isLoading: false
-      })
-    })
-    .then(() => {this.favoriteToggle()})
-    .then(() => {this.getUsersList()})
-    .catch(err => console.log(err));
-  }
-  
-  getCreator = () => {
-    const { creator } = this.state.tupper;
-    profileService.getProfile(creator)
+  getCreator = (tupper) => {
+    profileService.getProfile(tupper.creator)
     .then(creatorUser => {
       this.setState({
+        tupper,
         creatorUser,
         isLoading: false
       })
     })
+      .then(() => {this.checkIfFavorite()})
     .catch(err => console.log(err));
-  }
-
-  getUsersList = () => {
-    profileService.getAllProfiles()
-    .then(allUsers => {
-      this.setState({
-        allUsers
-      })
-    })
-    .catch(err => console.log(err))
   }
 
   handleTransaction = () => {
     const { id } = this.props.match.params;
-    const { tickets: buyerTickets, _id: buyerId } = this.state.user;
+    const { tickets: buyerTickets, _id: buyerId } = this.props.user;
     const { tickets: creatorTickets, _id: creatorId } = this.state.creatorUser;
     const { price: tupperPrice, available, _id } = this.state.tupper;
     if (buyerTickets >= tupperPrice) {
@@ -89,50 +61,51 @@ class TupperDetail extends Component {
       })
       .catch(err => console.log(err));
     }
-  }    
-
-  favoriteToggle = () => {
-    const tupperId = this.state.tupper._id;
-    const { favorites } = this.state.user;
-    if(favorites.includes(tupperId)) {
-      this.setState({favorite: true})
-    } else {
-      this.setState({favorite: false})
-    }
   }
-  
+
+  checkIfFavorite = () => {
+    const { favorites } = this.props.user;
+    const { _id } = this.state.tupper;
+    let alreadyFavorite = false
+    if(favorites.includes(_id)) {
+      alreadyFavorite = true 
+      this.setState({
+        favorite: true
+      })
+    } else {
+      alreadyFavorite = false
+      this.setState({
+        favorite: false
+      })
+    }
+    return alreadyFavorite;
+  }
+
   handleFavorite = () => {
     const tupperId = this.state.tupper._id;
-    const { favorites } = this.state.user;
-    let isAlreadyFavorite = false;
-    if(favorites.includes(tupperId)) {
-      isAlreadyFavorite = true
-      this.setState({favorite: true})
-    } 
-    if(isAlreadyFavorite === false){
+    const { favorite } = this.state;
+    if(favorite === false){
       profileService.addFavorite({
         tupperId
       })
       .then(result => {
         const user = result.data.userAddFavorite;
+        this.props.setUser(user)
         this.setState({
-          user,
           favorite: true
         })
-        this.props.setUser(user)
       })
       .catch(err => console.log(err));
-    } else if (isAlreadyFavorite === true){
+    } else if (favorite === true){
       profileService.undoFavorite({
         tupperId
       })
       .then(result => {
         const user = result.data.userUndoFavorite;
+        this.props.setUser(user)
         this.setState({
-          user,
           favorite: false,
         })
-        this.props.setUser(user)
       })
       .catch(err => console.log(err));
     }
@@ -171,7 +144,7 @@ class TupperDetail extends Component {
   }
 
   render() {
-    const { tupper:{name, _id, creator, imageUrl, price, available}, creatorUser, isLoading, favorite } = this.state;
+    const { tupper:{name, _id, creator, imageUrl, price, available, rated}, creatorUser, isLoading, favorite } = this.state;
     const currentUserId = this.props.user._id;
     return (
       (isLoading) ? <p>Loading...</p> :
@@ -199,7 +172,7 @@ class TupperDetail extends Component {
               <button onClick={this.handleDelete}><i className="far fa-trash-alt"></i></button> 
             </> :
             <>
-              {(!favorite) ?
+              {(favorite === false) ?
                 <button className="icon-button" onClick={this.handleFavorite}><i className="far fa-heart"></i></button> :
                 <button className="icon-button" onClick={this.handleFavorite}><i className="fas fa-heart"></i></button>}
               <button className="icon-button" onClick={this.handleTransaction}>I want it!</button>
@@ -207,7 +180,7 @@ class TupperDetail extends Component {
           </div>
           : null}
           <div>
-            {(!available) ? 
+            {(!available && !rated) ? 
             <>
               <p>Rate it!</p> 
               <p onClick={() => {this.handleStatus(1)}}>1</p>

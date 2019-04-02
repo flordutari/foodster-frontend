@@ -38,10 +38,12 @@ class MyProfile extends Component {
     const { bought } = this.props.user;
     bought.map(boughtId => (
       tupperService.getOne(boughtId)
-      .then(bought => {
-        this.setState({
-          boughtList : [...this.state.boughtList, bought]
-        })
+      .then(boughtTupper => {
+        if(!boughtTupper.rated) {
+          this.setState({
+            boughtList : [...this.state.boughtList, boughtTupper]
+          })
+        }
       })
       .catch(err => console.log(err))
     ))
