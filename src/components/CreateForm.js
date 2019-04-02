@@ -6,7 +6,7 @@ class CreateForm extends Component {
 
   state = {
     name: '',
-    imageUrl: '',
+    imageUrl: '../img/vegetarian.jpg',
     category: ['all', ],
     price: '1',
     isUploading: false,

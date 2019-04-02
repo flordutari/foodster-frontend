@@ -510,7 +510,8 @@ div.handle-image {
 
 div.profile-followers,
 div.profile-following,
-div.profile-bought {
+div.profile-bought,
+div.profile-my-tuppers {
   justify-content: flex-start;
   flex-direction: column;
 }

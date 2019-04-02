@@ -140,6 +140,7 @@ class TupperDetail extends Component {
 
   handleStatus = (value) => {
     const { status, _id } = this.state.creatorUser;
+    const {_id: tupperId, rated } = this.state.tupper;
     let newStatus = 0;
     if(status === 0){
       newStatus = value
@@ -148,7 +149,9 @@ class TupperDetail extends Component {
     }
     profileService.rateUser({
       _id,
-      status: newStatus
+      status: newStatus,
+      rated,
+      tupperId
     })
     .then(result => {
       console.log(result);
@@ -162,24 +165,28 @@ class TupperDetail extends Component {
     tupperService.deleteTupper(id)
     .then(result => {
       console.log(result);
-      this.props.history.push('/tuppers/all');
+      this.props.history.push('/profile');
     })
     .catch(err => console.log(err));
   }
 
   render() {
     const { tupper:{name, _id, creator, imageUrl, price, available}, creatorUser, isLoading, favorite } = this.state;
+    const currentUserId = this.props.user._id;
     return (
       (isLoading) ? <p>Loading...</p> :
         <div className="tupper-detail-page">
           <img src={imageUrl} alt=""/>
           <h2>{name}</h2>
+          {(creator !== currentUserId) ?
           <div className="chef">
             <p>Chef: {creatorUser.username}</p>
             <div className="handle-image">
               <Link to={`/profile/${creatorUser._id}`}><img src={creatorUser.imageUrl} alt=""/></Link>
             </div>
-          </div>
+          </div> : 
+          null
+          }
           <div>
             <p className="distance">0.3 km - </p>
             <p>{price}  <i className="fas fa-ticket-alt"></i></p>

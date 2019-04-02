@@ -11,7 +11,8 @@ class MyProfile extends Component {
   state = {
     followersList: [],
     followingList: [],
-    boughtList: []
+    boughtList: [],
+    tuppers: []
   }
 
   componentDidMount = () => {
@@ -22,11 +23,12 @@ class MyProfile extends Component {
   }
 
   getTupperList = () => {
+    const { _id } = this.props.user;
     tupperService.getAll()
     .then(tuppers => {
+      const newTuppers = tuppers.filter(tupper => (tupper.available && tupper.creator === _id))
       this.setState({
-        tuppers,
-        filteredList: tuppers
+        tuppers: newTuppers
       })
     })
     .catch(err => console.log(err));
@@ -73,7 +75,10 @@ class MyProfile extends Component {
 
   render() {
     const { username, imageUrl, _id } = this.props.user;
-    const { boughtList, followersList, followingList } = this.state;
+    const { boughtList, 
+            followersList, 
+            followingList, 
+            tuppers } = this.state;
     return (
       <div className="profile-page">
         <Link className="edit-logo" to={`./profile/edit`}><img src={editLogo} alt="edit"/></Link>
@@ -92,20 +97,18 @@ class MyProfile extends Component {
           <div className="profile-bought">
             <h4>To rate</h4>
             <div>
-              {boughtList.map(item => (
+              {boughtList.map(tupper => (
                 <>
-                  <Link to={`/tuppers/${item._id}`}><p>{item.name}</p></Link>
+                  <Link to={`/tuppers/${tupper._id}`}><p>{tupper.name}</p></Link>
                 </>
               ))}
             </div>
           </div>
-          <div className="my-tuppers">
-            <h4>To rate</h4>
+          <div className="profile-my-tuppers">
+            <h4>My tuppers</h4>
             <div>
-              {boughtList.map(item => (
-                <>
-                  <Link to={`/tuppers/${item._id}`}><p>{item.name}</p></Link>
-                </>
+              {tuppers.map(tupper => (
+                <Link to={`/tuppers/${tupper._id}`}><p>{tupper.name}</p></Link>
               ))}
             </div>
           </div>
