@@ -41,7 +41,7 @@ class TupperDetail extends Component {
         isLoading: false
       })
     })
-      .then(() => {this.checkIfFavorite()})
+    .then(() => {this.checkIfFavorite()})
     .catch(err => console.log(err));
   }
 

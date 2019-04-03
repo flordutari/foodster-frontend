@@ -17,7 +17,7 @@ class FootBar extends Component {
         <Link to="/tuppers/favorites"><img src={likeLogo} alt=""/></Link>
         <Link to="/tuppers/new"><img src={plusLogo} alt=""/></Link>
         <Link to="/tuppers/categories"><img src={lunchLogo} alt=""/></Link>
-        <Link to="/profile"><img src={chatLogo} alt=""/></Link>
+        <Link to="/talks"><img src={chatLogo} alt=""/></Link>
       </div>
     )
   }

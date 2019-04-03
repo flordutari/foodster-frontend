@@ -249,6 +249,14 @@ div.profile-social {
   margin-top: 3vh;
 }
 
+div.talk-page {
+  flex-direction: column;
+  width: 90vw;
+  margin-top: 10vh;
+  align-items: center;
+  align-self: center;
+}
+
 /* ---- logo ---- */
 
 div.logo-login, div.logo-cover {
@@ -569,7 +577,8 @@ div.handle-image {
 
 .chef img, 
 .profile-followers img, 
-.profile-following img {
+.profile-following img,
+.user-conv-card-img {
   width: 6vh;
   height: 6vh;
   border-radius: 50%;
@@ -778,4 +787,24 @@ div.detail-info {
   width: 85vw;
   flex-direction: column;
   align-self: center;
+}
+
+div.talk-card {
+  width: 85vw;
+  height: 10vh;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3vw;
+  background-color: #eeeeee;
+  margin-bottom: 2.5vh;
+}
+
+.talk-card img {
+  margin-right: 2vw;
+}
+
+#arrow-forward {
+  width: 3vh;
+  height: 3vh;
 }

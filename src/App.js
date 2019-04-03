@@ -16,6 +16,8 @@ import TransactionDone from './pages/TransactionDone';
 import MyProfile from './pages/MyProfile';
 import EditProfile from './pages/EditProfile';
 import UserProfile from './pages/UserProfile';
+import TalksList from './pages/TalksList';
+import Talk from './pages/Talk';
 import AuthProvider from './providers/AuthProvider';
 
 class App extends Component {
@@ -38,11 +40,13 @@ class App extends Component {
             <PrivateRoute exact path="/tuppers/new" component={NewTupper} />
             <PrivateRoute exact path="/tuppers/favorites" component={MyFavorites} />            
             <PrivateRoute exact path="/tuppers/:id" component={TupperDetail} />
-            <PrivateRoute path="/tuppers/:id/edit" component={EditTupper} />
+            <PrivateRoute exact path="/tuppers/:id/edit" component={EditTupper} />
             <PrivateRoute exact path="/tuppers/:id/transaction" component={TransactionDone} />
             <PrivateRoute exact path="/profile" component={MyProfile} />
             <PrivateRoute exact path="/profile/edit" component={EditProfile} />
-            <PrivateRoute path="/profile/:id" component={UserProfile} />
+            <PrivateRoute exact path="/talks" component={TalksList} />
+            <PrivateRoute exact path="/talks/:id" component={Talk} />
+            <PrivateRoute path="/profile/:id" component={UserProfile} />            
           </Switch>
         </div>
       </AuthProvider>

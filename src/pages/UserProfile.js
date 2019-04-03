@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import authService from '../lib/auth-service';
 import profileService from '../lib/profile-service';
 import { withAuth } from '../providers/AuthProvider';
 import Rate from '../components/Rate';
+import talksService from '../lib/talks-service';
 
 class UserProfile extends Component {
   
   state = {
     otherUser: {},
-    user: {},
     isLoading: true,
     followed: false
   }
 
   componentDidMount = () => {
     this.getUserProfile();
-    this.getCurrentUser();
   }
   
   getUserProfile = () => {
@@ -27,70 +25,70 @@ class UserProfile extends Component {
         isLoading: false
       })
     })
-    .catch(err => console.log(err));
-  }
-  
-  getCurrentUser = () => {
-    authService.me()
-    .then(user => {
-      this.setState({
-        user,
-        isLoading: false
-      })
-    })
-    .then(() => {this.followerToggle()})
+    .then(() => {this.checkIfFollowing()})
     .catch(err => console.log(err));
   }
 
-  followerToggle = () => {
+  checkIfFollowing = () => {
     const otherUserId = this.state.otherUser._id;
-    const { following } = this.state.user;
+    const { following } = this.props.user;
+    let alreadyFollowing = false
     if(following.includes(otherUserId)) {
-      this.setState({followed: true})
+      alreadyFollowing = true 
+      this.setState({
+        followed: true
+      })
     } else {
-      this.setState({followed: false})
+      alreadyFollowing = false
+      this.setState({
+        followed: false
+      })
     }
+    return alreadyFollowing;
   }
 
   handleFollowers = () => {
     const otherUserId = this.state.otherUser._id;
-    const { following } = this.state.user;
-    let alreadyFollowing = false;
-    if(following.includes(otherUserId)) {
-      alreadyFollowing = true;
-      this.setState({following: true})
-    }
-    if(alreadyFollowing === false){
+    const { followed } = this.state;
+    if(followed === false){
       profileService.follow({
         otherUserId
       })
       .then(result => {
         const user = result.data.userFollow;
         const otherUser = result.data.userFollowed;
+        this.props.setUser(user)
         this.setState({
           otherUser,
-          user,
           followed: true,
         })
-        this.props.setUser(user)
       })
       .catch(err => console.log(err));
-    } else if (alreadyFollowing === true){
+    } else if (followed === true){
       profileService.unfollow({
         otherUserId
       })
       .then(result => {
         const user = result.data.userUnfollow;
         const otherUser = result.data.userUnfollowed;
+        this.props.setUser(user)
         this.setState({
           otherUser,
-          user,
           followed: false
         })
-        this.props.setUser(user)
       })
       .catch(err => console.log(err));
     }
+  }
+
+  createTalk = () => {
+    const guestId = this.state.otherUser._id;
+    console.log(guestId)
+    talksService.createTalk(guestId)
+    .then(talk => {
+      console.log(talk);
+    })
+    .catch(err => console.log(err));
   }
     
   render() {
@@ -114,11 +112,11 @@ class UserProfile extends Component {
         <div className="description">
           <p>{description}</p>
         </div>
-        {(!followed) ?
+        {(followed === true) ?
         <button className="follow-button" onClick={this.handleFollowers}>Follow</button> :
         <button className="follow-button" onClick={this.handleFollowers}>Unfollow</button>
         }
-
+        <button onClick={this.createTalk} className="send-message">chat</button>
       </div>
     );
   }

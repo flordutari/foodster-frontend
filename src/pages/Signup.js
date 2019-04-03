@@ -44,8 +44,8 @@ class Signup extends Component {
           <input className="standard-input" type="email" name="email" value={email} onChange={this.handleChange} placeholder="email"/>
           <input className="standard-input" type="text" name="username" value={username} onChange={this.handleChange} placeholder="username"/>
           <input className="standard-input" type="password" name="password" value={password} onChange={this.handleChange} placeholder="password"/>
-          <input className="standard-input"type="text" id="latitude" name="latitude" value={username} />
-          <input className="standard-input"type="text" id="longitude" name="longitude" value={username} />
+          <input className="standard-input"type="hidden" id="latitude" name="latitude" value={username} />
+          <input className="standard-input"type="hidden" id="longitude" name="longitude" value={username} />
           <input className="signup-button" type="submit" value="Signup" />
         </form>
         <p>Already have account? </p>        
