@@ -83,8 +83,7 @@ class UserProfile extends Component {
 
   createTalk = () => {
     const guestId = this.state.otherUser._id;
-    console.log(guestId)
-    talksService.createTalk(guestId)
+    talksService.createTalk({guestId})
     .then(talk => {
       console.log(talk);
     })

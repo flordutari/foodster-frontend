@@ -9,14 +9,14 @@ class TalksService {
   }
 
   getAllMines() {
-    return this.talks.get('/talks/all')
+    return this.talks.get('/talks/mines')
       .then(({data}) => data)
   }
 
-  // getOne(id) {
-  //   return this.talks.get(`/talks/${id}`)
-  //     .then(({data}) => data)
-  // }
+  getOne(id) {
+    return this.talks.get(`/talks/${id}`)
+      .then(({data}) => data)
+  }
 
   createTalk(body) {
     return this.talks.post('/talks/new', body)
@@ -28,7 +28,12 @@ class TalksService {
   //     .then(({data}) => data)
   // }
 
-  // editTalk(body, id) {
+  // sendMessage(body, id) {
+  //   return this.talks.put(`/talks/${id}`, body)
+  //     .then(({data}) => data)
+  // }
+
+  // messageRead(body, id) {
   //   return this.talks.put(`/talks/${id}`, body)
   //     .then(({data}) => data)
   // }
