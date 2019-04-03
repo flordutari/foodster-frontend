@@ -23,13 +23,18 @@ class TalksService {
       .then(({data}) => data)
   }
 
+  createMessage(body, id) {
+    return this.talks.post(`/talks/${id}`, body)
+    .then(({data}) => data)
+  }
+  
+  getAllMessages(id) {
+    return this.talks.get(`/${id}/messages`)
+    .then(({data}) => data)
+  }
+  
   // deleteTalk(id) {
   //   return this.talks.delete(`/talks/${id}`)
-  //     .then(({data}) => data)
-  // }
-
-  // sendMessage(body, id) {
-  //   return this.talks.put(`/talks/${id}`, body)
   //     .then(({data}) => data)
   // }
 

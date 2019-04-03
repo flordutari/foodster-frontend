@@ -61,6 +61,7 @@ class TupperDetail extends Component {
       id)
       .then((result) => {
         console.log(result);
+        this.props.setUser(result.data.buyerUser)
         this.props.history.push(`/tuppers/${_id}/transaction`);
       })
       .catch(err => console.log(err));
@@ -148,7 +149,7 @@ class TupperDetail extends Component {
   }
 
   render() {
-    const { tupper:{name, creator, imageUrl, price, available, rated}, creatorUser, isLoading, favorite } = this.state;
+    const { tupper:{name, creator, imageUrl, price, available, rated, _id}, creatorUser, isLoading, favorite } = this.state;
     const currentUserId = this.props.user._id;
     return (
       (isLoading) ? <p>Loading...</p> :
@@ -188,7 +189,7 @@ class TupperDetail extends Component {
             <div className="buttons-in-detail">
               {(creator === currentUserId) ?
               <>
-                <Link id="edit-logo-det" to={`./profile/edit`}><img src={editLogo} alt="edit"/></Link>
+                <Link id="edit-logo-det" to={`./${_id}/edit`}><img src={editLogo} alt="edit"/></Link>
                 <button id="trash-logo-det" onClick={this.handleDelete}><img src={trashLogo} alt="trash"/></button> 
               </> :
               <button id="want-it" onClick={this.handleTransaction}>I want it!</button>

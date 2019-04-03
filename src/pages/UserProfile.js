@@ -111,7 +111,7 @@ class UserProfile extends Component {
         <div className="description">
           <p>{description}</p>
         </div>
-        {(followed === true) ?
+        {(followed === false) ?
         <button className="follow-button" onClick={this.handleFollowers}>Follow</button> :
         <button className="follow-button" onClick={this.handleFollowers}>Unfollow</button>
         }

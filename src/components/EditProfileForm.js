@@ -65,7 +65,7 @@ class EditProfileForm extends Component {
         <input type="email" name="email" onChange={this.handleChange} value={email}/>
         <label>Description</label>
         <br/>
-        <textarea name="description" placeholder="Tell something about you..." tabindex="5" onChange={this.handleChange} value={description}></textarea>
+        <textarea className="profile-textarea" name="description" placeholder="Tell something about you..." tabindex="5" onChange={this.handleChange} value={description}></textarea>
         <button type="submit">Edit</button>
       </form>
     );

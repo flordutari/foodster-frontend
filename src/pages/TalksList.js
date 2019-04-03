@@ -30,7 +30,6 @@ class TalksList extends Component {
         talks[index].otherId = talk.guest
       }
     })
-    console.log(talks)
     this.setState({
       talks,
     })  

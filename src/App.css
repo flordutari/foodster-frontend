@@ -64,11 +64,15 @@ nav>a {
   margin-right: 2.5vw;
 }
 
-form {
+form#create-form,
+.login-page form,
+.signup-page form,
+form#edit-profile-form,
+form#edit-form {
   display: flex;
   flex-direction: column;
   justify-self: center;
-  width: 80%;
+  width: 80vw;
   margin: 10px;
 }
 
@@ -249,7 +253,8 @@ div.profile-social {
   margin-top: 3vh;
 }
 
-div.all-talks-page {
+div.all-talks-page,
+div.talk-page {
   flex-direction: column;
   width: 90vw;
   margin-top: 10vh;
@@ -257,10 +262,10 @@ div.all-talks-page {
   align-self: center;
 }
 
-div.talk-page {
+div.messages {
   flex-direction: column;
   width: 90vw;
-  margin-top: 10vh;
+  display: initial;
 }
 
 /* ---- logo ---- */
@@ -480,7 +485,7 @@ input.search-bar::placeholder {
   color: #bbb;
 }
 
-form>textarea {
+textarea.profile-textarea {
   height: 12vh;
   width: 80vw;
   max-width: 80vw;
@@ -499,6 +504,10 @@ form>textarea {
 
 textarea::placeholder {
   color: #999;
+}
+
+form.messages-form{
+  justify-content: center;
 }
 
 /* ---- cards ---- */
@@ -562,8 +571,7 @@ textarea::placeholder {
 
 .tupper-detail-page img {
   width: 100vw;
-  height: auto;
-  max-height: 30vh;
+  height: 30vh;
   overflow: hidden;
   object-fit: cover;
 }
@@ -833,7 +841,7 @@ img.user-conv-card-img {
 #fixed-textarea textarea {
   width: 75vw;
   max-width: 75vw;
-  min-height: 6vh;
+  height: 6vh;
   max-height: 25vh;
   outline: none;
   border-radius: 8px;
@@ -844,7 +852,19 @@ img.user-conv-card-img {
 }
 
 img#send-logo {
-  width: 10vw;
-  height: 10vw;
+  width: 8vw;
+  height: 8vw;
   z-index: 15;
+}
+
+.send-button {
+  background: none;
+  border: none;
+}
+
+p.comment-bubble span{
+  background-color: #e4e4e4;
+  padding: 3vw;
+  border-radius: 8px;
+  margin: 5vw;
 }
