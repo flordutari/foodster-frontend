@@ -33,6 +33,7 @@ class CreateForm extends Component {
   }
 
   handleSubmit = (e) => {
+    const { user } = this.props;
     e.preventDefault();
     this.props.onSubmit(this.state);
     this.setState({
@@ -41,6 +42,7 @@ class CreateForm extends Component {
       category: ['all', ],
       price: '',
     })
+    this.props.setUser({user});
   }
 
   handleUploadStart = () => this.setState({isUploading: true, progress: 0});
@@ -99,4 +101,4 @@ class CreateForm extends Component {
   }
 }
 
-export default CreateForm;
+export default withAuth(CreateForm);
