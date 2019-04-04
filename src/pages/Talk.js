@@ -61,8 +61,8 @@ class Talk extends Component {
         <div className="messages">
         {messages.map(message =>{
           return((message.creator._id === _id) ?
-          <p className="comment-bubble-red"><span>{message.comment}</span></p> :
-          <p className="comment-bubble"><span>{message.comment}</span></p> 
+          <div className="comment-bubble-red"><span>{message.comment}</span></div> :
+          <div className="comment-bubble"><span>{message.comment}</span></div> 
           )})}
         </div>
         <div id="fixed-textarea">

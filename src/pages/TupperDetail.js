@@ -144,11 +144,16 @@ class TupperDetail extends Component {
     .catch(err => console.log(err));
   }
 
-  handleDelete = () => {
+  handleDelete = async () => {
     const { id } = this.props.match.params;
-    tupperService.deleteTupper(id)
-    .then(this.props.history.push('/profile'))
-    .catch(err => console.log(err));
+    try {
+    await tupperService.deleteTupper(id)
+    this.props.history.push('/profile')
+    } catch (error) {
+      this.setState({
+        error
+      })
+    }
   }
 
   render() {

@@ -289,7 +289,7 @@ div.messages {
   width: 85vw;
   height: 90vh;
   display: flex;
-  margin: 3vh 0 11vh 0;
+  margin: 4vh 0 11vh 0;
 }
 
 /* ---- logo ---- */
@@ -639,8 +639,9 @@ div.handle-image {
   object-fit: cover;
 }
 
+.profile-followers img, 
 .profile-following img {
-  margin: 0 3vw;
+  margin: 2.5vw;
 }
 
 .profile-followers div,
@@ -676,7 +677,7 @@ input[type="file" i]::before {
   display: inline-block;
   background: #fd7760;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   padding: 5px 8px;
   outline: none;
   white-space: nowrap;
@@ -924,15 +925,15 @@ button.send-button {
   right: 12vw;
 }
 
-p.comment-bubble span,
-p.comment-bubble-red span {
-  padding: 2.5vw;
+div.comment-bubble span,
+div.comment-bubble-red span {
+  padding: 0.5vh 2.5vw;
   border-radius: 2.5vw;
-  line-height: 3;
+  line-height: 1.5;
+  margin: 1.5vw;
 }
 
 .comment-bubble {
-  margin: 1.75vh 0;
   align-self: flex-start;
 }
 
@@ -940,11 +941,11 @@ p.comment-bubble-red span {
   align-self: flex-end;
 }
 
-p.comment-bubble span {
+div.comment-bubble span {
   background-color: #e4e4e4;
 }
 
-p.comment-bubble-red span {
+div.comment-bubble-red span {
   background-color: #fd7760;
   margin-left: auto;
 }
