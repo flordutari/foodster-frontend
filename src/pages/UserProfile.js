@@ -3,6 +3,7 @@ import profileService from '../lib/profile-service';
 import { withAuth } from '../providers/AuthProvider';
 import Rate from '../components/Rate';
 import talksService from '../lib/talks-service';
+import Loader from '../components/Loader';
 
 class UserProfile extends Component {
   
@@ -94,7 +95,7 @@ class UserProfile extends Component {
             followed, 
           } = this.state;
     return (
-      (isLoading) ? <p>Loading...</p> :
+      (isLoading) ? <Loader /> :
       <div className="profile-page">
         <div className="profile-card">
           <img className="profile" src={imageUrl} alt={`${username}`}/>

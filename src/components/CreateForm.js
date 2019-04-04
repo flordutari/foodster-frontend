@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import FileUploader from 'react-firebase-file-uploader';
+import { withAuth } from '../providers/AuthProvider';
 
 class CreateForm extends Component {
 
@@ -33,7 +34,6 @@ class CreateForm extends Component {
   }
 
   handleSubmit = (e) => {
-    const { user } = this.props;
     e.preventDefault();
     this.props.onSubmit(this.state);
     this.setState({
@@ -42,7 +42,6 @@ class CreateForm extends Component {
       category: ['all', ],
       price: '',
     })
-    this.props.setUser({user});
   }
 
   handleUploadStart = () => this.setState({isUploading: true, progress: 0});

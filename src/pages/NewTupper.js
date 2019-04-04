@@ -9,14 +9,16 @@ class NewTupper extends Component {
     error: {}
   }
 
-  handleSubmit = (data) => {
-    tupperService.createTupper(data)
-    .then(this.props.history.push('/profile'))
-    .catch(error => 
+  handleSubmit = async (data) => {
+    try {
+      await tupperService.createTupper(data)
+      this.props.history.push('/profile')
+    } catch (error) {
       this.setState({
         error
       })
-    );
+    }
+    
   }
 
   render() {

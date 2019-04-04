@@ -26,6 +26,7 @@ class MyProfile extends Component {
     const { _id } = this.props.user;
     tupperService.getAll()
     .then(tuppers => {
+      console.log(tuppers)
       const newTuppers = tuppers.filter(tupper => (tupper.available && tupper.creator === _id))
       this.setState({
         tuppers: newTuppers
@@ -81,6 +82,7 @@ class MyProfile extends Component {
             followersList, 
             followingList, 
             tuppers } = this.state;
+            console.log(tuppers);
     return (
       <div className="profile-page">
         <Link className="edit-logo" to={`./profile/edit`}><img src={editLogo} alt="edit"/></Link>

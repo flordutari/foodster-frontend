@@ -9,7 +9,7 @@ class TransactionDone extends Component {
     return (
       <div className="transaction-page">
         <img src={successLogo} alt="."/>
-        <p className="red">Good choise!</p>
+        <p className="red">Good choice!</p>
         <p>After tasting the food, <br/> please rate the chef</p>
         <Link id="rate-link"  to={`/tuppers/${id}`}><p>Rate it now!</p></Link>
       </div>

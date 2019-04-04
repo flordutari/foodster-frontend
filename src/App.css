@@ -28,6 +28,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   z-index: 10;
+  -webkit-box-shadow: 0px 2px 14px -1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 2px 14px -1px rgba(0,0,0,0.2);
+  box-shadow: 0px 2px 14px -1px rgba(0,0,0,0.2);
 }
 
 nav>a {
@@ -224,7 +227,7 @@ div.tupper-detail-page {
 
 div.profile-page {
   flex-direction: column;
-  margin: 9vh 5vw 0 5vw;
+  margin: 9vh 5vw 7vh 5vw;
   align-items: center;
 }
 
@@ -236,7 +239,7 @@ div.transaction-page {
 
 div.favorites-page {
   flex-direction: column;
-  margin: 7vh 5vw 0 5vw;
+  margin: 7vh 5vw 5vh 5vw;
   align-items: center;
 }
 
@@ -269,14 +272,22 @@ div.all-talks-page,
 div.talk-page {
   flex-direction: column;
   width: 90vw;
-  margin-top: 8vh;
   align-items: center;
   align-self: center;
 }
 
+div.talk-page {
+  margin-top: 8vh;
+}
+
+div.all-talks-page {
+  margin-top: 10vh;
+}
+
 div.messages {
   flex-direction: column;
-  width: 90vw;
+  width: 85vw;
+  height: 90vh;
   display: flex;
   margin: 3vh 0 11vh 0;
 }
@@ -311,38 +322,6 @@ div.logo-login, div.logo-cover {
 
 /* ---- components ---- */
 /* ---- links and buttons---- */
-/* .send-message,
-.login-link, 
-.login-button, 
-.signup-button, 
-.follow-button,
-.new-tupper button,
-.edit-tupper button,
-.edit-profile button,
-.tupper-detail-page button,
-.transaction-page a {
-  width: 40vw;
-  border-radius: 30px;
-  text-decoration: none;
-  text-align: center;
-  padding: 1.5vh;
-  font-size: 1.2rem;
-  font-weight: 800;
-  font-family: "Quicksand", Helvetica, Arial, sans-serif;
-  border: none;
-  align-self: center;
-  outline: none;
-}
-
-
-.login-link,
-.new-tupper button,
-.edit-tupper button,
-.edit-profile button,
-.tupper-detail-page button  {
-  color: #fff;
-  background: #ff2f0a;
-} */
 
 .send-message,
 .login-link, 
@@ -660,6 +639,17 @@ div.handle-image {
   object-fit: cover;
 }
 
+.profile-following img {
+  margin: 0 3vw;
+}
+
+.profile-followers div,
+.profile-following div {
+  width: 80vw;
+  flex-wrap: wrap;
+  flex-flow: wrap;
+}
+
 div.profile-followers,
 div.profile-following,
 div.profile-bought,
@@ -824,6 +814,11 @@ div.description {
   width: 80vw;
   font-style: italic;
   margin: 3vh 0 10vh 0;
+  justify-content: center;
+}
+
+.description p {
+  text-align: center;
 }
 
 .favorite-card {
@@ -904,10 +899,9 @@ img.user-conv-card-img {
 #fixed-textarea textarea {
   width: 75vw;
   max-width: 75vw;
-  height: 6vh;
-  max-height: 25vh;
+  height: 7vh;
   outline: none;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   padding: 1vh;
@@ -934,6 +928,7 @@ p.comment-bubble span,
 p.comment-bubble-red span {
   padding: 2.5vw;
   border-radius: 2.5vw;
+  line-height: 3;
 }
 
 .comment-bubble {
@@ -975,4 +970,62 @@ p.talk-header {
 
 #error-tickets {
   text-align: center;
+}
+
+/* ---- Loader ---- */
+
+
+.loader {
+  display:inline-block;
+  font-size:0px;
+  padding:0px;
+  position: absolute;
+  top: 50vh;
+  left: 40vw;
+}
+.loader span {
+  vertical-align:middle;
+  border-radius:100%;
+  
+  display:inline-block;
+  width:10px;
+  height:10px;
+  margin:3px 2px;
+  -webkit-animation:loader 0.8s linear infinite alternate;
+  animation:loader 0.8s linear infinite alternate;
+}
+.loader span:nth-child(1) {
+  -webkit-animation-delay:-1s;
+  animation-delay:-1s;
+ background:rgba(245, 103, 115,0.6);
+}
+.loader span:nth-child(2) {
+  -webkit-animation-delay:-0.8s;
+  animation-delay:-0.8s;
+ background:rgba(245, 103, 115,0.8);
+}
+.loader span:nth-child(3) {
+  -webkit-animation-delay:-0.26666s;
+  animation-delay:-0.26666s;
+ background:rgba(245, 103, 115,1);
+}
+.loader span:nth-child(4) {
+  -webkit-animation-delay:-0.8s;
+  animation-delay:-0.8s;
+ background:rgba(245, 103, 115,0.8);
+ 
+}
+.loader span:nth-child(5) {
+  -webkit-animation-delay:-1s;
+  animation-delay:-1s;
+ background:rgba(245, 103, 115,0.4);
+}
+
+@keyframes loader {
+  from {transform: scale(0, 0);}
+  to {transform: scale(1, 1);}
+}
+@-webkit-keyframes loader {
+  from {-webkit-transform: scale(0, 0);}
+  to {-webkit-transform: scale(1, 1);}
 }
