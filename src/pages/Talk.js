@@ -54,17 +54,16 @@ class Talk extends Component {
 
   render() {
     const { message, messages, opener, guest } = this.state;
-    console.log(messages)
     const { _id } = this.props.user;
     return (
       <div className="talk-page">
         {(_id === opener._id) ? <h3 className="talk-header">Talk with {guest.username}</h3> : <h3>Talk with {opener.username}</h3>}
         <div className="messages">
-        {messages.map(message =>
-          (message.creator === _id) ?
-          <p className="comment-bubble"><span>{message.comment}</span></p> :
-          <p className="comment-bubble-red"><span>{message.comment}</span></p>
-          )}
+        {messages.map(message =>{
+          return((message.creator._id === _id) ?
+          <p className="comment-bubble-red"><span>{message.comment}</span></p> :
+          <p className="comment-bubble"><span>{message.comment}</span></p> 
+          )})}
         </div>
         <div id="fixed-textarea">
           <form onSubmit={this.sendMessage} className="messages-form">

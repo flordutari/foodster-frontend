@@ -98,7 +98,7 @@ class MyProfile extends Component {
         <div className="profile-social">
           <div className="profile-bought">
             <h4>To rate</h4>
-            <div>
+            <div className="my-tupper-list">
               {boughtList.map(tupper => (
                 <>
                   <Link to={`/tuppers/${tupper._id}`}><p>{tupper.name}</p></Link>
@@ -108,7 +108,7 @@ class MyProfile extends Component {
           </div>
           <div className="profile-my-tuppers">
             <h4>My tuppers</h4>
-            <div>
+            <div className="my-tupper-list">
               {tuppers.map(tupper => (
                 <Link to={`/tuppers/${tupper._id}`}><p>{tupper.name}</p></Link>
               ))}

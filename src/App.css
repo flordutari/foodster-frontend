@@ -253,11 +253,23 @@ div.profile-social {
   margin-top: 3vh;
 }
 
+.my-tupper-list {
+  flex-direction: column;
+}
+
+.my-tupper-list p {
+ margin: .5vh;
+}
+
+.my-tupper-list p::first-letter {
+  text-transform: capitalize;
+ }
+
 div.all-talks-page,
 div.talk-page {
   flex-direction: column;
   width: 90vw;
-  margin-top: 10vh;
+  margin-top: 8vh;
   align-items: center;
   align-self: center;
 }
@@ -266,7 +278,7 @@ div.messages {
   flex-direction: column;
   width: 90vw;
   display: flex;
-  margin: 3vh 0 10vh 0;
+  margin: 3vh 0 11vh 0;
 }
 
 /* ---- logo ---- */
@@ -400,7 +412,7 @@ div.logo-login, div.logo-cover {
 }
 
 button#want-it {
-  align-self: center;
+  margin-left: 5vw
 }
 
 .buttons-in-detail {
@@ -944,12 +956,17 @@ p.comment-bubble-red span {
 
 .talk-header {
   position: fixed;
-  top: 8vh;
+  top: 6.5vh;
   background: #f9f9f9;
-  height: 4vh;
+  height: 5vh;
   width: 100vw;
   text-align: center;
+  padding-top: 2vh;
   justify-self: center;
+}
+
+p.talk-header {
+  padding-top: .5vh;
 }
 
 #error-message {
