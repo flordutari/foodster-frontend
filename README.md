@@ -246,10 +246,3 @@ The url to your presentation slides
 
 [Slides Link](https://slides.com/florenciadutari/foodster)
 
-- mensajes de error
-  - form create-tupper
-  - form edit profile
-- agregar favs a cards?
-- mensaje si hay comidas veg pero son mias
-- my tupper buttons
-- nav-bar-chat
