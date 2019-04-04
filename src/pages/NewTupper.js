@@ -23,7 +23,6 @@ class NewTupper extends Component {
 
   render() {
     const { error } = this.state;
-    console.log(error.message)
     return (
       <div className="new-tupper">
         <h2 className="create-form">Create new tupper</h2>
