@@ -16,7 +16,9 @@ class TupperDetail extends Component {
     creatorUser: {},
     isLoading: true,
     favorite: false,
-    alreadyFavorite: false
+    alreadyFavorite: false,
+    error: {},
+    noTickets: false
   }
 
   componentDidMount() {
@@ -60,11 +62,18 @@ class TupperDetail extends Component {
       },
       id)
       .then((result) => {
-        console.log(result);
         this.props.setUser(result.data.buyerUser)
         this.props.history.push(`/tuppers/${_id}/transaction`);
       })
-      .catch(err => console.log(err));
+      .catch(err => 
+        this.setState({
+          error: err
+        })
+        );
+    } else {
+      this.setState({
+        noTickets: true
+      })
     }
   }
 
@@ -131,25 +140,23 @@ class TupperDetail extends Component {
       rated,
       tupperId
     })
-    .then(result => {
-      console.log(result);
-      this.props.history.push('/tuppers/all')
-    })
+    .then(this.props.history.push('/tuppers/all'))
     .catch(err => console.log(err));
   }
 
   handleDelete = () => {
     const { id } = this.props.match.params;
     tupperService.deleteTupper(id)
-    .then(result => {
-      console.log(result);
-      this.props.history.push('/profile');
-    })
+    .then(this.props.history.push('/profile'))
     .catch(err => console.log(err));
   }
 
   render() {
-    const { tupper:{name, creator, imageUrl, price, available, rated, _id}, creatorUser, isLoading, favorite } = this.state;
+    const { tupper:{name, creator, imageUrl, price, available, rated, _id}, 
+    creatorUser, 
+    isLoading, 
+    favorite, 
+    noTickets } = this.state;
     const currentUserId = this.props.user._id;
     return (
       (isLoading) ? <p>Loading...</p> :
@@ -192,8 +199,8 @@ class TupperDetail extends Component {
                 <Link id="edit-logo-det" to={`./${_id}/edit`}><img src={editLogo} alt="edit"/></Link>
                 <button id="trash-logo-det" onClick={this.handleDelete}><img src={trashLogo} alt="trash"/></button> 
               </> :
-              <button id="want-it" onClick={this.handleTransaction}>I want it!</button>
-              }
+              <button id="want-it" onClick={this.handleTransaction}>I want it!</button>}
+              {(noTickets) ? <p id="error-tickets">Sorry! You don't have enough tickets</p> : null}
             </div>
             : null}
             <div>

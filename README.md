@@ -247,13 +247,9 @@ The url to your presentation slides
 [Slides Link](https://slides.com/florenciadutari/foodster)
 
 - mensajes de error
-<!-- - to rate - cambiar estado -->
-<!-- - subir imagenes firebase -->
-<!-- -en all, listar las que no son mias? no -->
-<!-- - my favorites card --> 
-<!-- - show followers y following en perfil -->
-<!-- - que cuando clico la imagen vaya a mi perfil y no a mi perfil como otherUser -->
-<!-- - arreglar favorite, pasar por props e incluir en tupperList -->
-<!-- - mensaje flash de success -->
-<!-- - botton de I want it! -->
-<!-- - fix stars in otherUser profile -->
+  - form create-tupper
+  - form edit profile
+- agregar favs a cards?
+- mensaje si hay comidas veg pero son mias
+- my tupper buttons
+- nav-bar-chat

@@ -265,7 +265,8 @@ div.talk-page {
 div.messages {
   flex-direction: column;
   width: 90vw;
-  display: initial;
+  display: flex;
+  margin: 3vh 0 10vh 0;
 }
 
 /* ---- logo ---- */
@@ -298,7 +299,7 @@ div.logo-login, div.logo-cover {
 
 /* ---- components ---- */
 /* ---- links and buttons---- */
-
+/* .send-message,
 .login-link, 
 .login-button, 
 .signup-button, 
@@ -318,10 +319,44 @@ div.logo-login, div.logo-cover {
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   border: none;
   align-self: center;
+  outline: none;
 }
 
+
 .login-link,
+.new-tupper button,
+.edit-tupper button,
+.edit-profile button,
+.tupper-detail-page button  {
+  color: #fff;
+  background: #ff2f0a;
+} */
+
+.send-message,
+.login-link, 
+.login-button, 
+.signup-button, 
 .follow-button,
+.new-tupper button,
+.edit-tupper button,
+.edit-profile button,
+.tupper-detail-page button,
+.transaction-page a {
+  width: 40vw;
+  border-radius: 30px;
+  text-decoration: none;
+  text-align: center;
+  padding: 1.5vh;
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-family: "Quicksand", Helvetica, Arial, sans-serif;
+  border: none;
+  align-self: center;
+  outline: none;
+}
+
+
+.login-link,
 .new-tupper button,
 .edit-tupper button,
 .edit-profile button,
@@ -330,12 +365,22 @@ div.logo-login, div.logo-cover {
   background: #ff2f0a;
 }
 
+
+.follow-button,
+.send-message {
+  color: #fff;
+  background: #fd7760;
+  outline: none;
+  margin-top: 2vh;
+}
+
 .login-button, 
 .signup-button {
   color: #ff2f0a;
   background: #fff;
-  margin-top: 8vh;
+  margin-top: 6vh;
   width: 80vw;
+  outline: none;
   max-width: 200px;
 }
 
@@ -344,8 +389,10 @@ div.logo-login, div.logo-cover {
   color: #ff2f0a;
 }
 
-.signup-link-in-login {
+.signup-link-in-login, 
+.login-link-in-signup {
   color: #fff;
+  font-weight: 700;
 }
 
 .new-tupper button {
@@ -357,8 +404,9 @@ button#want-it {
 }
 
 .buttons-in-detail {
-  justify-content: space-evenly;
-  margin-top: 5vh;
+  position: fixed;
+  bottom: 10vh;
+  left: 25vw;
 }
 
 img#fav-empty,
@@ -495,7 +543,8 @@ textarea.profile-textarea {
   align-self: center;
   background: #eee;
   color: #333;
-  border: .5px solid #333;
+  border: none;
+  border-radius: 5px;
   outline: none;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   margin-bottom: 3vh;
@@ -650,7 +699,8 @@ input[type="email" i] {
 button.upload,
 button.edit {
   margin-top: 1.5vh;
-  align-self: center;
+  position: fixed;
+  bottom: 10vh;
 }
 
 br {
@@ -676,6 +726,7 @@ br {
   width: 7vh;
   height: 7vh;
   border-radius: 50%;
+  margin: 0 5vw;
 }
 
 #edit-logo-det {
@@ -826,7 +877,7 @@ img.user-conv-card-img {
 
 #fixed-textarea {
   background-color: #ff7a7a;
-  height: 10vh;
+  height: 11vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -848,6 +899,7 @@ img.user-conv-card-img {
   border: none;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   padding: 1vh;
+  justify-self: center;
   font-size: 1rem;
 }
 
@@ -855,16 +907,55 @@ img#send-logo {
   width: 8vw;
   height: 8vw;
   z-index: 15;
+  position: fixed;
 }
 
-.send-button {
+button.send-button {
   background: none;
   border: none;
+  position: fixed;
+  bottom: 7vh;
+  right: 12vw;
 }
 
-p.comment-bubble span{
+p.comment-bubble span,
+p.comment-bubble-red span {
+  padding: 2.5vw;
+  border-radius: 2.5vw;
+}
+
+.comment-bubble {
+  margin: 1.75vh 0;
+  align-self: flex-start;
+}
+
+.comment-bubble-red {
+  align-self: flex-end;
+}
+
+p.comment-bubble span {
   background-color: #e4e4e4;
-  padding: 3vw;
-  border-radius: 8px;
-  margin: 5vw;
+}
+
+p.comment-bubble-red span {
+  background-color: #fd7760;
+  margin-left: auto;
+}
+
+.talk-header {
+  position: fixed;
+  top: 8vh;
+  background: #f9f9f9;
+  height: 4vh;
+  width: 100vw;
+  text-align: center;
+  justify-self: center;
+}
+
+#error-message {
+  margin: 4vh 0 0 0;
+}
+
+#error-tickets {
+  text-align: center;
 }

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import sendLogo from '../img/send.png'
+import { withAuth } from '../providers/AuthProvider';
 import talksService from '../lib/talks-service';
 
 class Talk extends Component {
 
   state = {
     message: '',
-    messages: []
+    messages: [],
+    talk: {},
+    guest: {},
+    opener: {},
+    creator: []
   }
 
   componentDidMount = () => {
@@ -24,8 +29,7 @@ class Talk extends Component {
     const { id } = this.props.match.params;
     const { message } = this.state;
     talksService.createMessage({message}, id)
-    .then((result) => {
-      console.log(result);
+    .then(() => {
       this.setState({
         message:'',
       })
@@ -39,26 +43,33 @@ class Talk extends Component {
     talksService.getOne(id)
     .then(talk => {
       this.setState({
-        messages: talk.messages
+        guest: talk.guest,
+        opener: talk.opener,
+        messages: talk.messages,
+        talk
       })
     })
     .catch(err => console.log(err));
   }
 
   render() {
-    const { message } = this.state;
-    const { messages } = this.state;
+    const { message, messages, opener, guest } = this.state;
+    console.log(messages)
+    const { _id } = this.props.user;
     return (
       <div className="talk-page">
+        {(_id === opener._id) ? <h3 className="talk-header">Talk with {guest.username}</h3> : <h3>Talk with {opener.username}</h3>}
         <div className="messages">
         {messages.map(message =>
-          <p className="comment-bubble"><img src="" alt=""/><span>{message.comment}</span></p>
+          (message.creator === _id) ?
+          <p className="comment-bubble"><span>{message.comment}</span></p> :
+          <p className="comment-bubble-red"><span>{message.comment}</span></p>
           )}
         </div>
         <div id="fixed-textarea">
           <form onSubmit={this.sendMessage} className="messages-form">
             <textarea onChange={this.handleChange} name="message" value={message} placeholder="Send a message..." tabindex="5" required></textarea>
-            <button type="submit"><img id="send-logo" src={sendLogo} alt=""/></button>
+            <button className="send-button" type="submit"><img id="send-logo" src={sendLogo} alt=""/></button>
           </form>
         </div>
       </div>
@@ -66,4 +77,4 @@ class Talk extends Component {
   }
 }
 
-export default Talk;
+export default withAuth(Talk);

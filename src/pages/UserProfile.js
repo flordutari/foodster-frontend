@@ -84,9 +84,7 @@ class UserProfile extends Component {
   createTalk = () => {
     const guestId = this.state.otherUser._id;
     talksService.createTalk({guestId})
-    .then(talk => {
-      console.log(talk);
-    })
+    .then(result => this.props.history.push(`/talks/${result._id}`))
     .catch(err => console.log(err));
   }
     
@@ -115,7 +113,7 @@ class UserProfile extends Component {
         <button className="follow-button" onClick={this.handleFollowers}>Follow</button> :
         <button className="follow-button" onClick={this.handleFollowers}>Unfollow</button>
         }
-        <button onClick={this.createTalk} className="send-message">chat</button>
+        <button className="send-message" onClick={this.createTalk}>Chat</button>
       </div>
     );
   }

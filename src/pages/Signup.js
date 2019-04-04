@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../providers/AuthProvider';
+import ErrorComponent from '../components/ErrorComponent';
 
 class Signup extends Component {
 
@@ -8,6 +9,7 @@ class Signup extends Component {
     username: "",
     password: "",
     email: "",
+    error: {}
   };
 
   handleFormSubmit = (event) => {
@@ -17,14 +19,14 @@ class Signup extends Component {
     const email = this.state.email;
 
     this.props.signup({ username, password, email })
-      .then(() => {
-        this.setState({
-            username: "",
-            password: "",
-            email: "",
-        });
-      })
-      .catch(error => console.log(error))
+    .then((error) => {
+      this.setState({
+          username: "",
+          password: "",
+          email: "",
+          error
+      });
+    })
   }
 
   handleChange = (event) => {  
@@ -33,7 +35,7 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password, email } = this.state;
+    const { username, password, email, error } = this.state;
     return (
       <div className="signup-page">
         <div className="logo-login">
@@ -46,10 +48,15 @@ class Signup extends Component {
           <input className="standard-input" type="password" name="password" value={password} onChange={this.handleChange} placeholder="password"/>
           <input className="standard-input"type="hidden" id="latitude" name="latitude" value={username} />
           <input className="standard-input"type="hidden" id="longitude" name="longitude" value={username} />
+          {error.message ? 
+          <ErrorComponent 
+          error={error}
+          /> : 
+          null }
           <input className="signup-button" type="submit" value="Signup" />
         </form>
         <p>Already have account? </p>        
-        <Link to={"/login"}> Login</Link>
+        <Link className="login-link-in-signup" to={"/login"}> Login</Link>
       </div>
     )
   }

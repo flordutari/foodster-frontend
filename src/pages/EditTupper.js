@@ -28,10 +28,7 @@ class EditTupper extends Component {
   handleSubmit = (tupper) => {
     const {id} = this.props.match.params;
     tupperService.editTupper(tupper, id)
-    .then((result) => {
-      console.log(result);
-      this.props.history.push(`/tuppers/${id}`);
-    })
+    .then(this.props.history.push(`/tuppers/${id}`))
     .catch(err => console.log(err));
   }
 

@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { withAuth } from '../providers/AuthProvider';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import ErrorComponent from '../components/ErrorComponent';
 
 class Login extends Component {
   
   state = {
     username: "",
     password: "",
-    status: ""
+    status: "",
+    error: {}
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const { username, password } = this.state;
     this.props.login({ username, password })
-      .then(() => {})
-      .catch((error ) => {
-        console.log(error)
-      }
-    )
+    .then((error) => {
+      this.setState({
+        error
+      })
+    })
   }
   
   handleChange = (event) => {  
@@ -27,7 +29,7 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, error } = this.state;
     return (
       <div className="login-page">
         <div className="logo-login">
@@ -37,6 +39,11 @@ class Login extends Component {
         <form onSubmit={this.handleFormSubmit}>
           <input className="standard-input" type="text" name="username" value={username} onChange={this.handleChange} placeholder="username"/>
           <input className="standard-input"type="password" name="password" value={password} onChange={this.handleChange} placeholder="password"/>
+          {error.message ? 
+          <ErrorComponent 
+          error={error}
+          /> : 
+          null }
           <input className="login-button" type="submit" value="Login" />
         </form>
         <Link className="signup-link-in-login" to='/signup'>or Signup</Link>

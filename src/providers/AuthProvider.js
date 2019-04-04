@@ -50,7 +50,9 @@ export default class AuthProvider extends Component {
           user: {},
         });
       })
-      .catch(error => console.log(error))
+      .catch(error =>  {
+        return error.response.data
+      })
   }
 
   loginUser = (body) => {
@@ -58,7 +60,7 @@ export default class AuthProvider extends Component {
       .then((user) => {
         this.setUser(user);
       })
-      .catch(error => console.log(error))
+      .catch(error => error.response.data)
   }
 
   signupUser = (body) => {
@@ -66,7 +68,7 @@ export default class AuthProvider extends Component {
       .then((user) => {
         this.setUser(user);
       })
-      .catch(error => console.log(error))
+      .catch(error =>  error.response.data)
   }
 
   componentDidMount() {
