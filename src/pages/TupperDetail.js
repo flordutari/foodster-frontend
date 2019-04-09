@@ -166,7 +166,7 @@ class TupperDetail extends Component {
     return (
       (isLoading) ? <p>Loading...</p> :
         <div className="tupper-detail-page">
-          {(creator !== currentUserId) ?
+          {(creator !== currentUserId && available === true) ?
             <>
               {(favorite === false) ?
               <img onClick={this.handleFavorite} id="fav-empty-det" src={emptyHeart} alt="like"/> :
@@ -214,11 +214,11 @@ class TupperDetail extends Component {
             <div className="detail-info">
               <p className="chef red">Rate it!</p> 
               <div className="punctuation">
-                <p onClick={() => {this.handleStatus(1)}}>1</p>
-                <p onClick={() => {this.handleStatus(2)}}>2</p>
-                <p onClick={() => {this.handleStatus(3)}}>3</p>
-                <p onClick={() => {this.handleStatus(4)}}>4</p>
-                <p onClick={() => {this.handleStatus(5)}}>5</p>
+                <div><span onClick={() => {this.handleStatus(1)}}>1</span></div>
+                <div><span onClick={() => {this.handleStatus(2)}}>2</span></div>
+                <div><span onClick={() => {this.handleStatus(3)}}>3</span></div>
+                <div><span onClick={() => {this.handleStatus(4)}}>4</span></div>
+                <div><span onClick={() => {this.handleStatus(5)}}>5</span></div>
               </div>
             </div>
             : 

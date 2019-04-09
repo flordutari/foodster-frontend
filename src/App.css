@@ -785,12 +785,17 @@ div.punctuation {
   justify-content: space-evenly;
 }
 
-.punctuation p {
+.punctuation span {
   font-size: 1.4rem;
 }
 
-.punctuation p::before {
-  color:  #ff2f0a;
+.punctuation div {
+  width: 6.5vw;
+  height: 6.5vw;
+  background: #ffc710;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
 }
 
 img.profile {
