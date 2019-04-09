@@ -17,6 +17,7 @@ import MyProfile from './pages/MyProfile';
 import EditProfile from './pages/EditProfile';
 import UserProfile from './pages/UserProfile';
 import TalksList from './pages/TalksList';
+import Error404 from './pages/Error404';
 import Talk from './pages/Talk';
 import AuthProvider from './providers/AuthProvider';
 
@@ -27,8 +28,8 @@ class App extends Component {
         <div className="container">
           <Switch>
             <AnonRoute exact path="/" component={CoverPage} />
-            <AnonRoute path="/signup" component={Signup} />
-            <AnonRoute path="/login" component={Login} />
+            <AnonRoute exact path="/signup" component={Signup} />
+            <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/tuppers/categories" component={Categories} />
             <PrivateRoute exact path="/tuppers/all" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/search" component={TuppersList} />
@@ -38,7 +39,7 @@ class App extends Component {
             <PrivateRoute exact path="/tuppers/pasta" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/gluten-free" component={TuppersList} />
             <PrivateRoute exact path="/tuppers/new" component={NewTupper} />
-            <PrivateRoute exact path="/tuppers/favorites" component={MyFavorites} />            
+            <PrivateRoute exact path="/tuppers/favorites" component={MyFavorites} />
             <PrivateRoute exact path="/tuppers/:id" component={TupperDetail} />
             <PrivateRoute exact path="/tuppers/:id/edit" component={EditTupper} />
             <PrivateRoute exact path="/tuppers/:id/transaction" component={TransactionDone} />
@@ -46,7 +47,8 @@ class App extends Component {
             <PrivateRoute exact path="/profile/edit" component={EditProfile} />
             <PrivateRoute exact path="/talks" component={TalksList} />
             <PrivateRoute exact path="/talks/:id" component={Talk} />
-            <PrivateRoute path="/profile/:id" component={UserProfile} />            
+            <PrivateRoute exact path="/profile/:id" component={UserProfile} />
+            <PrivateRoute path="*" component={Error404} />
           </Switch>
         </div>
       </AuthProvider>
