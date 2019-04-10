@@ -5,36 +5,6 @@ class Error404 extends Component {
     return (
       <div>
         Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
-        Error 404
       </div>
     );
   }

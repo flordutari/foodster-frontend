@@ -11,9 +11,10 @@ body, #root {
   margin: 0;
   padding: 0;
   color: #333;
-  max-width: 100vw;
+  max-width: 400px;
   max-height: 100vh;
   background: #f9f9f9;
+  justify-self: center;
 }
 
 nav {
@@ -161,14 +162,16 @@ h3::first-letter {
   background-size: cover;
   height: 100vh;
   max-height: 100vh;
+  max-width: 400px;
   width: 100vw;
   flex-flow: column;
   align-items: center;
-  background-position: bottom center;
+  background-position: top center;
 }
 
 img.cover-logo {
   width: 40vw;
+  max-width: 150px;
   margin: 12vh 0 0 0;
 }
 

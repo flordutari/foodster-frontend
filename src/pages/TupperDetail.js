@@ -204,12 +204,10 @@ class TupperDetail extends Component {
                 <Link id="edit-logo-det" to={`./${_id}/edit`}><img src={editLogo} alt="edit"/></Link>
                 <button id="trash-logo-det" onClick={this.handleDelete}><img src={trashLogo} alt="trash"/></button> 
               </> :
-              <button id="want-it" onClick={this.handleTransaction}>I want it!</button>}
+                <button id="want-it" onClick={this.handleTransaction}>I want it!</button>}
               {(noTickets) ? <p id="error-tickets">Sorry! You don't have enough tickets</p> : null}
             </div>
             : null}
-            <div>
-          </div>
             {(!available && !rated) ? 
             <div className="detail-info">
               <p className="chef red">Rate it!</p> 
